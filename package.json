@@ -28,6 +28,7 @@
     "@nuxtjs/sanity": "^1.7.2",
     "@sanity/scheduled-publishing": "^1.1.1",
     "@sanity/vision": "^3.11.3",
+    "nuxt-scheduler": "^0.0.16",
     "primeicons": "^6.0.1",
     "primevue": "^3.29.1",
     "sanity": "^3.11.3",

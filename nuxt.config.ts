@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "@vite-pwa/nuxt",
     "@nuxt/devtools",
+    "nuxt-scheduler",
   ],
   sanity: {
     projectId: "u678c0qn",
