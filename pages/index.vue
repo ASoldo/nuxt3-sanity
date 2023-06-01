@@ -1,13 +1,13 @@
 <template>
-  <div class="">
+  <div>
     <div v-if="!user">
-      <h2 class="">Sign in to your account</h2>
-      <input type="text" v-model="email" />
-      <input type="password" v-model="password" />
-      <button class="" @click="auth.signInWithPassword({ email: email, password: password })">
-        Sign In
-      </button>
-      <button @click="navigateTo('game')">Game</button>
+      <h2>Sign in to your account</h2>
+      <InputText type="text" v-model="email" />
+      <InputText type="password" v-model="password" />
+      <Button :pt="{
+        root: { class: 'bg-red-500 hover:bg-red-900 p-2 m-1 rounded-md' },
+      }" @click="auth.signInWithPassword({ email: email, password: password })" label="Sign In" />
+      <Button @click="navigateTo('game')" label="Game" />
     </div>
     <div v-else>
       <h1>Olla {{ user.email }}</h1>
@@ -21,14 +21,25 @@
         <Toast />
         <div class="mt-4">
           <InputText :pt="{ root: { class: 'p-inputtext-sm' } }" type="text" />
-          <Button :pt="{
-            label: { style: 'outline: 1px solid red' },
-            root: { style: 'background-color: green; border-radius: 0px;' },
-          }" label="Submit" />
+          <Button label="Submit" />
           <i class="pi pi-check"></i>
           <i class="pi pi-times"></i>
           <span class="pi pi-search"></span>
           <span class="pi pi-user"></span>
+          <fieldset>
+            <legend>Cats</legend>
+            <ul>
+              <li v-for="(item, key) in cats" :key="key">
+                <span class="pi pi-user"></span> &nbsp;{{ item.name }}
+                <span class="pi pi-check"></span> &nbsp;{{ item.age }}
+              </li>
+            </ul>
+          </fieldset>
+
+          <Button label="Edge-Lord" @click="invoke_edge()" />
+          <div v-if="edgeLordData">
+            <p>{{ edgeLordData["message"] }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +48,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { PageData } from "../types/types";
+import { PageData } from "../internals/types";
+import { CatsResponse } from "../internals/interfaces";
 
 const query = groq`*[_type == 'page']|order(id asc){...,"components": components[visibility == true]}`;
 const sanity = useSanity();
@@ -48,6 +60,24 @@ const user = useSupabaseUser();
 const { auth } = useSupabaseAuthClient();
 const email = ref("");
 const password = ref("");
+
+const client = useSupabaseClient();
+const { data: cats } = await useAsyncData<CatsResponse[] | null>(
+  "cats",
+  async () => {
+    const { data } = await client.from("cats").select("*");
+    return data;
+  }
+);
+const edgeLordData = ref(null);
+
+const invoke_edge = async () => {
+  const { data, error } = await client.functions.invoke("edge-lord", {
+    body: JSON.stringify({ name: "Functions" }),
+  });
+  console.log(data);
+  edgeLordData.value = data;
+};
 
 definePageMeta({
   middleware: ["auth"],

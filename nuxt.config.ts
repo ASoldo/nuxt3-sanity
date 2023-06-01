@@ -23,8 +23,15 @@ export default defineNuxtConfig({
     "primevue/resources/themes/lara-light-blue/theme.css",
     "primevue/resources/primevue.css",
     "primeicons/primeicons.css",
+    // "~/assets/css/main.css",
   ],
   build: {
     transpile: ["primevue"],
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
 });
