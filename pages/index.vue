@@ -50,6 +50,7 @@
 import { computed } from "vue";
 import { PageData } from "../internals/types";
 import { CatsResponse } from "../internals/interfaces";
+import { useCounterStore } from "../stores/counter";
 
 const query = groq`*[_type == 'page']|order(id asc){...,"components": components[visibility == true]}`;
 const sanity = useSanity();
@@ -78,6 +79,8 @@ const invoke_edge = async () => {
   console.log(data);
   edgeLordData.value = data;
 };
+
+const { store, increment } = useCounterStore();
 
 definePageMeta({
   middleware: ["auth"],

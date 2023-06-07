@@ -6,6 +6,8 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
     "@nuxt/devtools",
     "nuxt-scheduler",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
   ],
   sanity: {
     projectId: "u678c0qn",
@@ -34,5 +36,18 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      "defineStore", // import { defineStore } from 'pinia'
+      ["defineStore", "definePiniaStore"], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
+  piniaPersistedstate: {
+    cookieOptions: {
+      sameSite: "strict",
+    },
+    storage: "cookies",
   },
 });

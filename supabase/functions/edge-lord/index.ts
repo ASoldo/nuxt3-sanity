@@ -20,6 +20,7 @@ serve(async (req: any) => {
     const { name } = await req.json();
     const data = {
       message: `olla ${name}`,
+      time: Date.now(),
     };
     console.log(`Olla ${name}!`);
     return new Response(JSON.stringify(data), {
