@@ -14,7 +14,6 @@ export const header = {
       type: "string",
       title: "Title",
     },
-    // Add more fields as needed for each component
   ],
   preview: {
     select: {
@@ -50,8 +49,10 @@ export const banner = {
       description: "Upload your image",
       type: "image",
       title: "Image",
+      options: {
+        hotspot: true,
+      },
     },
-    // Add more fields as needed for each component
   ],
   preview: {
     select: {
@@ -81,7 +82,6 @@ export const body = {
       type: "text",
       title: "Content",
     },
-    // Add more fields as needed for each component
   ],
   preview: {
     select: {
@@ -111,7 +111,6 @@ export const footer = {
       type: "text",
       title: "Content",
     },
-    // Add more fields as needed for each component
   ],
   preview: {
     select: {

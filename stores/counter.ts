@@ -7,8 +7,12 @@ export const useCounterStore = defineStore(
     const increment = () => {
       count.value++;
     };
+    const $reset = () => {
+      count.value = 0;
+      name.value = "";
+    };
 
-    return { count, name, doubleCount, increment };
+    return { count, name, doubleCount, increment, $reset };
   },
   {
     persist: {

@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { PageData } from "@/internals/types";
 definePageMeta({
   middleware: ["auth"],
 });
