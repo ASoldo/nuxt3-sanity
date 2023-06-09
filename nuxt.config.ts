@@ -50,4 +50,7 @@ export default defineNuxtConfig({
     },
     storage: "cookies",
   },
+  experimental: {
+    typedPages: true,
+  },
 });

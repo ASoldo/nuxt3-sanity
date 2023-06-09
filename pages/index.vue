@@ -76,11 +76,17 @@ const invoke_edge = async () => {
   const { data, error } = await client.functions.invoke("edge-lord", {
     body: JSON.stringify({ name: "Functions" }),
   });
+
+  if (error) {
+    console.error("Error invoking function:", error);
+    return;
+  }
+  // You could also show the error to the user in some way here, if appropriate
   console.log(data);
   edgeLordData.value = data;
 };
 
-const { store, increment } = useCounterStore();
+const { count, increment } = useCounterStore();
 
 definePageMeta({
   middleware: ["auth"],
