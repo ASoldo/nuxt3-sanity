@@ -1,6 +1,5 @@
 export default defineEventHandler(async () => {
-  const baseUrl =
-    "https://u678c0qn.api.sanity.io/v2021-10-21/data/query/production";
+  const baseUrl = import.meta.env.BASE_URL;
   const query = '*[_type == "question"]';
   const encodedQuery = encodeURIComponent(query);
 
