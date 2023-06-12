@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "nuxt-scheduler",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
+    "frammer-nuxt",
   ],
   sanity: {
     projectId: "u678c0qn",
@@ -49,6 +50,9 @@ export default defineNuxtConfig({
       sameSite: "strict",
     },
     storage: "cookies",
+  },
+  frammerNuxt: {
+    iframeUrl: "http://localhost:3333",
   },
   experimental: {
     typedPages: true,

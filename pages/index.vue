@@ -40,6 +40,8 @@
           <div v-if="edgeLordData">
             <p>{{ edgeLordData["message"] }}</p>
           </div>
+          <Button label="FetchUser" @click="fetchUser()" />
+          <Button label="Call Increment Clicks" @click="increment_clicks()" />
         </div>
       </div>
     </div>
@@ -81,9 +83,22 @@ const invoke_edge = async () => {
     console.error("Error invoking function:", error);
     return;
   }
-  // You could also show the error to the user in some way here, if appropriate
   console.log(data);
   edgeLordData.value = data;
+};
+
+const my_user = ref(null);
+const fetchUser = async () => {
+  my_user.value = await $fetch("api/me");
+};
+
+const increment_clicks = async () => {
+  const { data, error } = await client.rpc("increment_clicks");
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(data);
+  }
 };
 
 const { count, increment } = useCounterStore();
