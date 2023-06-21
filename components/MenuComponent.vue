@@ -118,7 +118,7 @@
           :key="index"
           href="#"
           class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
-          @click="item.fn()"
+          @click="item.fn(), toggleMenu()"
         >
           <i :class="item.icon"></i>{{ item.label }}</a
         >
