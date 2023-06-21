@@ -1,49 +1,47 @@
 <template>
-  <div>
-    <div v-if="!user">
-      <h2>Sign in to your account</h2>
-      <InputText type="text" v-model="email" />
-      <InputText type="password" v-model="password" />
-      <Button :pt="{
-        root: { class: 'bg-red-500 hover:bg-red-900 p-2 m-1 rounded-md' },
-      }" @click="auth.signInWithPassword({ email: email, password: password })" label="Sign In" />
-      <Button @click="navigateTo('game')" label="Game" />
-    </div>
-    <div v-else>
-      <h1>Olla {{ user.email }}</h1>
-      <button @click="auth.signOut()">Log Out</button>
-      <button @click="navigateTo('game')">Game</button>
-    </div>
-    <Dynamic :page-data="pageData[0]" />
-
-    <div class="container">
-      <div class="flex flex-column align-items-center mt-1">
-        <Toast />
-        <div class="mt-4">
-          <InputText :pt="{ root: { class: 'p-inputtext-sm' } }" type="text" />
-          <Button label="Submit" />
-          <i class="pi pi-check"></i>
-          <i class="pi pi-times"></i>
-          <span class="pi pi-search"></span>
-          <span class="pi pi-user"></span>
-          <fieldset>
-            <legend>Cats</legend>
-            <ul>
-              <li v-for="(item, key) in cats" :key="key">
-                <span class="pi pi-user"></span> &nbsp;{{ item.name }}
-                <span class="pi pi-check"></span> &nbsp;{{ item.age }}
-              </li>
-            </ul>
-          </fieldset>
-
-          <Button label="Edge-Lord" @click="invoke_edge()" />
-          <div v-if="edgeLordData">
-            <p>{{ edgeLordData["message"] }}</p>
-          </div>
-          <Button label="FetchUser" @click="fetchUser()" />
-          <Button label="Call Increment Clicks" @click="increment_clicks()" />
-        </div>
+  <div class="h-full">
+    <div class="w-full">
+      <div v-if="!user">
+        <h2>Sign in to your account</h2>
+        <input type="text" v-model="email" />
+        <input type="password" v-model="password" />
+        <button @click="auth.signInWithPassword({ email: email, password: password })">
+          Sign In
+        </button>
+        <button class="px-3 bg-blue-700 text-white" @click="navigateTo('game')">
+          Game
+        </button>
       </div>
+      <div v-else>
+        <button class="px-3 bg-blue-700 rounded-md text-white" @click="navigateTo('game')">
+          Game
+        </button>
+      </div>
+      <Dynamic :page-data="pageData[0]" />
+
+      <input type="text" />
+      <button>Submit</button>
+
+      <i class="pi pi-check"></i>
+      <i class="pi pi-times"></i>
+      <span class="pi pi-search"></span>
+      <span class="pi pi-user"></span>
+      <fieldset>
+        <legend>Cats</legend>
+        <ul>
+          <li v-for="(item, key) in cats" :key="key">
+            <span class="pi pi-user"></span> &nbsp;{{ item.name }}
+            <span class="pi pi-check"></span> &nbsp;{{ item.age }}
+          </li>
+        </ul>
+      </fieldset>
+
+      <button @click="invoke_edge()">Edge-Lord</button>
+      <div v-if="edgeLordData">
+        <p>{{ edgeLordData["message"] }}</p>
+      </div>
+      <button @click="fetchUser()">FetchUser</button>
+      <button @click="increment_clicks()">Call Incremental Clics</button>
     </div>
   </div>
 </template>

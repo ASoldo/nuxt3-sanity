@@ -1,5 +1,16 @@
+<template>
+  <div v-for="(page, key) in props" :key="key" class="w-full flex flex-col justify-center">
+    <h1 class="flex justify-center outline outline-black outline-1">
+      {{ page.title }}
+    </h1>
+    <div v-for="component in pageData.components" :key="component._key">
+      <component :is="getComponentName(component._type)" v-bind="component" />
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
-import { PageData } from "../types/types";
+import { PageData } from "../internals/types";
 import Header from "./Header.vue";
 import Banner from "./Banner.vue";
 import Body from "./Body.vue";
@@ -23,12 +34,3 @@ const componentMap = {
 
 const getComponentName = (type: ComponentType) => componentMap[type] || null;
 </script>
-
-<template>
-  <div v-for="(page, key) in props" :key="key">
-    <h1>{{ page.title }}</h1>
-    <div v-for="component in pageData.components" :key="component._key">
-      <component :is="getComponentName(component._type)" v-bind="component" />
-    </div>
-  </div>
-</template>

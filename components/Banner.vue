@@ -1,7 +1,10 @@
 <template>
-  <div>
+  <div class="w-full flex flex-col justify-center outline outline-black outline-1 overflow-hidden">
     <!-- <img :src="imageUrl" alt="Banner Image" /> -->
-    <SanityImage :asset-id="props.image?.asset._ref" auto="format" />
+    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
+    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
+    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
+    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
   </div>
 </template>
 

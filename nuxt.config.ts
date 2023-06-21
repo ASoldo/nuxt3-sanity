@@ -9,7 +9,15 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "frammer-nuxt",
+    "nuxt-purgecss",
+    "@vueuse/nuxt",
   ],
+  plugins: [],
+
+  purgecss: {
+    enabled: false, // Always enable purgecss
+    safelist: ["flex", "flex-column", "flex-grow-1"], // Add 'my-class' token to the safelist (e.g. .my-class)
+  },
   sanity: {
     projectId: "u678c0qn",
     dataset: "production",
@@ -24,13 +32,14 @@ export default defineNuxtConfig({
   pwa: {},
   pages: true,
   css: [
-    "primevue/resources/themes/lara-light-blue/theme.css",
-    "primevue/resources/primevue.css",
+    // "primevue/resources/primevue.css",
+    // "primevue/resources/themes/lara-light-blue/theme.css",
+    // "primeflex/primeflex.css",
     "primeicons/primeicons.css",
-    // "~/assets/css/main.css",
+    "~/assets/css/main.css",
   ],
   build: {
-    transpile: ["primevue"],
+    // transpile: ["primevue"],
   },
   postcss: {
     plugins: {
@@ -50,6 +59,9 @@ export default defineNuxtConfig({
       sameSite: "strict",
     },
     storage: "cookies",
+  },
+  nitro: {
+    compressPublicAssets: true,
   },
   frammerNuxt: {
     iframeUrl: "http://localhost:3333",

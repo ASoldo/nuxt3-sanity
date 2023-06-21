@@ -10,7 +10,7 @@ definePageMeta({
   middleware: ["auth"],
 });
 const route = useRoute();
-const slug = ref(route.params.slug);
+const slug = ref((route.params as { slug: string }).slug);
 
 const sanity = useSanity();
 
