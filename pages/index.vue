@@ -1,47 +1,68 @@
 <template>
   <div class="h-full">
     <div class="w-full">
-      <div v-if="!user">
-        <h2>Sign in to your account</h2>
-        <input type="text" v-model="email" />
-        <input type="password" v-model="password" />
-        <button @click="auth.signInWithPassword({ email: email, password: password })">
-          Sign In
-        </button>
-        <button class="px-3 bg-blue-700 text-white" @click="navigateTo('game')">
-          Game
-        </button>
-      </div>
-      <div v-else>
-        <button class="px-3 bg-blue-700 rounded-md text-white" @click="navigateTo('game')">
-          Game
-        </button>
-      </div>
       <Dynamic :page-data="pageData[0]" />
 
-      <input type="text" />
-      <button>Submit</button>
-
-      <i class="pi pi-check"></i>
-      <i class="pi pi-times"></i>
-      <span class="pi pi-search"></span>
-      <span class="pi pi-user"></span>
-      <fieldset>
-        <legend>Cats</legend>
-        <ul>
-          <li v-for="(item, key) in cats" :key="key">
-            <span class="pi pi-user"></span> &nbsp;{{ item.name }}
-            <span class="pi pi-check"></span> &nbsp;{{ item.age }}
-          </li>
-        </ul>
-      </fieldset>
-
-      <button @click="invoke_edge()">Edge-Lord</button>
-      <div v-if="edgeLordData">
-        <p>{{ edgeLordData["message"] }}</p>
+      <div class="flex flex-col items-center justify-center p-2">
+        <h1>Leaderboard</h1>
+        <div class="overflow-x-auto w-full md:w-fit">
+          <div
+            class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-red-200 border-2">
+            <table class="min-w-full">
+              <thead>
+                <tr>
+                  <th
+                    class="px-6 py-3 border-b border-gray-200 bg-red-500 text-center text-xs leading-4 font-medium text-white uppercase tracking-wider">
+                    #
+                  </th>
+                  <th
+                    class="px-6 py-3 border-b border-gray-200 bg-red-600 text-center text-xs leading-4 font-medium text-white uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th
+                    class="px-6 py-3 border-b border-gray-200 bg-red-500 text-center text-xs leading-4 font-medium text-white uppercase tracking-wider">
+                    Score
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white">
+                <tr v-for="(item, index) in cats" :key="index" class="border-t border-gray-200"
+                  :class="index % 2 !== 0 ? 'bg-red-50' : undefined">
+                  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                    <span class="text-red-800">
+                      {{ index + 1 }}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                    <span class="pi pi-user pr-2 text-blue-500"></span>{{ item.name }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                    <span class="pi pi-check px-1 text-green-500"></span>
+                    &nbsp;{{ item.age }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <button @click="fetchUser()">FetchUser</button>
-      <button @click="increment_clicks()">Call Incremental Clics</button>
+
+      <div class="flex flex-row justify-around p-2 bg-red-500">
+        <button class="outline outline-1 outline-white px-4 rounded-md text-white hover:bg-red-600"
+          @click="invoke_edge()">
+          Edge-Function
+        </button>
+        <div v-if="edgeLordData">
+          <p>{{ edgeLordData["message"] }}</p>
+        </div>
+        <button class="outline outline-1 outline-white px-4 rounded-md text-white hover:bg-red-600" @click="fetchUser()">
+          Fetch-User
+        </button>
+        <button class="outline outline-1 outline-white px-4 rounded-md text-white hover:bg-red-600"
+          @click="increment_clicks()">
+          Call-Incremental-Clicks
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -57,16 +78,14 @@ const sanity = useSanity();
 const { data } = useAsyncData("page", () => sanity.fetch(query));
 const pageData = computed(() => (data.value as PageData[]) ?? []);
 
-const user = useSupabaseUser();
-const { auth } = useSupabaseAuthClient();
-const email = ref("");
-const password = ref("");
-
 const client = useSupabaseClient();
 const { data: cats } = await useAsyncData<CatsResponse[] | null>(
   "cats",
   async () => {
-    const { data } = await client.from("cats").select("*");
+    const { data } = await client
+      .from("cats")
+      .select("*")
+      .order("age", { ascending: false });
     return data;
   }
 );

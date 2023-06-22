@@ -14,7 +14,7 @@
     "s-deploy-graphql": "sanity graphql deploy"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.6.0",
+    "@nuxt/devtools": "^0.6.2",
     "@nuxtjs/supabase": "^0.3.7",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@types/node": "^18.0.0",

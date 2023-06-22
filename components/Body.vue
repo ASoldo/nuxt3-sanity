@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full flex flex-row justify-center outline outline-black outline-1">
+  <div class="h-96 w-full flex flex-col justify-center outline outline-black outline-1">
     <dialog ref="dialog" class="m-auto absolute inset-0 p-20">
-      <h1>Ja sam modal</h1>
+      <h1>Welcome!</h1>
       <p>{{ props.content }}</p>
       <div class="flex flex-row justify-end">
         <button class="mt-3 px-2 rounded-md bg-red-400 text-white hover:bg-red-700" @click="dialog?.close()">

@@ -1,6 +1,6 @@
 <template>
-  <footer class="w-full flex flex-row justify-center outline outline-black outline-1">
-    <p>{{ props.content }}</p>
+  <footer class="h-96 w-full flex flex-col justify-center align-middle outline outline-black outline-1">
+    <p class="text-center">{{ props.content }}</p>
   </footer>
 </template>
 

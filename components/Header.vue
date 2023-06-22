@@ -1,6 +1,6 @@
 <template>
-  <header class="w-full flex flex-row justify-center outline outline-black outline-1">
-    <h1>{{ props.title }}</h1>
+  <header class="h-96 w-full flex flex-col justify-center align-middle outline outline-black outline-1">
+    <h1 class="text-center">{{ props.title }}</h1>
   </header>
 </template>
 

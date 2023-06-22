@@ -1,10 +1,11 @@
 <template>
-  <div class="w-full flex flex-col justify-center outline outline-black outline-1 overflow-hidden">
+  <div class="h-96 flex flex-row justify-center outline outline-black outline-1 overflow-hidden">
     <!-- <img :src="imageUrl" alt="Banner Image" /> -->
-    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
-    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
-    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
-    <SanityImage class="w-auto" :asset-id="props.image?.asset._ref" auto="format" />
+    <SanityImage :asset-id="props.image?.asset._ref" auto="format">
+      <template #default="{ src }">
+        <img :src="src" class="object-cover w-full" />
+      </template>
+    </SanityImage>
   </div>
 </template>
 
@@ -15,10 +16,11 @@
 //   projectId: "u678c0qn",
 //   dataset: "production",
 // });
-
 const props = defineProps({
   image: Object,
 });
+
+console.log(props.image);
 
 // const imageUrl = ref("");
 //
