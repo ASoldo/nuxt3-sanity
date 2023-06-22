@@ -22,17 +22,10 @@
         </button>
       </div>
     </dialog>
-    <!-- <div class="flex flex-row w-full justify-center"> -->
-    <!--   <button @click="dialog?.showModal()" -->
-    <!--     class="bg-blue-500 hover:bg-blue-700 text-white hover:text-black pl-5 pr-5 rounded-2xl"> -->
-    <!--     Click -->
-    <!--   </button> -->
-    <!-- </div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-const user = useSupabaseUser();
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
 

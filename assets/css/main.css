@@ -2,11 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Kaufland-Bold";
+  src: src("../font/Kaufland-Bold/Kaufland-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Kaufland-Heavy";
+  src: src("../font/Kaufland-Heavy/Kaufland-Heavy.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Kaufland-Regular";
+  src: src("../font/Kaufland-Regular/Kaufland-Regular.woff") format("woff");
+}
 html,
 body,
 * {
   scroll-behavior: smooth;
-  font-family: var(--font-family);
+  font-family: "Kaufland-Regular", Arial, sans-serif; /* fallback font if 'Kaufland-Bold' is not available */
   padding: 0px;
   margin: 0px;
 }

@@ -4,7 +4,7 @@
       <Dynamic :page-data="pageData[0]" />
 
       <div class="flex flex-col items-center justify-center p-2">
-        <h1>Leaderboard</h1>
+        <h1 class="font-semibold text-2xl">Leaderboard</h1>
         <div class="overflow-x-auto w-full md:w-fit">
           <div
             class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-red-200 border-2">
