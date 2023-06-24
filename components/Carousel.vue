@@ -27,15 +27,15 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- Pagination -->
-  <div class="flex flex-col z-50">
-    <div class="bottom-0 w-full">
-      <div class="flex justify-center space-x-2 p-2">
-        <div v-for="(_, index) in slides" :key="index" :class="index === activeSlide
-            ? 'bg-red-500 outline-red-500'
-            : 'outline-gray-500'
-          " class="w-4 h-4 rounded-full cursor-pointer outline outline-1" @click="activeSlide = index"></div>
+    <!-- Pagination -->
+    <div class="flex flex-col z-50">
+      <div class="bottom-0 w-full">
+        <div class="flex justify-center space-x-2 p-2">
+          <div v-for="(_, index) in slides" :key="index" :class="index === activeSlide
+              ? 'bg-red-500 outline-red-500'
+              : 'outline-gray-500'
+            " class="w-4 h-4 rounded-full cursor-pointer outline outline-1" @click="activeSlide = index"></div>
+        </div>
       </div>
     </div>
   </div>
