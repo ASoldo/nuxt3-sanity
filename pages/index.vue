@@ -30,13 +30,10 @@
                   :class="index % 2 !== 0 ? 'bg-red-50' : undefined">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span :class="{
-                      'text-yellow-500 outline-yellow-500 hover:bg-yellow-500 hover:text-white':
-                        index === 0,
-                      'text-gray-500 outline-gray-500 hover:bg-gray-500 hover:text-white':
-                        index === 1,
-                      'text-orange-500 outline-orange-500 hover:bg-orange-500 hover:text-white':
-                        index === 2,
-                    }" class="rounded-2xl p-1 outline outline-1">
+                      'text-yellow-500': index === 0,
+                      'text-gray-500': index === 1,
+                      'text-orange-500': index === 2,
+                    }">
                       {{ index + 1 }}
                     </span>
                   </td>
@@ -69,6 +66,8 @@
           @click="increment_clicks()">
           Call-Incremental-Clicks
         </button>
+
+        <ToggleButton></ToggleButton>
       </div>
     </div>
   </div>
