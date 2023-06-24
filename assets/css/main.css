@@ -4,23 +4,29 @@
 
 @font-face {
   font-family: "Kaufland-Bold";
-  src: src("../font/Kaufland-Bold/Kaufland-Bold.woff") format("woff");
+  src: url("../font/Kaufland-Bold/Kaufland-Bold.woff2") format("woff2"),
+    url("../font/Kaufland-Bold/Kaufland-Bold.woff") format("woff");
+  font-weight: 700;
 }
-
 @font-face {
   font-family: "Kaufland-Heavy";
-  src: src("../font/Kaufland-Heavy/Kaufland-Heavy.woff") format("woff");
+  src: url("../font/Kaufland-Heavy/Kaufland-Heavy.woff2") format("woff2"),
+    url("../font/Kaufland-Heavy/Kaufland-Heavy.woff") format("woff");
+  font-weight: 900;
 }
 
 @font-face {
   font-family: "Kaufland-Regular";
-  src: src("../font/Kaufland-Regular/Kaufland-Regular.woff") format("woff");
+  src: url("../font/Kaufland-Regular/Kaufland-Regular.woff2") format("woff2"),
+    url("../font/Kaufland-Regular/Kaufland-Regular.woff") format("woff");
+  font-weight: 400;
 }
+
 html,
 body,
 * {
   scroll-behavior: smooth;
-  font-family: "Kaufland-Regular", Arial, sans-serif; /* fallback font if 'Kaufland-Bold' is not available */
+  font-family: "Kaufland-Regular", Arial, sans-serif;
   padding: 0px;
   margin: 0px;
 }

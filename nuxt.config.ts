@@ -16,18 +16,18 @@ export default defineNuxtConfig({
 
   purgecss: {
     enabled: false, // Always enable purgecss
-    safelist: ["flex", "flex-column", "flex-grow-1"], // Add 'my-class' token to the safelist (e.g. .my-class)
+    safelist: [], // Add 'my-class' token to the safelist (e.g. .my-class)
   },
   sanity: {
     projectId: "u678c0qn",
     dataset: "production",
     useCdn: true,
   },
-  runtimeConfig: {
-    sanity: {
-      token: process.env.NUXT_SANITY_TOKEN,
-    },
-  },
+  // runtimeConfig: {
+  //   sanity: {
+  //     token: process.env.NUXT_SANITY_TOKEN,
+  //   },
+  // },
   supabase: {},
   pwa: {},
   pages: true,

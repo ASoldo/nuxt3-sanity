@@ -1,6 +1,7 @@
 <template>
   <div class="h-full">
     <div class="w-full">
+      <Carousel> </Carousel>
       <Dynamic :page-data="pageData[0]" />
 
       <div class="flex flex-col items-center justify-center p-2">
