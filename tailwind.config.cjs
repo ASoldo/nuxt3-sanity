@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -17,15 +16,11 @@ module.exports = {
     },
   },
   plugins: [],
-  purge: {
-    options: {
-      safelist: [
-        "bg-yellow-500",
-        "bg-lime-500",
-        "bg-cyan-500",
-        "bg-red-500",
-        "bg-emerald-500",
-      ],
-    },
-  },
+  safelist: [
+    "bg-yellow-500",
+    "bg-lime-500",
+    "bg-cyan-500",
+    "bg-red-500",
+    "bg-emerald-500",
+  ],
 };

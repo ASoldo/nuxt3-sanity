@@ -2,7 +2,7 @@
   <div class="flex flex-col h-screen">
     <NuxtLayout>
       <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items" />
-      <NuxtPage class="w-full flex-grow overflow-y-auto" />
+      <NuxtPage class="w-full grow overflow-y-auto" />
     </NuxtLayout>
     <dialog ref="dialog" class="m-auto absolute inset-0 p-20">
       <h2>Prijavi se</h2>
@@ -11,7 +11,7 @@
           placeholder="Email" />
         <input class="m-2 pb-2 outline outline-1 outline-blue-500 rounded-md p-2" type="password" v-model="password"
           placeholder="Password" />
-        <button class="bg-green-500 px-5 rounded-md text-white" @click="
+        <button class="bg-emerald-500 px-5 rounded-md text-white" @click="
           auth.signInWithPassword({ email: email, password: password }),
           dialog?.close()
           ">
