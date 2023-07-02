@@ -81,9 +81,7 @@
             <h3>Cookies</h3>
             <p>Modal description</p>
             <p>
-              {{
-                ($cookies as any).moduleOptions.cookies.optional[0].cookies[0]
-              }}
+              {{ ($cookies as any).moduleOptions.cookies.optional[0].name.en }}
             </p>
           </template>
           <template #cookie="{ config }">

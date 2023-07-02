@@ -13,12 +13,25 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@dargmuesli/nuxt-cookie-control",
   ],
+  routeRules: {
+    // Homepage pre-rendered at build time
+    // "/": { prerender: true },
+    // Product page generated on-demand, revalidates in background
+    // "/products/**": { swr: true },
+    // Blog post generated on-demand once until next deploy
+    // "/blog/**": { isr: true },
+    // Admin dashboard renders only on client-side
+    // "/admin/**": { ssr: false },
+    // Add cors headers on API routes
+    "/api/**": { cors: true },
+    // Redirects legacy urls
+    // "/old-page": { redirect: "/new-page" },
+  },
   plugins: [],
 
   cookieControl: {
     isModalForced: false,
     isCssEnabled: false,
-    css: false,
     isCookieIdVisible: true,
     cookieNameIsConsentGiven: "ncc_c",
     cookieNameCookiesEnabledIds: "ncc_e",
@@ -33,7 +46,6 @@ export default defineNuxtConfig({
           description: {
             en: "Used for cookie control.",
           },
-          cookies: ["cookie_control_consent", "cookie_control_enabled_cookies"],
           targetCookieIds: ["soldo"],
         },
       ],
@@ -46,18 +58,8 @@ export default defineNuxtConfig({
           description: {
             en: "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.",
           },
-          src: "https://www.googletagmanager.com/gtag/js?id=UA-138616567-1",
-          async: true,
-          cookies: ["_ga", "_gat_gtag_UA_138616567_1", "_gid"],
+          src: "",
           targetCookieIds: ["_o", "_p", "_t"],
-          accepted: () => {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", "UA-138616567-1");
-          },
         },
       ],
     },
