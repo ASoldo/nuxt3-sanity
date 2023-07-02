@@ -14,7 +14,8 @@
     "s-deploy-graphql": "sanity graphql deploy"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.6.4",
+    "@dargmuesli/nuxt-cookie-control": "^5.10.3",
+    "@nuxt/devtools": "^0.6.6",
     "@nuxtjs/supabase": "^0.3.7",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@types/node": "^18.16.18",
@@ -41,7 +42,7 @@
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primevue": "^3.29.2",
-    "sanity": "^3.13.0",
+    "sanity": "^3.14.1",
     "sanity-plugin-iframe-pane": "^2.3.1",
     "styled-components": "^5.3.11",
     "typescript": "^5.1.3"

@@ -22,5 +22,6 @@ module.exports = {
     "bg-cyan-500",
     "bg-red-500",
     "bg-emerald-500",
+    "bg-green-500",
   ],
 };

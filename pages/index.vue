@@ -69,6 +69,27 @@
         </button>
 
         <ToggleButton></ToggleButton>
+        <CookieControl locale="en">
+          <template #bar>
+            <div class="flex flex-col">
+              <h3>We use Cookies</h3>
+              <p>Bar description (you can use $cookies.text.barDescription)</p>
+              <n-link>Go somewhere</n-link>
+            </div>
+          </template>
+          <template #modal>
+            <h3>Cookies</h3>
+            <p>Modal description</p>
+            <p>
+              {{
+                ($cookies as any).moduleOptions.cookies.optional[0].cookies[0]
+              }}
+            </p>
+          </template>
+          <template #cookie="{ config }">
+            <span v-for="c in config" :key="c.id" v-text="c.cookies" />
+          </template>
+        </CookieControl>
       </div>
     </div>
   </div>
@@ -130,4 +151,27 @@ const { count, increment } = useCounterStore();
 definePageMeta({
   middleware: ["auth"],
 });
+
+const {
+  cookiesEnabled,
+  cookiesEnabledIds,
+  isConsentGiven,
+  isModalActive,
+  moduleOptions,
+} = useCookieControl();
+
+// example: react to a cookie being accepted
+watch(
+  () => cookiesEnabledIds.value,
+  (current, previous) => {
+    if (
+      !previous?.includes("google-analytics") &&
+      current?.includes("google-analytics")
+    ) {
+      // cookie with id `google-analytics` got added
+      window.location.reload(); // placeholder for your custom change handler
+    }
+  },
+  { deep: true }
+);
 </script>

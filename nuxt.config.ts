@@ -11,8 +11,85 @@ export default defineNuxtConfig({
     "frammer-nuxt",
     "nuxt-purgecss",
     "@vueuse/nuxt",
+    "@dargmuesli/nuxt-cookie-control",
   ],
   plugins: [],
+
+  cookieControl: {
+    isModalForced: false,
+    isCssEnabled: false,
+    css: false,
+    isCookieIdVisible: true,
+    cookieNameIsConsentGiven: "ncc_c",
+    cookieNameCookiesEnabledIds: "ncc_e",
+    cookies: {
+      necessary: [
+        {
+          name: {
+            en: "Default cookies",
+            hr: "Osnovni kolačići",
+          },
+
+          description: {
+            en: "Used for cookie control.",
+          },
+          cookies: ["cookie_control_consent", "cookie_control_enabled_cookies"],
+          targetCookieIds: ["soldo"],
+        },
+      ],
+      optional: [
+        {
+          name: {
+            en: "Google Analytics",
+            hr: "Google Analitika",
+          },
+          description: {
+            en: "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.",
+          },
+          src: "https://www.googletagmanager.com/gtag/js?id=UA-138616567-1",
+          async: true,
+          cookies: ["_ga", "_gat_gtag_UA_138616567_1", "_gid"],
+          targetCookieIds: ["_o", "_p", "_t"],
+          accepted: () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "UA-138616567-1");
+          },
+        },
+      ],
+    },
+    colors: {
+      // barBackground: "#000",
+      // barButtonBackground: "#fff",
+      // barButtonColor: "#000",
+      // barButtonHoverBackground: "#333",
+      // barButtonHoverColor: "#fff",
+      // barTextColor: "#fff",
+      // checkboxActiveBackground: "#000",
+      // checkboxActiveCircleBackground: "#fff",
+      // checkboxDisabledBackground: "#ddd",
+      // checkboxDisabledCircleBackground: "#fff",
+      // checkboxInactiveBackground: "#000",
+      // checkboxInactiveCircleBackground: "#fff",
+      // controlButtonBackground: "#fff",
+      // controlButtonHoverBackground: "#000",
+      // controlButtonIconColor: "#000",
+      // controlButtonIconHoverColor: "#fff",
+      // focusRingColor: "#808080",
+      // modalBackground: "#fff",
+      // modalButtonBackground: "#000",
+      // modalButtonColor: "#fff",
+      // modalButtonHoverBackground: "#333",
+      // modalButtonHoverColor: "#fff",
+      // modalOverlay: "#000",
+      // modalOverlayOpacity: 0.8,
+      // modalTextColor: "#000",
+      // modalUnsavedColor: "#fff",
+    },
+  },
 
   purgecss: {
     enabled: false, // Always enable purgecss
