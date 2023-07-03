@@ -1,10 +1,10 @@
 name: CI
 
 on:
-  # push:
-  #   branches: [ master ]
-  # pull_request:
-  #   branches: [ master ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
         uses: kielabokkie/ssh-key-and-known-hosts-action@1.3.5
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-host: your-server.com
+          ssh-host: 38.242.250.189
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -42,7 +42,7 @@ jobs:
       - name: Deploy to swarm
         uses: sagebind/docker-swarm-deploy-action@v2
         with:
-          remote_host: ssh://user@myswarm.com
+          remote_host: ssh://digital@vmi1347252.contaboserver.net
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           args: stack deploy --compose-file stack.yaml kauflandgame
