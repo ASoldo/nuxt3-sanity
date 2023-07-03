@@ -54,5 +54,5 @@ jobs:
           username: digital
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker system prune -a
+            docker system prune -a -f
             docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
