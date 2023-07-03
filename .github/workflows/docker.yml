@@ -45,4 +45,4 @@ jobs:
           remote_host: ssh://digital@vmi1347252.contaboserver.net
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          args: stack deploy --compose-file /home/digital/git/stack.yml kaufland-game
+          args: stack deploy --compose-file=/home/digital/git/stack.yml kaufland-game
