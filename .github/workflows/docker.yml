@@ -39,10 +39,18 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Deploy to swarm
-        uses: sagebind/docker-swarm-deploy-action@v2
+      # - name: Deploy to swarm
+      #   uses: sagebind/docker-swarm-deploy-action@v2
+      #   with:
+      #     remote_host: ssh://digital@vmi1347252.contaboserver.net
+      #     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+      #     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+      #     args: stack deploy --compose-file=/home/digital/git/stack.yml kaufland-game
+
+      - name: Run Docker image on remote server
+        uses: appleboy/ssh-action@master
         with:
-          remote_host: ssh://digital@vmi1347252.contaboserver.net
-          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          args: stack deploy --compose-file=/home/digital/git/stack.yml kaufland-game
+          host: 38.242.250.189
+          username: digital@vmi1347252.contaboserver.net
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: docker run -d -p 80:80 --name kaufland-game spearx/kaufland-game:${{ steps.meta.outputs.tags }}
