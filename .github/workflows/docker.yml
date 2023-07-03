@@ -53,4 +53,4 @@ jobs:
           host: 38.242.250.189
           username: digital
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: docker run -d -p 80:80 --name kaufland-game spearx/kaufland-game:main
+          script: docker run -d -p 81:80 --name kaufland-game spearx/kaufland-game:main
