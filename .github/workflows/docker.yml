@@ -80,6 +80,6 @@ jobs:
           username: digital
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull spearx/kaufland-game:latest || true
+            docker pull spearx/kaufland-game:main || true
             docker swarm init --advertise-addr 38.242.250.189 || true
             docker stack deploy --compose-file /home/digital/git/stack.yml kaufland-game-swarm
