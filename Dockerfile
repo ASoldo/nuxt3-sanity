@@ -14,8 +14,8 @@ RUN npm install -g pnpm
 
 # copy the app, note .dockerignore
 COPY . /usr/src/nuxt-app/
-RUN pnpm install
-RUN pnpm run build
+RUN pnpm i
+RUN pnpm build
 
 EXPOSE 3000
 
