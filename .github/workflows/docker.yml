@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up SSH
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1
@@ -26,12 +26,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v3.6.0
+        uses: docker/metadata-action@v4
         with:
           images: spearx/kaufland-game
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2.7.0
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
@@ -53,4 +53,4 @@ jobs:
           host: 38.242.250.189
           username: digital@vmi1347252.contaboserver.net
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: docker run -d -p 80:80 --name kaufland-game spearx/kaufland-game:${{ steps.meta.outputs.tags }}
+          script: docker run -d -p 80:80 --name kaufland-game spearx/kaufland-game:main
