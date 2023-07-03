@@ -81,6 +81,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker swarm init || true
-            docker service rm registry || true
-            docker stack rm kaufland-game-swarm || true
             docker stack deploy --compose-file /home/digital/git/stack.yml kaufland-game-swarm
