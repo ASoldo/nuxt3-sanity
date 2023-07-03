@@ -46,25 +46,26 @@ jobs:
       #     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
       #     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
       #     args: stack deploy --compose-file ~/home/digital/git/stack.yml kaufland-game:main
-      - name: Deploy to Docker swarm
-        uses: wshihadeh/docker-deployment-action@v1
-        with:
-          remote_docker_host: digital@vmi1347252.contaboserver.net
-          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-swarm
-          copy_stack_file: true
-          deploy_path: ~/home/digital/git
-          stack_file_name: stack.yaml
-          keep_files: 5
-          args: my_applicaion
-          docker_prune: true
-      # - name: Run Docker image on remote server
-      #   uses: appleboy/ssh-action@master
+
+      # - name: Deploy to Docker swarm
+      #   uses: wshihadeh/docker-deployment-action@v1
       #   with:
-      #     host: 38.242.250.189
-      #     username: digital
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       docker system prune -a -f
-      #       docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
+      #     remote_docker_host: digital@vmi1347252.contaboserver.net
+      #     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+      #     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+      #     deployment_mode: docker-swarm
+      #     copy_stack_file: true
+      #     deploy_path: ~/home/digital/git
+      #     stack_file_name: stack.yaml
+      #     keep_files: 5
+      #     args: my_applicaion
+      #     docker_prune: true
+      - name: Run Docker image on remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 38.242.250.189
+          username: digital
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker system prune -a -f
+            docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
