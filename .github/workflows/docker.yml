@@ -60,14 +60,26 @@ jobs:
       #     keep_files: 5
       #     args: my_applicaion
       #     docker_prune: true
-      - name: Run Docker image on remote server
+
+      # - name: Run Docker image on remote server
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 38.242.250.189
+      #     username: digital
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       docker stop kaufland-game || true
+      #       docker rm kaufland-game || true
+      #       docker system prune -a -f
+      #       docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
+
+      - name: Deploy Docker stack on remote server
         uses: appleboy/ssh-action@master
         with:
           host: 38.242.250.189
           username: digital
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker stop kaufland-game || true
-            docker rm kaufland-game || true
-            docker system prune -a -f
-            docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
+            docker service rm registry || true
+            docker stack rm stackdemo || true
+            docker stack deploy --compose-file ~/home/digital/git/stack.yml kaufland-game-swarm
