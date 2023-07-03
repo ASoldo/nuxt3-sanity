@@ -51,6 +51,6 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 38.242.250.189
-          username: digital@vmi1347252.contaboserver.net
+          username: digital
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: docker run -d -p 80:80 --name kaufland-game spearx/kaufland-game:main
