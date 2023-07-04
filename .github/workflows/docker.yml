@@ -38,7 +38,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
       # - name: Deploy to swarm
       #   uses: sagebind/docker-swarm-deploy-action@v2
       #   with:
@@ -61,27 +60,28 @@ jobs:
       #     args: my_applicaion
       #     docker_prune: true
 
-      - name: Run Docker image on remote server
-        env:
-          SUPABASE_URL: ${{ secrets.NUXT_HOST }}
-          SUPABASE_KEY: ${{ secrets.NUXT_PORT }}
-          NUXT_SANITY_TOKEN: ${{ secrets.NUXT_PORT }}
+      # - name: Run Docker image on remote server
+      #   env:
+      #     SUPABASE_URL: ${{ secrets.NUXT_HOST }}
+      #     SUPABASE_KEY: ${{ secrets.NUXT_PORT }}
+      #     NUXT_SANITY_TOKEN: ${{ secrets.NUXT_PORT }}
+      #
+      #     SUPABASE_QUERY_URL: ${{ secrets.NUXT_PORT }}
+      #     API_KEY: ${{ secrets.NUXT_PORT }}
+      #     BEARER_TOKEN: ${{ secrets.NUXT_PORT }}
+      #     BASE_URL: ${{ secrets.NUXT_PORT }}
+      #
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 38.242.250.189
+      #     username: digital
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       docker stop kaufland-game || true
+      #       docker rm kaufland-game || true
+      #       docker system prune -a -f
+      #       docker run -v /home/digital/git/.env -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
 
-          SUPABASE_QUERY_URL: ${{ secrets.NUXT_PORT }}
-          API_KEY: ${{ secrets.NUXT_PORT }}
-          BEARER_TOKEN: ${{ secrets.NUXT_PORT }}
-          BASE_URL: ${{ secrets.NUXT_PORT }}
-
-        uses: appleboy/ssh-action@master
-        with:
-          host: 38.242.250.189
-          username: digital
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            docker stop kaufland-game || true
-            docker rm kaufland-game || true
-            docker system prune -a -f
-            docker run -v /home/digital/git/.env -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
       # - name: Deploy Docker stack on remote server
       #   env:
       #     SUPABASE_URL: ${{ secrets.NUXT_HOST }}
