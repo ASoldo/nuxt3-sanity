@@ -17,7 +17,7 @@ RUN npm install -g pnpm
 COPY . /usr/src/nuxt-app/
 
 # copy .env file
-COPY .env /usr/src/nuxt-app/
+COPY ./.env /usr/src/nuxt-app/
 
 RUN pnpm i
 RUN pnpm build
