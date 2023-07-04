@@ -16,9 +16,6 @@ RUN npm install -g pnpm
 # copy the app, note .dockerignore
 COPY . /usr/src/nuxt-app/
 
-# copy .env file
-COPY ./.env /usr/src/nuxt-app/
-
 RUN pnpm i
 RUN pnpm build
 
