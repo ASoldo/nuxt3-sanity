@@ -7,7 +7,7 @@ export default defineEventHandler(async () => {
   const data = await response.json();
 
   // (import.meta as any)
-  const supabaseUrl = import.meta.env.SUPABASE_QUERY_URL;
+  const supabaseUrl = (import.meta as any).env.SUPABASE_QUERY_URL;
   const apiKey = import.meta.env.API_KEY;
   const bearerToken = import.meta.env.API_KEY;
   const supabaseHeaders = {
