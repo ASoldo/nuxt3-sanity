@@ -61,17 +61,17 @@ jobs:
       #     args: my_applicaion
       #     docker_prune: true
 
-      # - name: Run Docker image on remote server
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: 38.242.250.189
-      #     username: digital
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       docker stop kaufland-game || true
-      #       docker rm kaufland-game || true
-      #       docker system prune -a -f
-      #       docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
+      - name: Run Docker image on remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 38.242.250.189
+          username: digital
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker stop kaufland-game || true
+            docker rm kaufland-game || true
+            docker system prune -a -f
+            docker run -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
 
       - name: Deploy Docker stack on remote server
         uses: appleboy/ssh-action@master
