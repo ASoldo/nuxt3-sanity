@@ -81,16 +81,17 @@ jobs:
             docker stop kaufland-game || true
             docker rm kaufland-game || true
             docker system prune -a -f
-            docker run -d -p 3000:3000 --name kaufland-game \
-              -e SUPABASE_URL="${{ secrets.SUPABASE_URL }}" \
-              -e SUPABASE_KEY="${{ secrets.SUPABASE_KEY }}" \
-              -e NUXT_SANITY_TOKEN="${{ secrets.NUXT_SANITY_TOKEN }}" \
-              -e SUPABASE_QUERY_URL="${{ secrets.SUPABASE_QUERY_URL }}" \
-              -e API_KEY="${{ secrets.API_KEY }}" \
-              -e BEARER_TOKEN="${{ secrets.BEARER_TOKEN }}" \
-              -e BASE_URL="${{ secrets.BASE_URL }}" \
-              spearx/kaufland-game:main
+            docker run -v /home/digital/git/.env -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
       # - name: Deploy Docker stack on remote server
+      #   env:
+      #     SUPABASE_URL: ${{ secrets.NUXT_HOST }}
+      #     SUPABASE_KEY: ${{ secrets.NUXT_PORT }}
+      #     NUXT_SANITY_TOKEN: ${{ secrets.NUXT_PORT }}
+      #
+      #     SUPABASE_QUERY_URL: ${{ secrets.NUXT_PORT }}
+      #     API_KEY: ${{ secrets.NUXT_PORT }}
+      #     BEARER_TOKEN: ${{ secrets.NUXT_PORT }}
+      #     BASE_URL: ${{ secrets.NUXT_PORT }}
       #   uses: appleboy/ssh-action@master
       #   with:
       #     host: 38.242.250.189
