@@ -90,15 +90,14 @@ jobs:
               -e BEARER_TOKEN="${{ secrets.BEARER_TOKEN }}" \
               -e BASE_URL="${{ secrets.BASE_URL }}" \
               spearx/kaufland-game:main
-
-      - name: Deploy Docker stack on remote server
-        uses: appleboy/ssh-action@master
-        with:
-          host: 38.242.250.189
-          username: digital
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            docker service rm kaufland-game-service || true
-            docker pull spearx/kaufland-game:main
-            docker swarm init
-            docker service create --name kaufland-game-service --replicas 3 spearx/kaufland-game:main
+      # - name: Deploy Docker stack on remote server
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 38.242.250.189
+      #     username: digital
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       docker service rm kaufland-game-service || true
+      #       docker pull spearx/kaufland-game:main
+      #       docker swarm init
+      #       docker service create --name kaufland-game-service --replicas 3 spearx/kaufland-game:main
