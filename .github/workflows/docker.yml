@@ -31,7 +31,7 @@ jobs:
           tags: spearx/kaufland-game:main
 
   deploy:
-    needs: build
+    needs: docker
     runs-on: ubuntu-latest
 
     steps:
