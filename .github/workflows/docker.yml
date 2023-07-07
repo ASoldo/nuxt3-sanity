@@ -6,32 +6,29 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Log in to Docker Hub
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: spearx/kaufland-game
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: spearx/kaufland-game:main
 
   deploy:
     needs: build
@@ -46,16 +43,6 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-host: 38.242.250.189
 
-#      - name: Pull docker-compose.yml, game and CMS to server
-#        run: |
-#          echo "Overwriting docker compose yml..."
-#          scp -o docker-compose.yml digital@38.242.250.189:/home/digital/git/
-#          echo "Overwriting game..."
-#          scp -o -r ./game digital@38.242.250.189:/home/digital/git/
-#      #          ssh digital@38.242.250.189 "rm /home/digital/git/docker-compose.yml"
-#      #          echo "Overwriting cms..."
-#      #          scp -o -r ./cms digital@38.242.250.189:/home/digital/git/
-
       - name: Remove Docker Compose stack
         run: |
           echo "Removing previous stack"
@@ -66,69 +53,3 @@ jobs:
           echo "Starting new stack"
           sleep 10  # Add a delay of 10 seconds
           ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
-
-# PREVIOUS CODE
-# - name: Deploy to swarm
-#   uses: sagebind/docker-swarm-deploy-action@v2
-#   with:
-#     remote_host: ssh://digital@vmi1347252.contaboserver.net
-#     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-#     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-#     args: stack deploy --compose-file ~/home/digital/git/stack.yml kaufland-game:main
-
-# - name: Deploy to Docker swarm
-#   uses: wshihadeh/docker-deployment-action@v1
-#   with:
-#     remote_docker_host: digital@vmi1347252.contaboserver.net
-#     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-#     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-#     deployment_mode: docker-swarm
-#     copy_stack_file: true
-#     deploy_path: ~/home/digital/git
-#     stack_file_name: stack.yaml
-#     keep_files: 5
-#     args: my_applicaion
-#     docker_prune: true
-
-# - name: Run Docker image on remote server
-#   env:
-#     SUPABASE_URL: ${{ secrets.NUXT_HOST }}
-#     SUPABASE_KEY: ${{ secrets.NUXT_PORT }}
-#     NUXT_SANITY_TOKEN: ${{ secrets.NUXT_PORT }}
-#
-#     SUPABASE_QUERY_URL: ${{ secrets.NUXT_PORT }}
-#     API_KEY: ${{ secrets.NUXT_PORT }}
-#     BEARER_TOKEN: ${{ secrets.NUXT_PORT }}
-#     BASE_URL: ${{ secrets.NUXT_PORT }}
-#
-#   uses: appleboy/ssh-action@master
-#   with:
-#     host: 38.242.250.189
-#     username: digital
-#     key: ${{ secrets.SSH_PRIVATE_KEY }}
-#     script: |
-#       docker stop kaufland-game || true
-#       docker rm kaufland-game || true
-#       docker system prune -a -f
-#       docker run -v /home/digital/git/.env -d -p 3000:3000 --name kaufland-game spearx/kaufland-game:main
-
-# - name: Deploy Docker stack on remote server
-#   env:
-#     SUPABASE_URL: ${{ secrets.NUXT_HOST }}
-#     SUPABASE_KEY: ${{ secrets.NUXT_PORT }}
-#     NUXT_SANITY_TOKEN: ${{ secrets.NUXT_PORT }}
-#
-#     SUPABASE_QUERY_URL: ${{ secrets.NUXT_PORT }}
-#     API_KEY: ${{ secrets.NUXT_PORT }}
-#     BEARER_TOKEN: ${{ secrets.NUXT_PORT }}
-#     BASE_URL: ${{ secrets.NUXT_PORT }}
-#   uses: appleboy/ssh-action@master
-#   with:
-#     host: 38.242.250.189
-#     username: digital
-#     key: ${{ secrets.SSH_PRIVATE_KEY }}
-#     script: |
-#       docker service rm kaufland-game-service || true
-#       docker pull spearx/kaufland-game:main
-#       docker swarm init
-#       docker service create --name kaufland-game-service --replicas 3 spearx/kaufland-game:main
