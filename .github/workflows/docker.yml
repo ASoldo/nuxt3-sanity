@@ -28,28 +28,29 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          no-cache: true
           tags: spearx/kaufland-game:main
-
-  deploy:
-    needs: docker
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up SSH
-        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-host: 38.242.250.189
-
-      - name: Remove Docker Compose stack
-        run: |
-          echo "Removing previous stack"
-          ssh digital@38.242.250.189 "docker stack rm kaufland-stack"
-
-      - name: Start new stack
-        run: |
-          echo "Starting new stack"
-          sleep 10  # Add a delay of 10 seconds
-          ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
+          build-args: SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+  # deploy:
+  #   needs: docker
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #
+  #     - name: Set up SSH
+  #       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+  #       with:
+  #         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #         ssh-host: 38.242.250.189
+  #
+  #     - name: Remove Docker Compose stack
+  #       run: |
+  #         echo "Removing previous stack"
+  #         ssh digital@38.242.250.189 "docker stack rm kaufland-stack"
+  #
+  #     - name: Start new stack
+  #       run: |
+  #         echo "Starting new stack"
+  #         sleep 10  # Add a delay of 10 seconds
+  #         ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
