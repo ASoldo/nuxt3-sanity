@@ -84,6 +84,7 @@ jobs:
             echo "Old stack is still present, waiting..."
             sleep 5
           done
+          sleep 5
 
       - name: Docker system prune
         run: |
