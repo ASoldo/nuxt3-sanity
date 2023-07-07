@@ -74,7 +74,7 @@
             <div class="flex flex-col">
               <h3>We use Cookies</h3>
               <p>Bar description (you can use $cookies.text.barDescription)</p>
-              <n-link>Go somewhere</n-link>
+              <a>Go somewhere</a>
             </div>
           </template>
           <template #modal>
