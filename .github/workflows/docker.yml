@@ -64,6 +64,7 @@ jobs:
       - name: Start new stack
         run: |
           echo "Starting new stack"
+          sleep 10  # Add a delay of 10 seconds
           ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
 
 # PREVIOUS CODE
