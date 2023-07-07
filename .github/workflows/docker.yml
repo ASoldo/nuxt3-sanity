@@ -46,15 +46,15 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-host: 38.242.250.189
 
-      - name: Pull docker-compose.yml, game and CMS to server
-        run: |
-          echo "Overwriting docker compose yml..."
-          scp -o docker-compose.yml digital@38.242.250.189:/home/digital/git/
-          echo "Overwriting game..."
-          scp -o -r ./game digital@38.242.250.189:/home/digital/git/
-      #          ssh digital@38.242.250.189 "rm /home/digital/git/docker-compose.yml"
-      #          echo "Overwriting cms..."
-      #          scp -o -r ./cms digital@38.242.250.189:/home/digital/git/
+#      - name: Pull docker-compose.yml, game and CMS to server
+#        run: |
+#          echo "Overwriting docker compose yml..."
+#          scp -o docker-compose.yml digital@38.242.250.189:/home/digital/git/
+#          echo "Overwriting game..."
+#          scp -o -r ./game digital@38.242.250.189:/home/digital/git/
+#      #          ssh digital@38.242.250.189 "rm /home/digital/git/docker-compose.yml"
+#      #          echo "Overwriting cms..."
+#      #          scp -o -r ./cms digital@38.242.250.189:/home/digital/git/
 
       - name: Remove Docker Compose stack
         run: |
