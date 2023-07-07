@@ -29,6 +29,7 @@ jobs:
           file: ./Dockerfile
           push: true
           no-cache: true
+          rm: true
           tags: spearx/kaufland-game:main
           build-args: |
             SUPABASE_URL=${{ secrets.SUPABASE_URL }}
