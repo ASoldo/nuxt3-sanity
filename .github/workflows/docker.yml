@@ -30,7 +30,9 @@ jobs:
           push: true
           no-cache: true
           tags: spearx/kaufland-game:main
-          build-args: SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          build-args: |
+            SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+            SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
   # deploy:
   #   needs: docker
   #   runs-on: ubuntu-latest

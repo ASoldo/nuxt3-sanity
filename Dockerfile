@@ -5,6 +5,9 @@ FROM node:16-alpine
 ARG SUPABASE_URL
 ENV SUPABASE_URL=$SUPABASE_URL
 
+ARG SUPABASE_KEY
+ENV SUPABASE_KEY=$SUPABASE_KEY
+
 
 # create destination directory
 RUN mkdir -p /usr/src/nuxt-app
