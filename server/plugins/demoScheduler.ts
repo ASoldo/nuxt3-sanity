@@ -1,7 +1,7 @@
 import { useScheduler } from "#scheduler";
 
 export default defineNitroPlugin(() => {
-  startScheduler();
+  // startScheduler();
 });
 
 function startScheduler() {
