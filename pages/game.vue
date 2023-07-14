@@ -15,7 +15,7 @@ const drawers = ref({});
 
 const CustomObject = ref<string>("");
 // https://game.dev.kaufland.game.ecolabel.cc/
-const gameSrc = ref<string>("http://localhost:8000");
+const gameSrc = ref<string>("https://game.dev.kaufland.game.ecolabel.cc/");
 const game = ref<null | HTMLIFrameElement>(null);
 definePageMeta({
   middleware: ["auth"],
