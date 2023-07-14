@@ -1,5 +1,6 @@
-export default defineEventHandler(async () => {
-  const baseUrl = import.meta.env.BASE_URL;
+export default defineEventHandler(async (event) => {
+  const baseUrl =
+    "https://u678c0qn.api.sanity.io/v2021-10-21/data/query/production";
   const query = `*[_type == "gameConfig"][0]{
     title,
     active_room,
