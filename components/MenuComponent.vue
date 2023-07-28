@@ -1,5 +1,5 @@
 <template>
-  <div :class="props.pt?.root.class" class="w-full h-10 flex items-center justify-between px-4">
+  <div :class="props.pt?.root.class" class="w-full h-15 flex items-center justify-between px-4">
     <nav class="flex items-center justify-between px-2 bg-white">
       <img class="inline-block mr-3" height="32" width="32" src="@/assets/images/kaufland-logo.png" alt="" />
 
@@ -39,30 +39,32 @@
         </div>
       </div>
     </nav>
+    <div class="flex justify-between items-center">
+      <div class="relative pl-2">
+        <img v-if="user" src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon"
+          alt="Profile Picture" class="h-10 w-10 m-2 rounded-full outline outline-1 outline-red-500"
+          @click="toggleMenu()" />
+        <button v-else @click="toggleMenu()" class="text-red-500">
+          Login / Register
+        </button>
 
-    <div class="relative">
-      <img v-if="user" src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon"
-        alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500" @click="toggleMenu()" />
-      <button v-else @click="toggleMenu()" class="text-red-500">
-        Login / Register
-      </button>
+        <div ref="target" v-if="menuState"
+          class="absolute right-0 mt-2 w-40 bg-white outline outline-black outline-1 overflow-hidden shadow-xl z-10">
+          <div v-if="user" class="px-4 py-2 text-sm text-gray-700 flex flex-row justify-stretch">
+            <img src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon"
+              alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" />
+            {{ user?.email }}
+          </div>
 
-      <div ref="target" v-if="menuState"
-        class="absolute right-0 mt-2 w-40 bg-white outline outline-black outline-1 overflow-hidden shadow-xl z-10">
-        <div v-if="user" class="px-4 py-2 text-sm text-gray-700 flex flex-row justify-stretch">
-          <img src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon"
-            alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" />
-          {{ user?.email }}
+          <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"
+            @click="item.fn(), toggleMenu()">
+            <i :class="item.icon"></i>{{ item.label }}</a>
+
+          <a v-else v-for="item in props.itemsUserMenu?.items.loggedOut" href="#"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"
+            @click="item.fn(), toggleMenu()">{{ item.label }}</a>
         </div>
-
-        <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"
-          @click="item.fn(), toggleMenu()">
-          <i :class="item.icon"></i>{{ item.label }}</a>
-
-        <a v-else v-for="item in props.itemsUserMenu?.items.loggedOut" href="#"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"
-          @click="item.fn(), toggleMenu()">{{ item.label }}</a>
       </div>
     </div>
   </div>

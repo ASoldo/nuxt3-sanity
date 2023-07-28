@@ -1,143 +1,63 @@
-// Fisher-Yates shuffle function
-const shuffle = (array: any[]) => {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-};
-
-interface GameConfig {
-  result?: GameConfigResponse;
-}
-interface GameConfigResponse {
-  title: string;
-  active_room: string;
-  correctItems: Item[];
-}
-
-interface Item {
-  _id: string;
-  name: string;
-  slug: {
-    current: string;
-    _type: string;
-  };
-  imageUrl: string | null;
-}
-
-interface GameItems {
-  message: string;
-  items?: Item[];
-}
-
-interface RoomData {
-  message: string;
-  result?: RoomDataResponse;
-}
-
-interface RoomDataResponse {
-  title: string;
-  slug: Slug;
-  room: Room;
-}
-
-interface Slug {
-  current: string;
-  _type: string;
-}
-
-interface Room {
-  room_name: string;
-  hotspot_positions: Position[];
-  hotspot_interactable_positions: Position[];
-}
-
-interface Position {
-  _type: string;
-  x: number;
-  y: number;
-  _key: string;
-}
-
-// export default defineEventHandler(async () => {
-//   try {
-//     const gameConfigResponse = await $fetch(`/api/gameconfig`);
-//     const roomDataResponse = await $fetch(`/api/roomdata`);
-//     const gameItemsResponse = await $fetch(`/api/gameitems`);
-//
-//     if (gameConfigResponse && roomDataResponse && gameItemsResponse) {
-//       const gameData = gameConfigResponse as GameConfig;
-//       const roomsData = roomDataResponse as RoomData;
-//       const itemsData = gameItemsResponse as GameItems;
-//       console.log(gameData.result?.correctItems);
-//       console.log(roomsData.result?.room.room_name);
-//       console.log(itemsData?.items?.[0].slug.current);
-//
-//       return {
-//         data: JSON.stringify({ gameData, roomsData, itemsData }),
-//       };
-//     } else {
-//       throw new Error("Error fetching data");
-//     }
-//   } catch (error: any) {
-//     console.error(`Error in start session: ${error.message}`);
-//     return {
-//       error: { message: "Internal server error" },
-//     };
-//   }
-// });
-
-export default defineEventHandler(async () => {
-  try {
-    const gameConfigResponse = await $fetch(`/api/gameconfig`);
-    const roomDataResponse = await $fetch(`/api/roomdata`);
-    const gameItemsResponse = await $fetch(`/api/gameitems`);
-
-    if (gameConfigResponse && roomDataResponse && gameItemsResponse) {
-      const gameData = gameConfigResponse as GameConfig;
-      const roomsData = roomDataResponse as RoomData;
-      const itemsData = gameItemsResponse as GameItems;
-
-      if (gameData?.result && roomsData?.result && itemsData?.items) {
-        // Store correctItems in a separate variable
-        const correctItems = gameData.result.correctItems;
-
-        // Shuffling itemsData
-        const shuffledItems = shuffle(itemsData.items);
-
-        // Preparing the payload
-        const payload = {
-          gameData,
-          roomsData,
-          itemsData: {
-            ...itemsData,
-            items: shuffledItems,
-          },
-          // correctItems,
-        };
-
-        return {
-          data: JSON.stringify(payload),
-        };
-      } else {
-        throw new Error("Data not found");
-      }
-    } else {
-      throw new Error("Error fetching data");
+export default defineEventHandler(async (event) => {
+  const baseUrl =
+    "https://u678c0qn.api.sanity.io/v2021-10-21/data/query/production";
+  const query = `*[_type == "gameConfig"][0]{
+    "correctItems": correctItems[]->{
+      slug,
     }
-  } catch (error: any) {
-    console.error(`Error in start session: ${error.message}`);
-    return {
-      error: { message: "Internal server error" },
-    };
+  }`;
+  const queryParam = getQuery(event);
+  const user_uuid = queryParam.user_uuid;
+  const encodedQuery = encodeURIComponent(query);
+
+  const response = await fetch(`${baseUrl}?query=${encodedQuery}`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    return { message: `Error: ${response.statusText}` };
   }
+
+  const result = {
+    correctItems: data.result.correctItems,
+  };
+
+  const supabaseUrl =
+    (import.meta as any).env.SUPABASE_URL + "/rest/v1/game_sessions";
+  const supabaseHeaders = {
+    apikey: import.meta.env.API_KEY,
+    Authorization: `Bearer ${import.meta.env.API_KEY}`,
+    "Content-Type": "application/json",
+    Prefer: "return=representation",
+  };
+
+  // const user_uuid = "6912b220-b776-49ff-95b7-f003f9f5bfca";
+
+  // Create a new game session
+  const gameSessionData = {
+    user_uuid: user_uuid,
+    answer1: result.correctItems[0].slug.current,
+    answer2: result.correctItems[1].slug.current,
+    answer3: result.correctItems[2].slug.current,
+    status: 0,
+  };
+
+  const supabaseResponse = await fetch(supabaseUrl, {
+    method: "POST",
+    headers: supabaseHeaders,
+    body: JSON.stringify(gameSessionData),
+  });
+
+  if (!supabaseResponse.ok) {
+    return { message: `Error: ${supabaseResponse.statusText}` };
+  }
+
+  // const gameSession = await supabaseResponse.json();
+
+  return {
+    message: "Success: Data fetched from Sanity and game session created",
+    // result,
+    // gameSession,
+  };
 });
+
+// curl -X POST http://localhost:3000/api/start_session?user_uuid=6912b220-b776-49ff-95b7-f003f9f5bfca -H "Content-Type: application/json"

@@ -6,11 +6,16 @@ document.addEventListener("DOMContentLoaded", function() {
         break;
 
       case "Signal":
-        console.log("messaageeee seeeeeeeent");
+        console.log("Signal calling...");
         c3_callFunction("StartGame", [
           a.data.payload.Score,
           a.data.payload.CustomObject,
         ]);
+        break;
+
+      case "Handshake":
+        console.log("Handshake calling...");
+        c3_callFunction("InitHandshake", [a.data.payload.User_uuid]);
         break;
 
       default:

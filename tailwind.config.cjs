@@ -14,6 +14,11 @@ module.exports = {
       "kaufland-bold": "Kaufland-Bold",
       "kaufland-heavy": "Kaufland-Heavy",
     },
+    extend: {
+      height: {
+        screen: ["100vh", "100dvh"],
+      },
+    },
   },
   plugins: [],
   safelist: [

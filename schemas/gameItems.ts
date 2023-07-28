@@ -22,5 +22,15 @@ export const item = {
       type: "image",
       title: "Image",
     },
+    {
+      name: "question",
+      type: "string",
+      title: "Question",
+    },
+    {
+      name: "description",
+      type: "string",
+      title: "Description",
+    },
   ],
 };

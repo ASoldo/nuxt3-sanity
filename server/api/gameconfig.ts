@@ -5,10 +5,7 @@ export default defineEventHandler(async (event) => {
     title,
     active_room,
     "correctItems": correctItems[]->{
-      _id,
-      name,
-      slug,
-      imageUrl
+      question,
     }
   }`;
   const encodedQuery = encodeURIComponent(query);
@@ -28,5 +25,6 @@ export default defineEventHandler(async (event) => {
     correctItems: data.result.correctItems,
   };
 
+  console.log("gameConfig", result);
   return { message: "Success: Data fetched from Sanity", result };
 });

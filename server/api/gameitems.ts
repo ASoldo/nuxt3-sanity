@@ -5,7 +5,8 @@ export default defineEventHandler(async () => {
   {
     name,
     slug,
-    "imageUrl": image.asset->url
+    "imageUrl": image.asset->url,
+    description,
   }`;
   const encodedQuery = encodeURIComponent(query);
 
@@ -22,6 +23,7 @@ export default defineEventHandler(async () => {
     name: item.name,
     slug: item.slug,
     imageUrl: item.imageUrl,
+    descripton: item.description,
   }));
 
   return { message: "Success: Items fetched from Sanity", items };
