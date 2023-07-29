@@ -8,6 +8,8 @@ ENV SUPABASE_URL=$SUPABASE_URL
 ARG SUPABASE_KEY
 ENV SUPABASE_KEY=$SUPABASE_KEY
 
+ARG API_KEY
+ENV API_KEY=$API_KEY
 
 # create destination directory
 RUN mkdir -p /usr/src/nuxt-app
