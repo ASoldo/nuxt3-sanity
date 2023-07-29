@@ -23,7 +23,7 @@ export default defineEventHandler(async () => {
     name: item.name,
     slug: item.slug,
     imageUrl: item.imageUrl,
-    descripton: item.description,
+    description: item.description,
   }));
 
   return { message: "Success: Items fetched from Sanity", items };
