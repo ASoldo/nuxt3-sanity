@@ -25,8 +25,8 @@ export default defineEventHandler(async (event) => {
   const supabaseUrl =
     "https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/game_sessions";
   const supabaseHeaders = {
-    apikey: config.public.API_KEY as string,
-    Authorization: `Bearer ${config.public.API_KEY as string}`,
+    apikey: config.public.supabase.key as string,
+    Authorization: `Bearer ${config.public.supabase.key as string}`,
     "Content-Type": "application/json",
     Prefer: "return=representation", // To return the inserted row in the response
   };
