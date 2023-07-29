@@ -119,11 +119,13 @@ export default defineEventHandler(async (event) => {
   const user_uuid = query.user_uuid;
   const user_answer = query.answer;
   const answer = event.context.params?.answer;
+  const config = useRuntimeConfig();
+  console.log("Config env: ", config);
 
   const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/game_sessions`;
   const supabaseHeaders = {
-    apikey: import.meta.env.API_KEY,
-    Authorization: `Bearer ${import.meta.env.API_KEY}`,
+    apikey: config.public.API_KEY as string,
+    Authorization: `Bearer ${config.public.API_KEY as string}`,
     "Content-Type": "application/json",
     Prefer: "return=representation", // To return the inserted row in the response
   };
