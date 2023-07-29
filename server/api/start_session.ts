@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
   const queryParam = getQuery(event);
   const user_uuid = queryParam.user_uuid;
   const encodedQuery = encodeURIComponent(query);
+  const config = useRuntimeConfig();
 
   const response = await fetch(`${baseUrl}?query=${encodedQuery}`);
   const data = await response.json();
@@ -24,8 +25,8 @@ export default defineEventHandler(async (event) => {
   const supabaseUrl =
     "https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/game_sessions";
   const supabaseHeaders = {
-    apikey: import.meta.env.API_KEY,
-    Authorization: `Bearer ${import.meta.env.API_KEY}`,
+    apikey: config.public.API_KEY as string,
+    Authorization: `Bearer ${config.public.API_KEY as string}`,
     "Content-Type": "application/json",
     Prefer: "return=representation", // To return the inserted row in the response
   };
