@@ -6,8 +6,11 @@ export default defineEventHandler(async (event) => {
       slug,
     }
   }`;
-  const queryParam = getQuery(event);
-  const user_uuid = queryParam.user_uuid;
+  // const queryParam = getQuery(event);
+  const body = await readBody(event);
+  const user_uuid = body.user_uuid;
+  // console.log(body);
+  // const user_uuid = queryParam.user_uuid;
   const encodedQuery = encodeURIComponent(query);
   const config = useRuntimeConfig();
 

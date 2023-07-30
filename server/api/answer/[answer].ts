@@ -115,9 +115,11 @@
 // });
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
-  const user_uuid = query.user_uuid;
-  const user_answer = query.answer;
+  // const query = getQuery(event);
+  const body = await readBody(event);
+  // console.log(body);
+  const user_uuid = body.user_uuid;
+  const user_answer = body.answer;
   const answer = event.context.params?.answer;
   const config = useRuntimeConfig();
   console.log("Config env: ", config);
