@@ -4,22 +4,118 @@
       <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items" />
       <NuxtPage class="w-full grow overflow-y-auto" />
     </NuxtLayout>
+
     <dialog ref="dialog" class="m-auto absolute inset-0 p-20">
-      <h2>Prijavi se</h2>
-      <div class="flex flex-col">
-        <input class="m-2 pb-2 outline outline-1 outline-blue-500 rounded-md p-2" type="text" v-model="email"
-          placeholder="Email" />
-        <input class="m-2 pb-2 outline outline-1 outline-blue-500 rounded-md p-2" type="password" v-model="password"
-          placeholder="Password" />
-        <button class="bg-emerald-500 px-5 rounded-md text-white" @click="
-          auth.signInWithPassword({ email: email, password: password }),
-          dialog?.close()
-          ">
-          Sign In
-        </button>
-        <button class="mt-3 px-2 rounded-md bg-red-400 text-white hover:bg-red-700" @click="dialog?.close()">
-          Close
-        </button>
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div v-if="logRegToggle">
+          <h2 class="mb-4 text-center text-blue-900 text-xl">Prijavi se</h2>
+          <div class="flex flex-col">
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-user"></i>
+              </span>
+
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" v-model="email" placeholder="Email" />
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-envelope"></i>
+              </span>
+
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="password" v-model="password" placeholder="Password" />
+            </div>
+            <button class="mb-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="
+              auth.signInWithPassword({ email: email, password: password }),
+              dialog?.close()
+              ">
+              Sign In
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="dialog?.close()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <dialog ref="dialog2" class="m-auto absolute inset-0">
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full">
+        <div>
+          <h2 class="mb-4 text-center text-blue-900 text-xl">Register</h2>
+          <div class="flex flex-col">
+            <!-- <div class="relative"> -->
+            <!--   <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3"> -->
+            <!--     <i class="pi pi-fw pi-user"></i> -->
+            <!--   </span> -->
+            <!--   <input -->
+            <!--     class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" -->
+            <!--     type="text" v-model="first_name" placeholder="First Name*" /> -->
+            <!-- </div> -->
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-user"></i>
+              </span>
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" v-model="first_name" placeholder="First Name*" />
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-user"></i>
+              </span>
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" v-model="last_name" placeholder="Last Name*" />
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-envelope"></i>
+              </span>
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" v-model="email" placeholder="Email*" />
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-lock"></i>
+              </span>
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="password" v-model="password" placeholder="Password*" />
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-lock"></i>
+              </span>
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="password" v-model="repeatPassword" placeholder="Repeat Password*" />
+            </div>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
+                <i class="pi pi-fw pi-hashtag"></i>
+              </span>
+              <input
+                class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="password" v-model="promo" placeholder="Promo Code" />
+            </div>
+            <button class="mb-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" :class="{
+              'bg-gray-50':
+                email !== repeatPassword &&
+                email !== '' &&
+                repeatPassword !== '',
+            }" @click="checkPasswords()">
+              Sign Up
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              @click="dialog2?.close()">
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </dialog>
   </div>
@@ -28,11 +124,46 @@
 <script lang="ts" setup>
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
-
+const logRegToggle = ref(true);
+const first_name = ref("");
+const last_name = ref("");
 const email = ref("");
 const password = ref("");
+const repeatPassword = ref("");
+const promo = ref("");
+const errorMsg = ref(null);
+const successMsg = ref(null);
+const checkPasswords = () => {
+  if (
+    email.value !== repeatPassword.value &&
+    email.value !== "" &&
+    repeatPassword.value !== ""
+  ) {
+    // auth.signUp({ email: email.value, password: password.value }),
+    //   dialog.value?.close();
+    signUp();
+  }
+};
+
+const signUp = () => {
+  try {
+    const data = auth.signUp({
+      email: email.value,
+      password: password.value,
+      options: {
+        data: {
+          first_name: first_name.value,
+          last_name: last_name.value,
+          promo: promo.value,
+        },
+      },
+    });
+    console.log("SignUp Data: ", data);
+  } catch (error) { }
+};
 
 const dialog = ref<DialogElement | null>(null);
+const dialog2 = ref<DialogElement | null>(null);
 const itemsMenu = ref({
   items: {
     loggedIn: [
@@ -41,18 +172,20 @@ const itemsMenu = ref({
         icon: "pi pi-fw pi-user",
         fn: () => {
           console.log("Profile");
+          navigateTo("/profile");
         },
       },
       {
-        label: "Settings",
-        icon: "pi pi-fw pi-cog",
+        label: "Prizes",
+        icon: "pi pi-fw pi-star-fill",
         fn: () => {
           console.log("Setting");
+          navigateTo("/prizes");
         },
       },
       {
         label: "Log Out",
-        icon: "pi pi-fw pi-cog",
+        icon: "pi pi-fw pi-sign-out",
         fn: () => {
           console.log("Log Out");
           auth.signOut();
@@ -73,6 +206,7 @@ const itemsMenu = ref({
         icon: "pi pi-fw pi-cog",
         fn: () => {
           console.log("Register");
+          dialog2?.value?.showModal();
         },
       },
     ],
@@ -97,7 +231,7 @@ const items = ref({
       label: "Game",
       icon: "pi pi-fw pi-trash",
       fn: () => {
-        navigateTo("game");
+        navigateTo("/game");
       },
     },
     {
@@ -118,3 +252,12 @@ const items = ref({
   ],
 });
 </script>
+
+<style>
+dialog {
+  background: transparent;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* padding-right: 30px; */
+}
+</style>

@@ -81,7 +81,16 @@ export default defineNuxtConfig({
   // },
 
   supabase: {},
-  pwa: {},
+  pwa: {
+    registerType: "autoUpdate",
+    workbox: {
+      clientsClaim: true,
+      skipWaiting: true,
+    },
+    devOptions: {
+      enabled: true,
+    },
+  },
   pages: true,
   css: [
     // "primevue/resources/primevue.css",
