@@ -14,7 +14,7 @@
             </span>
             <input
               class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="first_name" :placeholder="user?.user_metadata.first_name" />
+              type="text" v-model="first_name" :placeholder="profile_data.data[0]?.first_name" />
             <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
             <!--   <i class="pi pi-fw pi-check"></i> -->
             <!-- </button> -->
@@ -26,7 +26,7 @@
             </span>
             <input
               class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="last_name" :placeholder="user?.user_metadata.last_name" />
+              type="text" v-model="last_name" :placeholder="profile_data.data[0]?.last_name" />
             <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
             <!--   <i class="pi pi-fw pi-check"></i> -->
             <!-- </button> -->
@@ -50,7 +50,7 @@
             </span>
             <input
               class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="promo" :placeholder="user?.user_metadata.promo" />
+              type="text" v-model="promo" :placeholder="profile_data.data[0]?.promo" />
             <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
             <!--   <i class="pi pi-fw pi-check"></i> -->
             <!-- </button> -->
@@ -73,9 +73,18 @@ definePageMeta({
   middleware: ["auth"],
 });
 const user = useSupabaseUser();
+const client = useSupabaseClient();
 const first_name = ref("");
 const last_name = ref("");
 const promo = ref("");
+const profile_data = ref<any>({});
+
+profile_data.value = await client
+  .from("profiles")
+  .select("*")
+  .eq("id", user.value?.id);
+
+console.log("Profiles data: ", profile_data.value);
 
 console.log(user.value?.user_metadata);
 </script>
