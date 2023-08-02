@@ -12,6 +12,8 @@ export default defineNuxtConfig({
     "nuxt-purgecss",
     "@vueuse/nuxt",
     "@dargmuesli/nuxt-cookie-control",
+    "nuxt-simple-sitemap",
+    "nuxt-simple-robots",
   ],
   routeRules: {
     // Homepage pre-rendered at build time
@@ -26,6 +28,18 @@ export default defineNuxtConfig({
     "/api/**": { cors: true },
     // Redirects legacy urls
     // "/old-page": { redirect: "/new-page" },
+    "/game": { index: false },
+    "/profile": { index: false },
+    "/prizes": { index: false },
+  },
+  sitemap: {
+    enabled: true,
+  },
+  robots: {
+    enabled: true,
+    allow: ["/"],
+    disallow: ["/*"],
+    blockNonSeoBots: true,
   },
   plugins: [],
 
@@ -88,6 +102,7 @@ export default defineNuxtConfig({
       clientsClaim: true,
       skipWaiting: true,
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      globIgnores: ["**/node_modules/**/*", "sw.js", "workbox-*.js"],
     },
     devOptions: {
       enabled: true,

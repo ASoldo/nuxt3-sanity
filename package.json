@@ -27,6 +27,8 @@
     "frammer-nuxt": "^1.0.13",
     "nuxt": "^3.6.3",
     "nuxt-purgecss": "^2.0.0",
+    "nuxt-simple-robots": "^3.1.0",
+    "nuxt-simple-sitemap": "^3.1.4",
     "postcss": "^8.4.26",
     "supabase": "^1.77.9",
     "tailwindcss": "^3.3.3"
