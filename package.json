@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "^5.10.4",
-    "@nuxt/devtools": "^0.6.7",
+    "@nuxt/devtools": "^0.7.4",
     "@nuxtjs/supabase": "^0.3.8",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@types/node": "^18.16.19",

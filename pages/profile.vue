@@ -87,4 +87,9 @@ profile_data.value = await client
 console.log("Profiles data: ", profile_data.value);
 
 console.log(user.value?.user_metadata);
+watchEffect(() => {
+  if (!user.value) {
+    navigateTo("/");
+  }
+});
 </script>

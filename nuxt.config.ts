@@ -85,6 +85,8 @@ export default defineNuxtConfig({
     registerType: "autoUpdate",
     workbox: {
       navigateFallback: "/",
+      clientsClaim: true,
+      skipWaiting: true,
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
     },
     devOptions: {
@@ -93,8 +95,8 @@ export default defineNuxtConfig({
       type: "module",
     },
     manifest: {
-      name: "Nuxt Vite PWA",
-      short_name: "NuxtVitePWA",
+      name: "Kaufland Game",
+      short_name: "KaudlandGame",
       theme_color: "#ffffff",
       icons: [
         {

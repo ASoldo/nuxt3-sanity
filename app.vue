@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col h-screen">
     <NuxtLayout>
+      <VitePwaManifest />
       <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items" />
       <NuxtPage class="w-full grow overflow-y-auto" />
     </NuxtLayout>
@@ -124,6 +125,7 @@
 <script lang="ts" setup>
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
+const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const first_name = ref("");
 const last_name = ref("");
