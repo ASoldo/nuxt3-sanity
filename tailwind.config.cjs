@@ -18,6 +18,13 @@ module.exports = {
       height: {
         screen: ["100vh", "100dvh"],
       },
+      colors: {
+        "kaufland-red": "#F60101",
+        "kaufland-dark-red": "#820001",
+        "kaufland-blue": "#2266AF",
+        "kaufland-yellow": "#FEB127",
+        "kaufland-teal": "#01A2C4",
+      },
     },
   },
   plugins: [],
@@ -28,5 +35,6 @@ module.exports = {
     "bg-red-500",
     "bg-emerald-500",
     "bg-green-500",
+    "kaufland-red",
   ],
 };

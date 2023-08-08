@@ -1,9 +1,10 @@
 <template>
   <div v-for="(page, key) in props" :key="key" class="w-full flex flex-col justify-center">
-    <h1 class="h-40 flex flex-col text-center justify-center align-middle outline outline-black outline-1">
-      {{ page.title }}
-    </h1>
-    <div v-for="component in pageData.components" :key="component._key">
+    <!-- <h1 class="h-40 flex flex-col text-center justify-center align-middle outline outline-black outline-1"> -->
+    <!--   {{ page.title }} -->
+    <!-- </h1> -->
+    <div v-for="component in pageData.components" :key="component._key"
+      :class="{ 'bg-kaufland-red': component._type === 'body' }">
       <component :is="getComponentName(component._type)" v-bind="component" />
     </div>
   </div>

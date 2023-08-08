@@ -1,52 +1,13 @@
 <template>
   <div class="flex flex-col h-screen">
     <NuxtLayout>
-      <VitePwaManifest />
-      <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items" />
-      <NuxtPage class="w-full grow overflow-y-auto" />
-
-      <ClientOnly>
-        <div v-if="$pwa?.offlineReady || $pwa?.needRefresh"
-          class="bg-red-100 border-t-4 border-red-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
-          <div class="flex">
-            <div class="py-1">
-              <span v-if="$pwa.offlineReady"> App ready to work offline </span>
-              <span v-else>
-                New content available, click on reload button to update.
-              </span>
-            </div>
-            <div class="pl-4">
-              <button v-if="$pwa.needRefresh" @click="$pwa.updateServiceWorker()"
-                class="font-bold text-blue-500 hover:text-blue-800">
-                Reload
-              </button>
-              <button @click="$pwa.cancelPrompt()" class="font-bold text-blue-500 hover:text-blue-800 ml-4">
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-        <div v-if="$pwa?.showInstallPrompt && !$pwa?.offlineReady && !$pwa?.needRefresh
-          " class="bg-blue-100 border-t-4 border-red-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
-          <div class="flex">
-            <div class="py-1">
-              <span> Install PWA </span>
-            </div>
-            <div class="pl-4">
-              <button @click="$pwa.install()" class="font-bold text-blue-500 hover:text-blue-800">
-                Install
-              </button>
-              <button @click="$pwa.cancelInstall()" class="font-bold text-blue-500 hover:text-blue-800 ml-4">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </ClientOnly>
+      <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items"
+        class="fixed top-0" />
+      <NuxtPage ref="page" class="w-full grow" />
     </NuxtLayout>
 
-    <dialog ref="dialog" class="m-auto absolute inset-0 p-20">
-      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <dialog ref="dialog" class="mx-auto my-auto absolute inset-0">
+      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div v-if="logRegToggle">
           <h2 class="mb-4 text-center text-blue-900 text-xl">Prijavi se</h2>
           <div class="flex flex-col">
@@ -68,21 +29,21 @@
                 class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="password" v-model="password" placeholder="Password" />
             </div>
-            <button class="mb-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="
+            <button class="mb-2 bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="
               auth.signInWithPassword({ email: email, password: password }),
               dialog?.close()
               ">
               Sign In
             </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="dialog?.close()">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="dialog?.close()">
               Close
             </button>
           </div>
         </div>
       </div>
     </dialog>
-    <dialog ref="dialog2" class="m-auto absolute inset-0">
-      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full">
+    <dialog ref="dialog2" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div>
           <h2 class="mb-4 text-center text-blue-900 text-xl">Register</h2>
           <div class="flex flex-col">
@@ -142,7 +103,25 @@
                 class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="password" v-model="promo" placeholder="Promo Code" />
             </div>
-            <button class="mb-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" :class="{
+            <div class="flex md:flex-row flex-col items-center justify-center">
+              <div class="">
+                <input type="checkbox" />
+                Suglasan/a sam i prihvaćam Pravila natječaja, Uvjete korištenja
+                i Pravila privatnosti te korištenje mojih osobnih podataka za
+                potrebe provođenja i informiranja o nagradnom natječaju, odnosno
+                za potrebe realizacije nagrade ako budem dobitnik/ca.
+              </div>
+              <div class="pt-2">
+                <input type="checkbox" />
+                Prijavljujem se za dodatne pogodnosti i primanje informativnih i
+                promotivnih poruka i sadržaja od strane Kauflanda, kao i
+                kreiranje i informiranje o prilagođenim individualiziranim
+                prilikama, akcijama ili ponudama Kauflanda koje nastaju uz
+                primjenu napredne tehnologije i automatizirane obrade mojih
+                podataka.
+              </div>
+            </div>
+            <button class="mt-4 mb-2 bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded" :class="{
               'bg-gray-50':
                 email !== repeatPassword &&
                 email !== '' &&
@@ -150,8 +129,7 @@
             }" @click="checkPasswords()">
               Sign Up
             </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              @click="dialog2?.close()">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="dialog2?.close()">
               Close
             </button>
           </div>
@@ -164,6 +142,7 @@
 <script lang="ts" setup>
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
+import { document } from "postcss";
 const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const first_name = ref("");
@@ -174,6 +153,7 @@ const repeatPassword = ref("");
 const promo = ref("");
 const errorMsg = ref(null);
 const successMsg = ref(null);
+const page = ref(null);
 const checkPasswords = () => {
   if (
     email.value !== repeatPassword.value &&
@@ -276,19 +256,32 @@ const items = ref({
       },
     },
     {
-      label: "Link",
+      label: "Kako Igrati",
       icon: "pi pi-fw pi-external-link",
-      fn: game,
+      fn: () => {
+        navigateTo("#how-to-play");
+      },
     },
     {
-      label: "Link",
+      label: "Nagrade",
       icon: "pi pi-fw pi-bookmark",
-      fn: () => { },
+      fn: () => {
+        navigateTo("#nagrade");
+      },
     },
     {
-      label: "Link",
+      label: "Kaufland Card",
       icon: "pi pi-fw pi-video",
-      fn: () => { },
+      fn: () => {
+        navigateTo("#promo");
+      },
+    },
+    {
+      label: "Rang Lista",
+      icon: "pi pi-fw pi-video",
+      fn: () => {
+        navigateTo("#ranglist");
+      },
     },
   ],
 });

@@ -1,48 +1,34 @@
 <template>
   <div class="h-full">
-    <div class="w-full">
-      <Carousel> </Carousel>
+    <div class="w-full mt-14">
+      <!-- <Carousel> </Carousel> -->
       <Dynamic :page-data="pageData[0]" />
+      <CodePanel />
 
-      <div class="flex flex-col items-center justify-center p-2">
-        <h1 class="font-semibold text-2xl">Leaderboard</h1>
+      <div id="ranglist" class="flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">
+        <div class="flex flex-row">
+          <img src="../assets/images/medalja.png" alt="" class="w-16" />
+          <h1 class="font-kaufland-bold text-2xl md:text-4xl text-white">
+            K-MARKE(t) <br />
+            RANG LISTA
+          </h1>
+        </div>
         <div class="overflow-x-auto w-full md:w-fit">
-          <div
-            class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-red-200 border-2">
+          <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
             <table class="min-w-full">
-              <thead>
-                <tr>
-                  <th
-                    class="px-6 py-3 border-b border-gray-200 bg-red-500 text-center text-xs leading-4 font-medium text-white uppercase tracking-wider">
-                    #
-                  </th>
-                  <th
-                    class="px-6 py-3 border-b border-gray-200 bg-red-600 text-center text-xs leading-4 font-medium text-white uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th
-                    class="px-6 py-3 border-b border-gray-200 bg-red-500 text-center text-xs leading-4 font-medium text-white uppercase tracking-wider">
-                    Score
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="bg-white">
-                <tr v-for="(item, index) in cats" :key="index" class="border-t border-gray-200"
-                  :class="index % 2 !== 0 ? 'bg-red-50' : undefined">
+              <tbody class="bg-kaufland-red">
+                <tr v-for="(item, index) in cats" :key="index" class="">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
-                    <span :class="{
-                      'text-yellow-500': index === 0,
-                      'text-gray-500': index === 1,
-                      'text-orange-500': index === 2,
-                    }">
-                      {{ index + 1 }}
+                    <span class="text-white text-center">
+                      {{ index + 1 }}.
                     </span>
                   </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
-                    <span class="pi pi-user pr-2 text-blue-500"></span>{{ item.name }}
+                  <td class="text-center text-white px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium">
+                    <!-- <span class="pi pi-user pr-2 text-blue-500"></span> -->
+                    {{ item.name }}
                   </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                    <span class="pi pi-check px-1 text-green-500"></span>
+                  <td class="text-center px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
+                    <!-- <span class="pi pi-check px-1 text-green-500"></span> -->
                     &nbsp;{{ item.age }}
                   </td>
                 </tr>
@@ -51,44 +37,28 @@
           </div>
         </div>
       </div>
-
-      <div class="flex flex-row justify-around p-2 bg-red-500">
-        <button class="outline outline-1 outline-white px-4 rounded-md text-white hover:bg-red-600"
-          @click="invoke_edge()">
-          Edge-Function
-        </button>
-        <div v-if="edgeLordData">
-          <p>{{ edgeLordData["message"] }}</p>
-        </div>
-        <button class="outline outline-1 outline-white px-4 rounded-md text-white hover:bg-red-600" @click="fetchUser()">
-          Fetch-User
-        </button>
-        <button class="outline outline-1 outline-white px-4 rounded-md text-white hover:bg-red-600"
-          @click="increment_clicks()">
-          Call-Incremental-Clicks
-        </button>
-
-        <ToggleButton></ToggleButton>
-        <CookieControl locale="en">
-          <template #bar>
-            <div class="flex flex-col">
-              <h3>We use Cookies</h3>
-              <p>Bar description (you can use $cookies.text.barDescription)</p>
-              <a>Go somewhere</a>
-            </div>
-          </template>
-          <template #modal>
-            <h3>Cookies</h3>
-            <p>Modal description</p>
-            <p>
-              {{ ($cookies as any).moduleOptions.cookies.optional[0].name.en }}
-            </p>
-          </template>
-          <template #cookie="{ config }">
-            <span v-for="c in config" :key="c.id" v-text="c.cookies" />
-          </template>
-        </CookieControl>
-      </div>
+      <Products />
+      <Impressum id="how-to-play" />
+      <PWA class="w-full h-full" />
+      <CookieControl locale="en">
+        <template #bar>
+          <div class="flex flex-col">
+            <h3>We use Cookies</h3>
+            <p>Bar description (you can use $cookies.text.barDescription)</p>
+            <a>Go somewhere</a>
+          </div>
+        </template>
+        <template #modal>
+          <h3>Cookies</h3>
+          <p>Modal description</p>
+          <p>
+            {{ ($cookies as any).moduleOptions.cookies.optional[0].name.en }}
+          </p>
+        </template>
+        <template #cookie="{ config }">
+          <span v-for="c in config" :key="c.id" v-text="c.cookies" />
+        </template>
+      </CookieControl>
     </div>
   </div>
 </template>

@@ -17,11 +17,14 @@
 
       <div ref="target" class="flex transition-transform duration-500 ease-in-out w-full"
         :style="{ transform: `translateX(-${activeSlide * 100}%)` }">
-        <div class="w-full h-96 flex-none" :class="`bg-${slides[index].color}-500`" v-for="(slide, index) in slides"
-          :key="index">
+        <div class="w-full h-96 flex-none text-white" :class="`bg-${slides[index].color}`"
+          v-for="(slide, index) in slides" :key="index">
           <div class="flex flex-col justify-center items-center align-middle h-full">
             <div class="p-4 text-6xl md:text-9xl font-kaufland-heavy">
               {{ slide.content }}
+            </div>
+            <div class="p-4 text-xl md:text-xl font-kaufland-heavy">
+              {{ slide.content_text1 }}
             </div>
           </div>
         </div>
@@ -49,16 +52,17 @@ const target = ref<HTMLElement | null>(null);
 const activeSlide = ref(0);
 const slides = [
   {
-    content: "Slide 1",
-    color: "emerald",
+    content: "Igraj",
+    content_text1: "I PRONADI PROIZVODE",
+    color: "kaufland-red",
   },
   {
     content: "Slide 2",
-    color: "lime",
+    color: "lime-500",
   },
   {
     content: "Slide 3",
-    color: "cyan",
+    color: "cyan-500",
   },
 ];
 
