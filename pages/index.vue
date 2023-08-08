@@ -2,7 +2,11 @@
   <div class="h-full">
     <div class="w-full mt-14">
       <!-- <Carousel> </Carousel> -->
-      <Dynamic :page-data="pageData[0]" />
+      <!-- <Dynamic :page-data="pageData[0]" /> -->
+      <Header />
+      <Banner />
+
+      <Body />
       <CodePanel />
 
       <div id="ranglist" class="flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">
