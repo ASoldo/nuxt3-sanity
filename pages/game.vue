@@ -16,7 +16,7 @@ const jwt = ref<string | null>(null);
 
 const CustomObject = ref<string>("");
 // https://game.dev.kaufland.game.ecolabel.cc/
-const gameSrc = ref<string>("https://game.dev.kaufland.game.ecolabel.cc/");
+const gameSrc = ref<string>("https://game.k-marke-t.com/");
 // const gameSrc = ref<string>("http://localhost:8000/");
 const game = ref<null | HTMLIFrameElement>(null);
 definePageMeta({
