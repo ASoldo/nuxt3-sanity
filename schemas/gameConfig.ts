@@ -10,8 +10,9 @@ export const gameConfig = {
     },
     {
       name: "active_room",
-      type: "string",
+      type: "reference",
       title: "Active Room",
+      to: [{ type: "room_info" }],
     },
     {
       name: "correctItems",

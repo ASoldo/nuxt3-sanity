@@ -13,6 +13,11 @@ export const position = {
       type: "number",
       title: "Y",
     },
+    {
+      name: "hotspot_interactable_id",
+      type: "number",
+      title: "Hotspot Interacatble Id",
+    },
   ],
 };
 

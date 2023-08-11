@@ -1,6 +1,7 @@
 import { demo } from "./demo";
 import { header, banner, body, footer, page } from "./page";
 import { position, room, game } from "./room";
+import { room_info } from "./room_info";
 import { item } from "./gameItems";
 import { gameConfig } from "./gameConfig";
 import { question } from "./question";
@@ -18,4 +19,5 @@ export const pageTypes = [
   game,
   item,
   gameConfig,
+  room_info,
 ];

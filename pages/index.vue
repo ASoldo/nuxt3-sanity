@@ -6,7 +6,7 @@
       <Header />
       <Banner />
 
-      <Body />
+      <BodyComponent />
       <CodePanel />
 
       <div id="ranglist" class="flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">

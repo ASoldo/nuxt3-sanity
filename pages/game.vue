@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col pt-14">
     <div class="flex grow bg-black justify-center">
       <div class="h-full w-full bg-green-500">
         <iframe ref="game" height="1024" width="512" :src="gameSrc" frameborder="0" class="w-full h-full"></iframe>

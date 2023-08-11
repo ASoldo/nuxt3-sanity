@@ -161,8 +161,8 @@ const checkPasswords = () => {
     repeatPassword.value !== ""
   ) {
     // auth.signUp({ email: email.value, password: password.value }),
-    //   dialog.value?.close();
     signUp();
+    dialog2.value?.close();
   }
 };
 

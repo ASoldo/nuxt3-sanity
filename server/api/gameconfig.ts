@@ -3,9 +3,15 @@ export default defineEventHandler(async (event) => {
     "https://u678c0qn.api.sanity.io/v2021-10-21/data/query/production";
   const query = `*[_type == "gameConfig"][0]{
     title,
-    active_room,
+    "active_room": active_room->{
+      slug,
+      room_id
+    },
     "correctItems": correctItems[]->{
       question,
+      slug, 
+      "imageUrl": image.asset->url,
+      description
     }
   }`;
   const encodedQuery = encodeURIComponent(query);
@@ -21,8 +27,9 @@ export default defineEventHandler(async (event) => {
 
   const result = {
     title: data.result.title,
-    active_room: data.result.active_room,
+    active_room: data.result.active_room.slug.current,
     correctItems: data.result.correctItems,
+    room_id: data.result.active_room.room_id,
   };
 
   console.log("gameConfig", result);

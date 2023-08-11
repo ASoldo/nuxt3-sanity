@@ -113,7 +113,7 @@
     </div>
     <div class="w-full pt-5 mt-5">
       <div class="w-full flex flex-col justify-center items-center">
-        <button
+        <button @click="navigateTo('/game')"
           class="px-5 py-2 bg-white hover:bg-gray-700 rounded-2xl text-red-600 border-b-4 border-gray-300 text-3xl m-4 font-kaufland-heavy">
           Igraj
         </button>
@@ -136,7 +136,7 @@ const props = defineProps({
   image: Object,
 });
 
-console.log(props.image);
+// console.log(props.image);
 
 // const imageUrl = ref("");
 //

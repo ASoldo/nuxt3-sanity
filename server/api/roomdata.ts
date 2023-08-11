@@ -1,10 +1,12 @@
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const queryParam = getQuery(event);
+  const room_id = queryParam.room_id;
   const baseUrl =
     "https://u678c0qn.api.sanity.io/v2021-10-21/data/query/production";
   const query = `*[_type == "game"][0]{
     title,
     slug,
-    "Room": rooms[0]{
+    "Room": rooms[${room_id}]{
       room_name,
       hotspot_positions,
       hotspot_interactable_positions
@@ -15,7 +17,7 @@ export default defineEventHandler(async () => {
   const response = await fetch(`${baseUrl}?query=${encodedQuery}`);
   const data = await response.json();
 
-  console.log("data", data);
+  // console.log("data", data);
 
   if (!response.ok) {
     return { message: `Error: ${response.statusText}` };
