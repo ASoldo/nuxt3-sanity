@@ -120,9 +120,10 @@ export default defineEventHandler(async (event) => {
   // console.log(body);
   const user_uuid = body.user_uuid;
   const user_answer = body.answer;
+  const best_score = body.best_score;
   const answer = event.context.params?.answer;
   const config = useRuntimeConfig();
-  console.log("Config env: ", config);
+  // console.log("Config env: ", config);
 
   const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/game_sessions`;
   const supabaseHeaders = {
@@ -170,11 +171,12 @@ export default defineEventHandler(async (event) => {
     fetchOptions = {
       method: "PATCH",
       headers: supabaseHeaders,
-      body: JSON.stringify({ status: 1 }),
+      body: JSON.stringify({ status: 1, best_score: best_score }),
     };
 
     fetchUrl = `${supabaseUrl}?session_id=eq.${latestSession.session_id}`;
     fetchResponse = await fetch(fetchUrl, fetchOptions);
+    console.log("Best Score: ", best_score);
 
     if (!fetchResponse.ok) {
       return { error: fetchResponse.statusText };

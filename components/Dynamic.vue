@@ -14,7 +14,7 @@
 import { PageData } from "../internals/types";
 import Header from "./Header.vue";
 import Banner from "./Banner.vue";
-import Body from "./Body.vue";
+import BodyComponent from "./BodyComponent.vue";
 import Footer from "./Footer.vue";
 
 type ComponentType = "header" | "banner" | "body" | "footer";
@@ -29,7 +29,7 @@ const props = defineProps({
 const componentMap = {
   header: Header,
   banner: Banner,
-  body: Body,
+  body: BodyComponent,
   footer: Footer,
 };
 
