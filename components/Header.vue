@@ -67,7 +67,15 @@ const currentImageIndex = ref(0);
 let interval: ReturnType<typeof setInterval>;
 let imageWrapper = ref<HTMLElement | null>(null);
 
-onMounted(() => {
+onMounted(async () => {
+  // Initial display for the first image
+  if (imageWrapper.value) {
+    imageWrapper.value.style.opacity = "1";
+  }
+
+  // Wait for a moment to display the first image before beginning the loop
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   interval = setInterval(async () => {
     // Fade out
     if (imageWrapper.value) {
