@@ -9,18 +9,23 @@
       <BodyComponent />
       <CodePanel />
 
-      <div id="ranglist" class="flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">
-        <div class="flex flex-row">
-          <img src="../assets/images/medalja.png" alt="" class="w-16" />
-          <h1 class="font-kaufland-bold text-2xl md:text-4xl text-white">
-            K-MARKE(t) <br />
-            RANG LISTA
-          </h1>
+      <div id="ranglist" class="relative flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">
+        <div class="skew-div w-full h-full absolute z-0"></div>
+        <div class="flex flex-row z-10">
+          <!-- <img src="../assets/images/medalja.png" alt="" class="w-16" /> -->
+          <img src="../assets/images/rang_list.png" alt="" class="h-32" />
+          <!-- <h1 class="font-kaufland-bold text-2xl md:text-4xl text-white"> -->
+          <!--   K-MARKE(t) <br /> -->
+          <!--   RANG LISTA -->
+          <!-- </h1> -->
         </div>
-        <div class="overflow-x-auto w-full md:w-fit">
+        <h1 class="text-white font-kaufland-bold z-10">
+          TOP 10 najboljih igraca danas
+        </h1>
+        <div class="overflow-x-auto w-full md:w-fit z-10">
           <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
             <table class="min-w-full">
-              <tbody class="bg-kaufland-red">
+              <tbody class="">
                 <tr v-for="(item, index) in cats" :key="index" class="">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span class="text-white text-center">
@@ -147,3 +152,32 @@ watch(
   { deep: true }
 );
 </script>
+
+<style scoped>
+.skew-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to top, #cd0000, transparent) !important;
+  transform-origin: middle;
+  z-index: 0;
+}
+
+@media screen and (min-width: 800px) {
+  .skew-div::before {
+    width: 90%;
+    left: 5% !important;
+    right: 5% !important;
+    transform: skew(0.112rad);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .skew-div::before {
+    width: 100vw;
+    left: 0;
+    right: 0;
+  }
+}
+</style>

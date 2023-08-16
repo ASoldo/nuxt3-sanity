@@ -1,15 +1,17 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col pt-14">
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-1/2 justify-center">
         <div class="w-full p-6 m-4 bg-white rounded shadow-lg">
           <h1 class="text-2xl font-semibold text-gray-700">Prizes</h1>
           <!-- Insert profile related content here -->
           <div>
-            <h1 v-for="(item, key) in user_prizes_data" :key="key">
-              {{ item.profile_id }}
-              {{ item.prize_id }}
-            </h1>
+            <div v-for="(item, key) in user_prizes_data" :key="key" class="p-3">
+              Prize: {{ key + 1 }}
+              <!-- {{ item.profile_id }} -->
+              Prize_id: {{ item.prize_id }}
+              <img src="../assets/images/qrcodedummy.png" alt="" />
+            </div>
           </div>
         </div>
       </div>

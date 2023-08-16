@@ -15,15 +15,15 @@
         <!-- Content for 0 -->
         <div class="flex md:flex-col flex-row">
           <div class="bg-kaufland-red p-3 text-white font-bold text-2xl">
-            <div class="p-2 bg-kaufland-blue text-center">
-              <h1 class="font-kaufland-heavy">UNESI KOD</h1>
-            </div>
-            <div class="bg-kaufland-red p-3 text-white font-bold text-xl">
-              <h1>
-                Iz Kaufland card aplikacije i ostvari
-                <span class="font-kaufland-heavy">10 SEKUNDI PREDNOSTI U IGRICI!</span>
-              </h1>
-            </div>
+            <!-- <div class="p-2 bg-kaufland-blue text-center"> -->
+            <!--   <h1 class="font-kaufland-heavy">UNESI KOD</h1> -->
+            <!-- </div> -->
+            <!-- <div class="bg-kaufland-red p-3 text-white font-bold text-xl"> -->
+            <!--   <h1> -->
+            <!--     Iz Kaufland card aplikacije i ostvari -->
+            <!--     <span class="font-kaufland-heavy">10 SEKUNDI PREDNOSTI U IGRICI!</span> -->
+            <!--   </h1> -->
+            <!-- </div> -->
           </div>
         </div>
         <div class="flex flex-row">
@@ -40,15 +40,15 @@
               <h1 class="text-6xl text-white font-kaufland-heavy">1</h1>
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/popust_box.png" alt="" />
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 Uđi u Kaufland card aplikaciju i klikni na kupone.
               </h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/popust_box.png" alt="" />
             </div>
           </div>
         </div>
@@ -57,19 +57,19 @@
           <!-- Content for 2 -->
           <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
             <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
+              <!-- Inner content for 3 -->
               <h1 class="text-6xl text-white font-kaufland-heavy">2</h1>
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/popust.png" alt="" />
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 Pronađi kupon za 10 sekundi prednosti u K-MARKE(t) igrici.
               </h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/popust.png" alt="" />
             </div>
           </div>
         </div>
@@ -78,19 +78,19 @@
           <!-- Content for 3 -->
           <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
             <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
+              <!-- Inner content for 3 -->
               <h1 class="text-6xl text-white font-kaufland-heavy">3</h1>
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/tockice_strelica.png" alt="" />
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 Registriraj se prije početka igre i pritom unesi broj kupona.
               </h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/tockice.png" alt="" />
             </div>
           </div>
         </div>
@@ -103,15 +103,15 @@
               <h1 class="text-6xl text-white font-kaufland-heavy">4</h1>
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/stoperica.png" alt="" />
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 Svaki dan u igrici iskoristi 10 sekundi prednosti.
               </h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/stoperica.png" alt="" />
             </div>
           </div>
         </div>

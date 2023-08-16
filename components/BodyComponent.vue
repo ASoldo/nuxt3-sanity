@@ -39,30 +39,34 @@
   <!--     <img src="../assets/images/kolica.png" alt="Description" class="w-64 h-auto" /> -->
   <!--   </div> -->
   <!-- </div> -->
+  <div class="w-full h-full bg-kaufland-red">
+    <div id="nagrade" class="relative flex flex-col md:flex-row items-center bg-kaufland-red mx-auto pt-14 md:max-w-5xl">
+      <div class="skew-div w-full h-full absolute z-0"></div>
 
-  <div id="nagrade"
-    class="relative flex flex-col md:flex-row justify-start items-center bg-kaufland-red mx-auto max-w-screen-lg pt-14">
-    <div class="skew-div w-full h-full absolute z-0"></div>
-    <div class="md:w-1/2 p-4 z-10">
-      <p class="ml-2 mb-2 text-8xl font-bold flex justify-start items-center text-white font-kaufland-heavy">
-        35.000
-      </p>
-      <p class="ml-2 mb-2 text-3xl font-bold flex justify-start items-center text-white font-kaufland-heavy">
-        DNEVNIH NAGRADA*
-      </p>
-      <p class="ml-2 mr-2 mb-2 text-lg font-bold flex justify-start items-center text-white">
-        Igraj igricu svaki dan i svaki dan osvoji naše najbolje marke. Samo brzo
-        rješavaj zagonetke jer dnevne nagrade osvajaju prvih 1.000 igrača s
-        najboljim rezultatom na kraju dana. Provjeri jesi li i ti među njima
-        klikom na rubriku Moje nagrade.
-      </p>
-      <p class="ml-2 mr-2 mb-2 text-lg font-bold flex justify-start items-center">
-        <span class="text-white">Aktivacija kôda prilikom preuzimanja dnevne nagrade iznosi 0,02
-          €.</span>
-      </p>
-    </div>
-    <div class="md:w-1/2 p-4 flex justify-center">
-      <img src="../assets/images/kolica.png" alt="Description" class="w-64 h-auto z-10" />
+      <!-- Text Container -->
+      <div class="w-full md:w-1/2 p-4 z-10 flex flex-col items-center">
+        <p class="mb-2 text-8xl font-bold text-white font-kaufland-heavy transform -rotate-3">
+          35.000
+        </p>
+        <p class="mb-2 text-3xl font-bold text-white font-kaufland-heavy transform -rotate-3">
+          DNEVNIH NAGRADA*
+        </p>
+        <p class="mb-2 text-lg font-bold text-center text-white">
+          Igraj igricu svaki dan i svaki dan osvoji naše najbolje marke. Samo
+          brzo rješavaj zagonetke jer dnevne nagrade osvajaju prvih 1.000 igrača
+          s najboljim rezultatom na kraju dana. Provjeri jesi li i ti među njima
+          klikom na rubriku Moje nagrade.
+        </p>
+        <p class="mb-2 text-lg font-bold text-center">
+          <span class="text-white">Aktivacija kôda prilikom preuzimanja dnevne nagrade iznosi 0,02
+            €.</span>
+        </p>
+      </div>
+
+      <!-- Image Container -->
+      <div class="w-full md:w-1/2 p-4 flex justify-center">
+        <img src="../assets/images/kolica.png" alt="Description" class="w-96 h-auto z-10" />
+      </div>
     </div>
   </div>
 </template>

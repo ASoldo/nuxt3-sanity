@@ -1,23 +1,36 @@
 <template>
-  <div id="impressum" class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-kaufland-red text-white p-5">
+  <div id="impressum" class="grid grid-cols-1 md:grid-cols-2 gap-5 bg-kaufland-red text-white p-5">
     <div class="flex flex-col md:items-end items-center">
       <h1 class="font-kaufland-bold mb-2">PRATITE NAS</h1>
-      <div class="flex flex-col md:flex-row md:justify-between">
-        <div class="md:mr-3">lorem</div>
-        <div class="md:mr-3">ipusm</div>
+      <div class="flex flex-row md:justify-between">
+        <div class="p-1">
+          <a href="">
+            <img src="../assets/images/YT.png" alt="" class="w-10" />
+          </a>
+        </div>
+        <div class="p-1">
+          <a href="">
+            <img src="../assets/images/facebook.png" alt="" class="w-10" />
+          </a>
+        </div>
+        <div class="p-1">
+          <a href="">
+            <img src="../assets/images/Insta.png" alt="" class="w-10" />
+          </a>
+        </div>
+        <div class="p-1">
+          <a href="">
+            <img src="../assets/images/tiktok.png" alt="" class="w-10" />
+          </a>
+        </div>
       </div>
     </div>
-    <div class="flex flex-col items-center">
-      <h1 class="font-kaufland-bold mb-2">KONTAKT</h1>
-      <div>lorem</div>
-      <div>ipsum</div>
-      <div>dolor</div>
-    </div>
+
     <div class="flex flex-col md:items-start items-center">
       <h1 class="font-kaufland-bold mb-2">POLITIKA PRIVATNOSTI</h1>
-      <a href="#">O KOLACICIMA</a>
-      <a href="#">POLITIKA PRIVATNOSTI</a>
-      <a href="#">UVJETI KORISTENJA</a>
+      <a href="#" download>O KOLACICIMA</a>
+      <a href="#" download>POLITIKA PRIVATNOSTI</a>
+      <a href="#" download>UVJETI KORISTENJA</a>
     </div>
   </div>
   <div class="flex flex-col items-end w-full bg-kaufland-red">

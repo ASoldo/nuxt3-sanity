@@ -15,15 +15,16 @@
       <div class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center">
         <!-- Content for 0 -->
         <div class="flex md:flex-col flex-row">
-          <div class="bg-kaufland-red p-3 text-white font-bold">
-            <h1 class="font-kaufland-heavy text-2xl md:text-6xl">KAKO</h1>
-          </div>
-          <div class="bg-kaufland-red p-3 text-white font-bold">
-            <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRATI</h1>
-          </div>
-          <div class="bg-kaufland-red p-3 text-white font-bold">
-            <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRICU?</h1>
-          </div>
+          <img src="../assets/images/how_to_play.png" alt="" />
+          <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
+          <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">KAKO</h1> -->
+          <!-- </div> -->
+          <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
+          <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRATI</h1> -->
+          <!-- </div> -->
+          <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
+          <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRICU?</h1> -->
+          <!-- </div> -->
         </div>
       </div>
 
@@ -36,34 +37,34 @@
               <h1 class="text-6xl text-white font-kaufland-heavy">1</h1>
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/tockice_strelica.png" alt="" />
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 Registriraj se i pokreni K-MARKE(t) igricu.
               </h1>
             </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/tockice_strelica.png" alt="" />
-            </div>
           </div>
         </div>
 
         <div class="md:col-span-1">
-          <!-- Content for 2 -->
+          <!-- Content for 3 -->
           <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
             <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 0 -->
               <h1 class="text-6xl text-white font-kaufland-heavy">2</h1>
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">Pročitaj i riješi tri zagonetke.</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 2 -->
               <!-- <h1 class="text-white">Content</h1> -->
               <img src="../assets/images/upitnik.png" alt="" />
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 1 -->
+              <h1 class="text-white">Procitaj i rijesi 3 zagonetke.</h1>
             </div>
           </div>
         </div>
@@ -76,15 +77,15 @@
               <h1 class="text-6xl text-white font-kaufland-heavy">3</h1>
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/boca.png" alt="" />
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 U prostoriji potraži proizvode koji se kriju iza zagonetki.
               </h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/boca.png" alt="" />
             </div>
           </div>
         </div>
@@ -97,15 +98,15 @@
               <h1 class="text-6xl text-white font-kaufland-heavy">4</h1>
             </div>
             <div class="md:col-span-1 flex justify-center items-center">
+              <!-- Inner content for 2 -->
+              <!-- <h1 class="text-white">Content</h1> -->
+              <img src="../assets/images/boca2.png" alt="" />
+            </div>
+            <div class="md:col-span-1 flex justify-center items-center">
               <!-- Inner content for 1 -->
               <h1 class="text-white">
                 Klikni na tražene proizvode i pokupi dnevnu nagradu.
               </h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/boca.png" alt="" />
             </div>
           </div>
         </div>
@@ -114,11 +115,11 @@
     <div class="w-full pt-5 mt-5">
       <div class="w-full flex flex-col justify-center items-center">
         <button @click="navigateTo('/game')"
-          class="px-5 py-2 bg-white hover:bg-gray-700 rounded-2xl text-red-600 border-b-4 border-gray-300 text-3xl m-4 font-kaufland-heavy">
+          class="transition-colors duration-1000 px-5 py-2 bg-gradient-to-r from-white to-gray-300 hover:from-kaufland-red hover:to-red-600 rounded-xl text-kaufland-red hover:text-white border-b-4 border-red-800 hover:border-gray-500 text-3xl m-4 font-kaufland-heavy z-10">
           Igraj
         </button>
       </div>
-      <div class="w-full flex flex-col justify-center items-center p-4">
+      <div class="w-full flex flex-col justify-center items-center p-4 z-10">
         <h1 class="text-white">Detaljniji opis igre možeš pročitati ovdje</h1>
       </div>
     </div>
@@ -126,6 +127,9 @@
 </template>
 
 <script setup lang="ts">
+const igraj = () => {
+  console.log("igraj");
+};
 // import imageUrlBuilder from "@sanity/image-url";
 //
 // const builder = imageUrlBuilder({

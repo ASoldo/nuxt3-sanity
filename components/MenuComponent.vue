@@ -41,9 +41,12 @@
     </nav>
     <div class="flex justify-between items-center">
       <div class="relative pl-2">
-        <img v-if="user" src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon"
-          alt="Profile Picture" class="bg-white h-10 w-10 m-2 rounded-full outline outline-1 outline-red-500"
-          @click="toggleMenu()" />
+        <!-- <img v-if="user" src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon" -->
+        <!--   alt="Profile Picture" class="bg-white h-10 w-10 m-2 rounded-full outline outline-1 outline-red-500" -->
+        <!--   @click="toggleMenu()" /> -->
+        <i v-if="user"
+          class="pi pi-user bg-white h-10 w-10 m-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"
+          @click="toggleMenu()"></i>
         <button v-else @click="toggleMenu()" class="text-white hover:text-black font-kaufland-heavy">
           Login / Register
         </button>
@@ -51,8 +54,10 @@
         <div ref="target" v-if="menuState"
           class="absolute right-0 mt-2 w-40 bg-white outline outline-black outline-1 overflow-hidden shadow-xl z-10">
           <div v-if="user" class="px-4 py-2 text-sm text-gray-700 flex flex-row justify-stretch">
-            <img src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon"
-              alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" />
+            <!-- <img src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon" -->
+            <!--   alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" /> -->
+            <i v-if="user"
+              class="pi pi-user bg-white h-6 w-6 mr-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"></i>
             {{ user?.user_metadata.first_name }}
           </div>
 

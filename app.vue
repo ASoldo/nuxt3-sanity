@@ -47,14 +47,6 @@
         <div>
           <h2 class="mb-4 text-center text-blue-900 text-xl">Register</h2>
           <div class="flex flex-col">
-            <!-- <div class="relative"> -->
-            <!--   <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3"> -->
-            <!--     <i class="pi pi-fw pi-user"></i> -->
-            <!--   </span> -->
-            <!--   <input -->
-            <!--     class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" -->
-            <!--     type="text" v-model="first_name" placeholder="First Name*" /> -->
-            <!-- </div> -->
             <div class="relative">
               <span class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
                 <i class="pi pi-fw pi-user"></i>
@@ -136,6 +128,24 @@
         </div>
       </div>
     </dialog>
+
+    <dialog ref="success_msg" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div>
+          <h2 class="mb-4 text-center text-blue-900 text-xl">Success!</h2>
+          <p class="text-center mb-4">
+            Your registration was successful. Please check your email for
+            further instructions.
+          </p>
+          <div class="flex justify-center">
+            <button class="bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              @click="success_msg?.close()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
   </div>
 </template>
 
@@ -162,7 +172,7 @@ const checkPasswords = () => {
   ) {
     // auth.signUp({ email: email.value, password: password.value }),
     signUp();
-    dialog2.value?.close();
+    success_msg.value?.showModal();
   }
 };
 
@@ -180,11 +190,13 @@ const signUp = () => {
       },
     });
     console.log("SignUp Data: ", data);
+    dialog2.value?.close();
   } catch (error) { }
 };
 
 const dialog = ref<DialogElement | null>(null);
 const dialog2 = ref<DialogElement | null>(null);
+const success_msg = ref<DialogElement | null>(null);
 const itemsMenu = ref({
   items: {
     loggedIn: [
@@ -243,14 +255,14 @@ const items = ref({
   items: [
     {
       label: "Home",
-      icon: "pi pi-fw pi-plus",
+      icon: "pi pi-fw pi-home",
       fn: () => {
         navigateTo("/");
       },
     },
     {
       label: "Game",
-      icon: "pi pi-fw pi-trash",
+      icon: "pi pi-fw pi-palette",
       fn: () => {
         navigateTo("/game");
       },
@@ -264,21 +276,21 @@ const items = ref({
     },
     {
       label: "Nagrade",
-      icon: "pi pi-fw pi-bookmark",
+      icon: "pi pi-fw pi-qrcode",
       fn: () => {
         navigateTo("#nagrade");
       },
     },
     {
       label: "Kaufland Card",
-      icon: "pi pi-fw pi-video",
+      icon: "pi pi-fw pi-id-card",
       fn: () => {
         navigateTo("#promo");
       },
     },
     {
       label: "Rang Lista",
-      icon: "pi pi-fw pi-video",
+      icon: "pi pi-fw pi-list",
       fn: () => {
         navigateTo("#ranglist");
       },
