@@ -87,6 +87,14 @@ profile_data.value = await client
 console.log("Profiles data: ", profile_data.value);
 
 console.log(user.value?.user_metadata);
+
+const leaderboard = ref();
+leaderboard.value = await client
+  .from("leaderboard")
+  .select(
+    "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
+  );
+console.log("Leaderboard: ", leaderboard.value);
 watchEffect(() => {
   if (!user.value) {
     navigateTo("/");

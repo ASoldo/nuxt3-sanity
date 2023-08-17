@@ -186,6 +186,7 @@ const signUp = () => {
           first_name: first_name.value,
           last_name: last_name.value,
           promo: promo.value,
+          email: email.value,
         },
       },
     });

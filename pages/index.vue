@@ -12,7 +12,7 @@
       <div id="ranglist" class="relative flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">
         <div class="skew-div w-full h-full absolute z-0"></div>
         <div class="flex flex-row z-10">
-          <!-- <img src="../assets/images/medalja.png" alt="" class="w-16" /> -->
+          <img src="../assets/images/medalja.png" alt="" class="w-16 h-16" />
           <img src="../assets/images/rang_list.png" alt="" class="h-32" />
           <!-- <h1 class="font-kaufland-bold text-2xl md:text-4xl text-white"> -->
           <!--   K-MARKE(t) <br /> -->
@@ -26,7 +26,8 @@
           <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
             <table class="min-w-full">
               <tbody class="">
-                <tr v-for="(item, index) in cats" :key="index" class="">
+                <tr v-for="(item, index) in leaderboard.data" :key="index"
+                  :class="{ 'bg-black': item.user_uuid == user?.id }">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span class="text-white text-center">
                       {{ index + 1 }}.
@@ -34,11 +35,13 @@
                   </td>
                   <td class="text-center text-white px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium">
                     <!-- <span class="pi pi-user pr-2 text-blue-500"></span> -->
-                    {{ item.name }}
+                    {{
+                      item.profiles.first_name + " " + item.profiles.last_name
+                    }}
                   </td>
                   <td class="text-center px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
                     <!-- <span class="pi pi-check px-1 text-green-500"></span> -->
-                    &nbsp;{{ item.age }}
+                    &nbsp;{{ item.best_score }}
                   </td>
                 </tr>
               </tbody>
@@ -82,6 +85,7 @@ const query = groq`*[_type == 'page']|order(id asc){...,"components": components
 const sanity = useSanity();
 const { data } = useAsyncData("page", () => sanity.fetch(query));
 const pageData = computed(() => (data.value as PageData[]) ?? []);
+const user = useSupabaseUser();
 
 const client = useSupabaseClient();
 const { data: cats } = await useAsyncData<CatsResponse[] | null>(
@@ -124,6 +128,10 @@ const increment_clicks = async () => {
 };
 
 const { count, increment } = useCounterStore();
+
+const leaderboard = ref();
+leaderboard.value = await $fetch("/api/leaderboard");
+console.log(leaderboard.value);
 
 definePageMeta({
   middleware: ["auth"],

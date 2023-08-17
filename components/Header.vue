@@ -2,7 +2,7 @@
   <!-- <header class="h-96 w-full flex flex-col justify-center align-middle outline outline-black outline-1"> -->
   <!--   <h1 class="text-center">{{ props.title }}</h1> -->
   <!-- </header> -->
-  <div class="w-full bg-gradient-to-t from-kaufland-dark-red to-kaufland-red">
+  <div class="pb-5 w-full bg-gradient-to-t from-kaufland-dark-red to-kaufland-red">
     <!-- <header class="h-96 w-full flex flex-col justify-center align-middle outline outline-black outline-1"> -->
     <!--   <h1 class="text-center">{{ props.title }}</h1> -->
     <!-- </header> -->
