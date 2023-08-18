@@ -29,92 +29,20 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-4 p-4">
-        <div class="md:col-span-1">
-          <!-- Content for 1 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">1</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/tockice_strelica.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                Registriraj se i pokreni K-MARKE(t) igricu.
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-span-1">
-          <!-- Content for 3 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">2</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/upitnik.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">Procitaj i rijesi 3 zagonetke.</h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-start-1 md:col-span-1">
-          <!-- Content for 3 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">3</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/boca.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                U prostoriji potraži proizvode koji se kriju iza zagonetki.
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-start-2 md:col-span-1">
-          <!-- Content for 4 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">4</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/boca2.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                Klikni na tražene proizvode i pokupi dnevnu nagradu.
-              </h1>
-            </div>
-          </div>
-        </div>
+        <StepComponent
+            v-for="(step, index) in steps"
+            :key="index"
+            :stepNumber="step.number"
+            :imageSrc="step.imageSrc"
+            :imageAlt="step.imageAlt"
+            :stepDescription="step.description"
+        />
       </div>
     </div>
     <div class="w-full pt-5 mt-5">
       <div class="w-full flex flex-col justify-center items-center">
         <PlayButton class="m-4" />
+        <img class="md:hidden absolute right-0 translate-x-1/2"  />
       </div>
       <div class="w-full flex flex-col justify-center items-center p-4 z-10">
         <h1 class="text-white">Detaljniji opis igre možeš pročitati
@@ -128,6 +56,34 @@
 </template>
 
 <script setup lang="ts">
+
+const steps = [
+  {
+    number: 1,
+    imageSrc: '../assets/images/tockice_strelica.png',
+    imageAlt: 'Strelica',
+    description: 'Registriraj se i pokreni K-MARKE(t) igricu.'
+  },
+  {
+    number: 2,
+    imageSrc: '../assets/images/upitnik.png',
+    imageAlt: 'Upitnik',
+    description: 'Pročitaj i riješi 3 zagonetke.'
+  },
+  {
+    number: 3,
+    imageSrc: '../assets/images/boca.png',
+    imageAlt: 'Boca',
+    description: 'U prostoriji potraži proizvode koji se kriju iza zagonetki.'
+  },
+  {
+    number: 4,
+    imageSrc: '../assets/images/boca2.png',
+    imageAlt: 'Boca',
+    description: 'Klikni na tražene proizvode i pokupi dnevnu nagradu.'
+  },
+];
+
 const igraj = () => {
   console.log("igraj");
 };

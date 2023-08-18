@@ -26,95 +26,21 @@
             <!-- </div> -->
           </div>
         </div>
-        <div class="flex flex-row">
+        <div class="flex flex-col">
+          <img src="../assets/images/ustedi_10s.png" class="justify-center-center items-center mb-2" />
           <img src="../assets/images/mobitel_card.png" class="justify-center-center items-center bg-kaufland-red" />
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-4 p-4">
-        <div class="md:col-span-1">
-          <!-- Content for 1 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">1</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/popust_box.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                Uđi u Kaufland card aplikaciju i klikni na kupone.
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-span-1">
-          <!-- Content for 2 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 3 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">2</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/popust.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                Pronađi kupon za 10 sekundi prednosti u K-MARKE(t) igrici.
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-start-1 md:col-span-1">
-          <!-- Content for 3 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 3 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">3</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/tockice_strelica.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                Registriraj se prije početka igre i pritom unesi broj kupona.
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-start-2 md:col-span-1">
-          <!-- Content for 4 -->
-          <div class="flex md:grid md:grid-cols-3 gap-4 justify-between">
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 0 -->
-              <h1 class="text-6xl text-white font-kaufland-heavy">4</h1>
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 2 -->
-              <!-- <h1 class="text-white">Content</h1> -->
-              <img src="../assets/images/stoperica.png" alt="" />
-            </div>
-            <div class="md:col-span-1 flex justify-center items-center">
-              <!-- Inner content for 1 -->
-              <h1 class="text-white">
-                Svaki dan u igrici iskoristi 10 sekundi prednosti.
-              </h1>
-            </div>
-          </div>
-        </div>
+        <StepComponent
+            v-for="(step, index) in steps"
+            :key="index"
+            :stepNumber="step.number"
+            :imageSrc="step.imageSrc"
+            :imageAlt="step.imageAlt"
+            :stepDescription="step.description"
+        />
       </div>
     </div>
     <div class="w-full pt-5 mt-5">
@@ -143,6 +69,33 @@ const props = defineProps({
 });
 
 console.log(props.image);
+
+const steps = [
+  {
+    number: 1,
+    imageSrc: '../assets/images/popust_box.png',
+    imageAlt: '',
+    description: 'Uđi u Kaufland card aplikaciju i klikni na kupone.',
+  },
+  {
+    number: 2,
+    imageSrc: '../assets/images/popust.png',
+    imageAlt: '',
+    description: 'Pronađi kupon za 10 sekundi prednosti u K-MARKE(t) igrici.',
+  },
+  {
+    number: 3,
+    imageSrc: '../assets/images/tockice_strelica.png',
+    imageAlt: '',
+    description: 'Registriraj se prije početka igre i pritom unesi broj kupona.',
+  },
+  {
+    number: 4,
+    imageSrc: '../assets/images/stoperica.png',
+    imageAlt: '',
+    description: 'Svaki dan u igrici iskoristi 10 sekundi prednosti.',
+  },
+];
 
 // const imageUrl = ref("");
 //
