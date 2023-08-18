@@ -49,6 +49,7 @@ export default defineNuxtConfig({
     isCookieIdVisible: true,
     cookieNameIsConsentGiven: "ncc_c",
     cookieNameCookiesEnabledIds: "ncc_e",
+    locales: ['en', 'hr'],
     cookies: {
       necessary: [
         {
@@ -59,6 +60,7 @@ export default defineNuxtConfig({
 
           description: {
             en: "Used for cookie control.",
+            hr: "Koristi se za upravljanje kolačićima.",
           },
           targetCookieIds: ["soldo"],
         },
@@ -71,6 +73,7 @@ export default defineNuxtConfig({
           },
           description: {
             en: "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.",
+            hr: "Google Analytics je usluga web analitike koju nudi Google i prati te izvješćuje o prometu na web stranicama."
           },
           src: "",
           targetCookieIds: ["_o", "_p", "_t"],

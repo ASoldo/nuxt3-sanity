@@ -9,9 +9,9 @@
 
   <!-- </div> -->
   <div id="how-to-play" class="relative w-full bg-kaufland-red overflow-hidden">
-    <div class="skew-div absolute h-full w-full overflow-hidden z-10"></div>
+    <div class="skew-div absolute h-full w-full overflow-hidden z-0"></div>
     <!-- Other elements -->
-    <div class="z-20 relative">
+    <div class="relative">
       <div class="container mx-auto md:grid md:grid-cols-3 mt-3 pt-14">
         <div class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center">
           <!-- Content for 0 -->

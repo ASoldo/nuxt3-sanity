@@ -52,17 +52,14 @@
       <Products />
       <Impressum id="how-to-play" />
       <PWA class="w-full h-full" />
-      <CookieControl locale="en">
+      <CookieControl locale="hr">
         <template #bar>
           <div class="flex flex-col">
-            <h3>We use Cookies</h3>
-            <p>Bar description (you can use $cookies.text.barDescription)</p>
-            <a>Go somewhere</a>
+            <h3>Koristimo kolačiće</h3>
           </div>
         </template>
         <template #modal>
-          <h3>Cookies</h3>
-          <p>Modal description</p>
+          <h3>Kolačići</h3>
           <p>
             {{ ($cookies as any).moduleOptions.cookies.optional[0].name.en }}
           </p>
