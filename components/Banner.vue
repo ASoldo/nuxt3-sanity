@@ -8,48 +8,50 @@
   <!-- </SanityImage> -->
 
   <!-- </div> -->
-  <div id="how-to-play" class="relative w-full bg-transparent overflow-hidden">
-    <div class="skew-div absolute h-full w-full overflow-hidden -z-10"></div>
+  <div id="how-to-play" class="relative w-full bg-kaufland-red overflow-hidden">
+    <div class="skew-div absolute h-full w-full overflow-hidden z-10"></div>
     <!-- Other elements -->
-    <div class="container mx-auto md:grid md:grid-cols-3 mt-3 pt-14">
-      <div class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center">
-        <!-- Content for 0 -->
-        <div class="flex md:flex-col flex-row">
-          <img src="../assets/images/how_to_play.png" alt="" />
-          <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
-          <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">KAKO</h1> -->
-          <!-- </div> -->
-          <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
-          <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRATI</h1> -->
-          <!-- </div> -->
-          <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
-          <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRICU?</h1> -->
-          <!-- </div> -->
+    <div class="z-20 relative">
+      <div class="container mx-auto md:grid md:grid-cols-3 mt-3 pt-14">
+        <div class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center">
+          <!-- Content for 0 -->
+          <div class="flex md:flex-col flex-row">
+            <img src="../assets/images/how_to_play.png" alt="" />
+            <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
+            <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">KAKO</h1> -->
+            <!-- </div> -->
+            <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
+            <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRATI</h1> -->
+            <!-- </div> -->
+            <!-- <div class="bg-kaufland-red p-3 text-white font-bold"> -->
+            <!--   <h1 class="font-kaufland-heavy text-2xl md:text-6xl">IGRICU?</h1> -->
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-x-6 gap-y-4 p-4">
+          <StepComponent
+              v-for="(step, index) in steps"
+              :key="index"
+              :stepNumber="step.number"
+              :imageSrc="step.imageSrc"
+              :imageAlt="step.imageAlt"
+              :stepDescription="step.description"
+          />
         </div>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-4 p-4">
-        <StepComponent
-            v-for="(step, index) in steps"
-            :key="index"
-            :stepNumber="step.number"
-            :imageSrc="step.imageSrc"
-            :imageAlt="step.imageAlt"
-            :stepDescription="step.description"
-        />
-      </div>
-    </div>
-    <div class="w-full pt-5 mt-5">
-      <div class="w-full flex flex-col justify-center items-center">
-        <PlayButton class="m-4" />
-        <img class="md:hidden absolute right-0 translate-x-1/2"  />
-      </div>
-      <div class="w-full flex flex-col justify-center items-center p-4 z-10">
-        <h1 class="text-white">Detaljniji opis igre možeš pročitati
-          <a
-              class="underline hover:text-black font-bold transition-colors"
-              href="/docs/PravilaNatjecaja.pdf"
-              target="_blank">ovdje</a></h1>
+      <div class="w-full pt-5 mt-5">
+        <div class="w-full flex flex-col justify-center items-center">
+          <PlayButton class="m-4" />
+          <img class="md:hidden absolute right-0 translate-x-1/2"  />
+        </div>
+        <div class="w-full flex flex-col justify-center items-center p-4">
+          <h1 class="text-white">Detaljniji opis igre možeš pročitati
+            <a
+                class="underline hover:text-black font-bold transition-colors"
+                href="https://legal.k-marke-t.com/pravila.pdf"
+                target="_blank">ovdje</a></h1>
+        </div>
       </div>
     </div>
   </div>
@@ -119,7 +121,7 @@ const props = defineProps({
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: #f60101;
+  background: linear-gradient(to top, #cd0000, transparent) !important;
   transform-origin: middle;
   z-index: -1;
 }

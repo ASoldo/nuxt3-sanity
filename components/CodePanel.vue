@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-4 p-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-x-6 gap-y-4 p-4">
         <StepComponent
             v-for="(step, index) in steps"
             :key="index"
