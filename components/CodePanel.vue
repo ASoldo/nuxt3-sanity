@@ -70,28 +70,33 @@ const props = defineProps({
 
 console.log(props.image);
 
+import popustBox from '../assets/images/popust_box.png';
+import popust from '../assets/images/popust.png';
+import tockiceStrelica from '../assets/images/tockice_strelica.png';
+import stoperica from '../assets/images/stoperica.png';
+
 const steps = [
   {
     number: 1,
-    imageSrc: '../assets/images/popust_box.png',
+    imageSrc: popustBox,
     imageAlt: '',
     description: 'Uđi u Kaufland card aplikaciju i klikni na kupone.',
   },
   {
     number: 2,
-    imageSrc: '../assets/images/popust.png',
+    imageSrc: popust,
     imageAlt: '',
     description: 'Pronađi kupon za 10 sekundi prednosti u K-MARKE(t) igrici.',
   },
   {
     number: 3,
-    imageSrc: '../assets/images/tockice_strelica.png',
+    imageSrc: tockiceStrelica,
     imageAlt: '',
     description: 'Registriraj se prije početka igre i pritom unesi broj kupona.',
   },
   {
     number: 4,
-    imageSrc: '../assets/images/stoperica.png',
+    imageSrc: stoperica,
     imageAlt: '',
     description: 'Svaki dan u igrici iskoristi 10 sekundi prednosti.',
   },

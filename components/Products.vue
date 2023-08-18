@@ -2,11 +2,11 @@
   <div class="relative bg-kaufland-red text-white z-auto">
     <div class="skew-div w-full h-full absolute z-0"></div>
 
-    <h1 class="md:mb-2 md:pl-20 text-3xl font-kaufland-heavy text-center z-auto">
-      Jamcimo vrhunsku kvalitetu po povoljnoj cijeni
+    <h1 class="md:mb-2 md:pl-20 flex justify-center pt-6 px-4">
+      <img src="../assets/images/jamcimo.png" alt="Jamčimo kvalitetu" class="h-full justify-center z-0" />
     </h1>
     <div class="w-full flex flex-row justify-center">
-      <img src="../assets/images/proizvodi.png" alt="Description" class="h-full justify-center z-0" />
+      <img src="../assets/images/proizvodi.png" alt="Proizvodi" class="h-full justify-center z-0" />
       <!-- <div class="absolute inset-0 flex items-end justify-end pt-10 z-10"> -->
       <!--   <div class="bg-white rounded-full p-4 text-center text-kaufland-red w-32"> -->
       <!--     <p class="transform rotate-12"> -->
@@ -49,3 +49,5 @@
   }
 }
 </style>
+<script setup lang="ts">
+</script>

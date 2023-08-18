@@ -45,12 +45,7 @@
 
       <!-- Text Container -->
       <div class="w-full md:w-1/2 p-4 z-10 flex flex-col items-center">
-        <p class="mb-2 text-8xl font-bold text-white font-kaufland-heavy transform -rotate-3">
-          35.000
-        </p>
-        <p class="mb-6 text-3xl font-bold text-white font-kaufland-heavy transform -rotate-3">
-          DNEVNIH NAGRADA*
-        </p>
+        <img src="../assets/images/35k_dnevnih_nagrada.png" alt="35 tisuca dnevnih nagrada" class="mb-6 w-[85%]" />
         <p class="mb-6 text-lg font-bold text-center text-white leading-[24px] md:leading-relaxed">
           Igraj igricu svaki dan i svaki dan osvoji naše najbolje marke. Samo
           brzo rješavaj zagonetke jer dnevne nagrade osvajaju prvih 1.000 igrača

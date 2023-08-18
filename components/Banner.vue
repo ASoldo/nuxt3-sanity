@@ -56,33 +56,38 @@
 </template>
 
 <script setup lang="ts">
+import tockice from '../assets/images/tockice_strelica.png';
+import upitnik from '../assets/images/upitnik.png';
+import boca from '../assets/images/boca.png';
+import boca2 from '../assets/images/boca2.png';
 
 const steps = [
   {
     number: 1,
-    imageSrc: '../assets/images/tockice_strelica.png',
+    imageSrc: tockice,
     imageAlt: 'Strelica',
     description: 'Registriraj se i pokreni K-MARKE(t) igricu.'
   },
   {
     number: 2,
-    imageSrc: '../assets/images/upitnik.png',
+    imageSrc: upitnik,
     imageAlt: 'Upitnik',
     description: 'Pročitaj i riješi 3 zagonetke.'
   },
   {
     number: 3,
-    imageSrc: '../assets/images/boca.png',
+    imageSrc: boca,
     imageAlt: 'Boca',
     description: 'U prostoriji potraži proizvode koji se kriju iza zagonetki.'
   },
   {
     number: 4,
-    imageSrc: '../assets/images/boca2.png',
+    imageSrc: boca2,
     imageAlt: 'Boca',
     description: 'Klikni na tražene proizvode i pokupi dnevnu nagradu.'
   },
 ];
+
 
 const igraj = () => {
   console.log("igraj");
