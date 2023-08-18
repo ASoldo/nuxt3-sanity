@@ -12,7 +12,7 @@
       <div id="ranglist" class="relative flex flex-col items-center justify-center p-2 bg-kaufland-red pt-14">
         <div class="skew-div w-full h-full absolute z-0"></div>
         <div class="flex flex-row z-10">
-          <img src="../assets/images/medalja.png" alt="" class="w-16 h-16" />
+          <img src="../assets/images/medalja.png" alt="" class="h-24" />
           <img src="../assets/images/rang_list.png" alt="" class="h-32" />
           <!-- <h1 class="font-kaufland-bold text-2xl md:text-4xl text-white"> -->
           <!--   K-MARKE(t) <br /> -->

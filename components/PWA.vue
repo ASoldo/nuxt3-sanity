@@ -28,14 +28,14 @@
       role="alert">
       <div class="flex items-center">
         <div class="py-1">
-          <span> Install PWA </span>
+          <span> Instaliraj PWA za lakše igranje i potpuni doživljaj. </span>
         </div>
         <div class="pl-4">
           <button @click="$pwa.install()" class="font-bold text-blue-500 hover:text-blue-800">
-            Install
+            Instaliraj
           </button>
           <button @click="$pwa.cancelInstall()" class="font-bold text-blue-500 hover:text-blue-800 ml-4">
-            Cancel
+            Odustani
           </button>
         </div>
       </div>
