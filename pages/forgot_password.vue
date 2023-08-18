@@ -47,6 +47,8 @@ const updatePassword = async () => {
     const { error } = await supabase.auth.updateUser({
       password: newPassword.value,
     });
+    updateErrorMessage.value = "Successfuly updated password";
+    navigateTo("/");
     if (error) throw error;
     // You can redirect the user or show a success message
   } catch (error) {
