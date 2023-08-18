@@ -38,6 +38,7 @@
             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="dialog?.close()">
               Close
             </button>
+            <button @click="forgotPassword()">Forgot Password</button>
           </div>
         </div>
       </div>
@@ -146,6 +147,13 @@
         </div>
       </div>
     </dialog>
+    <dialog ref="forgot_password" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <input v-model="email" type="email" placeholder="Enter your email" />
+
+        <button @click="sendResetEmail">Send Reset Email</button>
+      </div>
+    </dialog>
   </div>
 </template>
 
@@ -153,6 +161,7 @@
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
 import { document } from "postcss";
+// import { client } from "process";
 const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const first_name = ref("");
@@ -164,6 +173,24 @@ const promo = ref("");
 const errorMsg = ref(null);
 const successMsg = ref(null);
 const page = ref(null);
+
+const dialog = ref<DialogElement | null>(null);
+const dialog2 = ref<DialogElement | null>(null);
+const success_msg = ref<DialogElement | null>(null);
+const forgot_password = ref<DialogElement | null>(null);
+
+const sendResetEmail = async () => {
+  await auth.resetPasswordForEmail(email.value, {
+    redirectTo: "https://k-marke-t.com/forgot_password",
+  });
+};
+const forgotPassword = async () => {
+  // await auth.resetPasswordForEmail(email.value, {
+  //   redirectTo: "https://k-marke-t.com/forgot_password",
+  // });
+  dialog.value?.close();
+  forgot_password.value?.showModal();
+};
 const checkPasswords = () => {
   if (
     email.value !== repeatPassword.value &&
@@ -195,9 +222,6 @@ const signUp = () => {
   } catch (error) { }
 };
 
-const dialog = ref<DialogElement | null>(null);
-const dialog2 = ref<DialogElement | null>(null);
-const success_msg = ref<DialogElement | null>(null);
 const itemsMenu = ref({
   items: {
     loggedIn: [
