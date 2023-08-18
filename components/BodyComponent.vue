@@ -46,7 +46,7 @@
       <!-- Text Container -->
       <div class="w-full md:w-1/2 p-4 z-10 flex flex-col items-center">
         <img src="../assets/images/35k_dnevnih_nagrada.png" alt="35 tisuca dnevnih nagrada" class="mb-6 w-[85%]" />
-        <p class="mb-6 text-lg font-bold text-center text-white leading-[24px] md:leading-relaxed">
+        <p class="mb-6 text-lg font-bold text-center text-white leading-[24px]">
           Igraj igricu svaki dan i svaki dan osvoji naše najbolje marke. Samo
           brzo rješavaj zagonetke jer dnevne nagrade osvajaju prvih 1.000 igrača
           s najboljim rezultatom na kraju dana. Provjeri jesi li i ti među njima
@@ -59,8 +59,8 @@
       </div>
 
       <!-- Image Container -->
-      <div class="w-full md:w-1/2 px-4 -mt-12 md:mt-0 flex justify-center">
-        <img src="../assets/images/kolica.png" alt="Description" class="w-96 h-auto z-10" />
+      <div class="w-full md:w-1/2 px-4 -mt-12 md:mt-0 ml-0 md:-ml-24 flex justify-center">
+        <img src="../assets/images/kolica.png" alt="Description" class="w-96 md:w-full z-10 overflow-hidden md:scale-125" />
       </div>
     </div>
   </div>
