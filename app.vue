@@ -323,6 +323,13 @@ const items = ref({
     },
   ],
 });
+
+useHead({
+  title: 'K-MARKE-T',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ],
+})
 </script>
 
 <style>

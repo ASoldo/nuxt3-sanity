@@ -120,7 +120,7 @@
         <h1 class="text-white">Detaljniji opis igre možeš pročitati
           <a
               class="underline hover:text-black font-bold transition-colors"
-              href="/home/digital/docs/Pravila_Kauflandovog_nagradnog_natjecaja.pdf"
+              href="/docs/PravilaNatjecaja.pdf"
               target="_blank">ovdje</a></h1>
       </div>
     </div>
