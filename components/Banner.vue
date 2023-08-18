@@ -9,7 +9,7 @@
 
   <!-- </div> -->
   <div id="how-to-play" class="relative w-full bg-transparent overflow-hidden">
-    <div class="skew-div absolute h-full w-full overflow-hidden"></div>
+    <div class="skew-div absolute h-full w-full overflow-hidden -z-10"></div>
     <!-- Other elements -->
     <div class="container mx-auto md:grid md:grid-cols-3 mt-3 pt-14">
       <div class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center">
@@ -117,7 +117,7 @@
         <PlayButton class="m-4" />
       </div>
       <div class="w-full flex flex-col justify-center items-center p-4 z-10">
-        <h1 class="text-white">Detaljniji opis igre možeš pročitati ovdje</h1>
+        <h1 class="text-white">Detaljniji opis igre možeš pročitati <a class="underline hover:text-[#1f6aab] font-bold transition-colors" href="#how-to-play">ovdje</a></h1>
       </div>
     </div>
   </div>

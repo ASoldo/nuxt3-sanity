@@ -124,7 +124,7 @@
       <div class="w-full flex flex-col justify-center items-center p-4">
         <h1 class="text-white">
           Ako još uvijek nemaš Kaufland card, nabavi ga
-          <a href="#" class="text-kaufland-dark-red">ovdje</a>
+          <a href="#" class="underline hover:text-[#1f6aab] font-bold transition-colors" >ovdje</a>
         </h1>
       </div>
     </div>
