@@ -227,15 +227,15 @@ const itemsMenu = ref({
   items: {
     loggedIn: [
       {
-        label: "Profile",
+        label: "Profil",
         icon: "pi pi-fw pi-user",
         fn: () => {
-          console.log("Profile");
+          console.log("Profil");
           navigateTo("/profile");
         },
       },
       {
-        label: "Prizes",
+        label: "Moje nagrade",
         icon: "pi pi-fw pi-star-fill",
         fn: () => {
           console.log("Setting");
@@ -243,7 +243,7 @@ const itemsMenu = ref({
         },
       },
       {
-        label: "Log Out",
+        label: "Odjavi se",
         icon: "pi pi-fw pi-sign-out",
         fn: () => {
           console.log("Log Out");

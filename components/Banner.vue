@@ -117,7 +117,11 @@
         <PlayButton class="m-4" />
       </div>
       <div class="w-full flex flex-col justify-center items-center p-4 z-10">
-        <h1 class="text-white">Detaljniji opis igre možeš pročitati <a class="underline hover:text-[#1f6aab] font-bold transition-colors" href="#how-to-play">ovdje</a></h1>
+        <h1 class="text-white">Detaljniji opis igre možeš pročitati
+          <a
+              class="underline hover:text-black font-bold transition-colors"
+              href="/home/digital/docs/Pravila_Kauflandovog_nagradnog_natjecaja.pdf"
+              target="_blank">ovdje</a></h1>
       </div>
     </div>
   </div>

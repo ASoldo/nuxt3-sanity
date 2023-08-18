@@ -4,7 +4,7 @@
       <div class="flex w-full md:w-1/2 justify-center">
         <div class="w-full p-6 m-4 bg-white rounded shadow-lg">
           <h1 class="text-2xl text-center mb-2 font-semibold text-gray-700">
-            Profile
+            Profil
           </h1>
           <!-- Insert profile related content here -->
 
@@ -38,7 +38,7 @@
             </span>
             <input
               class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="first_name" disabled :placeholder="user?.email" />
+              type="text" disabled :placeholder="profile_data.data[0]?.email" />
             <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
             <!--   <i class="pi pi-fw pi-check"></i> -->
             <!-- </button> -->
@@ -57,7 +57,7 @@
           </div>
           <button class="h-10 w-full inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r">
             <i class="w-full pi pi-fw pi-check">
-              <span class="ml-2">Submit</span>
+              <span class="ml-2">Spremi promjene</span>
             </i>
           </button>
         </div>

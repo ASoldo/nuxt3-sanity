@@ -6,7 +6,7 @@
       <!-- Desktop navigation menu -->
       <div class="hidden sm:flex">
         <a v-for="(item, index) in props.itemsNavigationMenu?.items" :key="index" href="#" @click.prevent="item.fn()"
-          class="mr-4 text-white hover:text-black font-kaufland-heavy">
+          class="mr-4 text-white hover:text-black font-kaufland-heavy transition-colors">
           <!-- <i :class="item.icon"></i> -->
           {{ item.label }}
         </a>
