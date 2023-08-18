@@ -114,10 +114,7 @@
     </div>
     <div class="w-full pt-5 mt-5">
       <div class="w-full flex flex-col justify-center items-center">
-        <button @click="navigateTo('/game')"
-          class="transition-colors duration-1000 px-5 py-2 bg-gradient-to-r from-white to-gray-300 hover:from-kaufland-red hover:to-red-600 rounded-xl text-kaufland-red hover:text-white border-b-4 border-red-800 hover:border-gray-500 text-3xl m-4 font-kaufland-heavy z-10">
-          Igraj
-        </button>
+        <PlayButton class="m-4" />
       </div>
       <div class="w-full flex flex-col justify-center items-center p-4 z-10">
         <h1 class="text-white">Detaljniji opis igre možeš pročitati ovdje</h1>

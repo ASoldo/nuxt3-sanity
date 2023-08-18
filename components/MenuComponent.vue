@@ -48,7 +48,7 @@
           class="pi pi-user bg-white h-10 w-10 m-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"
           @click="toggleMenu()"></i>
         <button v-else @click="toggleMenu()" class="text-white hover:text-black font-kaufland-heavy">
-          Login / Register
+          Prijava / Registracija
         </button>
 
         <div ref="target" v-if="menuState"

@@ -279,21 +279,21 @@ const game = () => {
 const items = ref({
   items: [
     {
-      label: "Home",
+      label: "Naslovnica",
       icon: "pi pi-fw pi-home",
       fn: () => {
         navigateTo("/");
       },
     },
     {
-      label: "Game",
+      label: "Igraj",
       icon: "pi pi-fw pi-palette",
       fn: () => {
         navigateTo("/game");
       },
     },
     {
-      label: "Kako Igrati",
+      label: "Kako igrati",
       icon: "pi pi-fw pi-external-link",
       fn: () => {
         navigateTo("#how-to-play");
@@ -314,7 +314,7 @@ const items = ref({
       },
     },
     {
-      label: "Rang Lista",
+      label: "Rang lista",
       icon: "pi pi-fw pi-list",
       fn: () => {
         navigateTo("#ranglist");

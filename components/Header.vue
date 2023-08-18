@@ -11,31 +11,20 @@
       <div class="flex flex-col md:flex-1 md:h-auto">
         <div class="flex justify-center items-end md:h-full">
           <!-- Content for the first box -->
-          <img src="../assets/images/kmarket_logo_extra.png" alt="" class="h-20" />
+          <img src="../assets/images/kmarket_logo_extra.png" alt="K-market" class="h-24 md:h-48" />
           <!-- <h1 class="text-3xl p-3 text-white">K-MARKE(t)</h1> -->
         </div>
         <div class="md:h-full flex flex-col justify-start items-center">
-          <div class="bg-kaufland-red text-white p-3 font-bold text-2xl flex flex-row justify-end">
-            <h1 class="text-center transform -rotate-1 font-kaufland-heavy">
-              IGRAJ K-MARKET(t) IGRICU
-            </h1>
-          </div>
-          <div class="bg-kaufland-red text-white p-3 font-bold text-2xl">
-            <h1 class="text-center font-kaufland-heavy">
-              SVAKI DAN I OTKRIJ NASE
-            </h1>
-          </div>
-          <div class="bg-kaufland-red text-white p-3 font-bold text-2xl">
-            <h1 class="text-center transform rotate-1 font-kaufland-heavy">
-              NAJBOLJE PROIZVODE
-            </h1>
-          </div>
+          <img src="../assets/images/Headline.png" alt="Igraj k-market igricu" class="h-24 md:h-40" />
         </div>
       </div>
 
-      <div class="flex flex-row md:justify-start md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0">
-        <div ref="imageWrapper" class="fade-effect h-full object-cover">
-          <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" class="h-full object-cover" />
+      <div class="flex flex-col md:justify-start md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0">
+        <div ref="imageWrapper" class="fade-effect h-full object-cover overflow-hidden">
+          <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" class="h-full scale-[1.2] object-cover" />
+        </div>
+        <div class="flex justify-center mb-2 md:mb-4">
+          <PlayButton />
         </div>
       </div>
     </div>
