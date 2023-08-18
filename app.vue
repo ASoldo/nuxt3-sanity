@@ -183,6 +183,7 @@ const sendResetEmail = async () => {
   await auth.resetPasswordForEmail(email.value, {
     redirectTo: "https://k-marke-t.com/forgot_password",
   });
+  forgot_password.value?.close();
 };
 const forgotPassword = async () => {
   // await auth.resetPasswordForEmail(email.value, {
