@@ -5,6 +5,7 @@ import { room_info } from "./room_info";
 import { item } from "./gameItems";
 import { gameConfig } from "./gameConfig";
 import { question } from "./question";
+import { qrcodes } from "./qrcodes";
 
 export const schemaTypes = [demo];
 export const pageTypes = [
@@ -20,4 +21,5 @@ export const pageTypes = [
   item,
   gameConfig,
   room_info,
+  qrcodes,
 ];
