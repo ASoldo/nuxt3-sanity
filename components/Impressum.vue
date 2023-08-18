@@ -4,23 +4,18 @@
       <h1 class="font-kaufland-bold mb-2">PRATITE NAS</h1>
       <div class="flex flex-row md:justify-between">
         <div class="p-1">
-          <a href="">
-            <img src="../assets/images/YT.png" alt="" class="w-10" />
+          <a href="https://www.youtube.com/channel/UCH06X7-IKL79JxXMHbTq8Cg/videos" target="_blank">
+            <img src="../assets/images/YT.png" alt="" class="w-10 hover:opacity-80 transition-opacity" />
           </a>
         </div>
         <div class="p-1">
-          <a href="">
-            <img src="../assets/images/facebook.png" alt="" class="w-10" />
+          <a href="https://www.facebook.com/KauflandHrvatska/?locale=hr_HR" target="_blank">
+            <img src="../assets/images/facebook.png" alt="" class="w-10 hover:opacity-80 transition-opacity" />
           </a>
         </div>
         <div class="p-1">
-          <a href="">
-            <img src="../assets/images/Insta.png" alt="" class="w-10" />
-          </a>
-        </div>
-        <div class="p-1">
-          <a href="">
-            <img src="../assets/images/tiktok.png" alt="" class="w-10" />
+          <a href="https://www.instagram.com/kauflandhrvatska/" target="_blank">
+            <img src="../assets/images/Insta.png" alt="" class="w-10 hover:opacity-80 transition-opacity" />
           </a>
         </div>
       </div>
@@ -37,3 +32,5 @@
     <img src="../assets/images/kaufland-logo.png" width="50" class="bg-white m-5" />
   </div>
 </template>
+<script setup lang="ts">
+</script>
