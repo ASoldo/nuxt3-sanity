@@ -7,7 +7,7 @@
     </NuxtLayout>
 
     <dialog ref="dialog" class="mx-auto my-auto absolute inset-0">
-      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="bg-white shadow-xl border rounded px-8 pt-6 pb-8 mb-4">
         <div v-if="logRegToggle">
           <h2 class="mb-4 text-center text-blue-900 text-xl">Prijavi se</h2>
           <div class="flex flex-col">
@@ -27,18 +27,18 @@
 
               <input
                 class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="password" v-model="password" placeholder="Password" />
+                type="password" v-model="password" placeholder="Lozinka" />
             </div>
             <button class="mb-2 bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="
               auth.signInWithPassword({ email: email, password: password }),
               dialog?.close()
               ">
-              Sign In
+              Prijavi se
             </button>
             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="dialog?.close()">
-              Close
+              Odustani
             </button>
-            <button @click="forgotPassword()">Forgot Password</button>
+            <button @click="forgotPassword()" class="underline mt-2 hover:text-white">Zaboravljena lozinka?</button>
           </div>
         </div>
       </div>
