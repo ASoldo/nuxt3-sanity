@@ -9,7 +9,7 @@
       <NuxtPage ref="page" class="w-full grow"/>
     </NuxtLayout>
 
-    <dialog ref="login_dialog" class="mx-auto my-auto absolute inset-0 container h-4/5 md:h-2/3 w-[95%] md:w-2/3">
+    <dialog data-modal ref="login_dialog" class="mx-auto my-auto inset-0 container h-4/5 md:h-2/3 w-[95%] md:w-2/3">
       <Loading/>
       <Login
           class="w-full h-full"
@@ -17,7 +17,7 @@
           @register-from-login-clicked="registerFromLogin()"
           @forgot-password-clicked="forgotPassword()"/>
     </dialog>
-    <dialog ref="registerDialog" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+    <dialog ref="registerDialog" class="mx-auto my-auto inset-0 container md:w-1/2 w-full">
       <Loading/>
       <Register
           @open-login="loginFromRegister()"
@@ -25,11 +25,11 @@
           @register-clicked="handleRegister()"/>
     </dialog>
 
-    <dialog ref="success_msg" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+    <dialog ref="success_msg" class="mx-auto my-auto inset-0 container md:w-1/2 w-full">
       <Loading/>
       <RegisterSuccess @close="success_msg?.close()"/>
     </dialog>
-    <dialog ref="forgot_password" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+    <dialog ref="forgot_password" class="mx-auto my-auto inset-0 container md:w-1/2 w-full">
       <Loading/>
       <ForgotPassword @close-dialog="forgot_password?.close()"/>
     </dialog>
@@ -209,5 +209,9 @@ dialog {
   /* width: 100%; */
   /* height: 100%; */
   /* padding-right: 30px; */
+}
+dialog::backdrop{
+  background-color: white;
+  opacity: 0.5;
 }
 </style>
