@@ -32,13 +32,15 @@ const user = useSupabaseUser();
 const config = useRuntimeConfig();
 const client = useSupabaseClient();
 const user_prizes_data = ref<any>({});
-const jwt = ref('');
+const jwt = ref("");
 
 onMounted(async () => {
-  const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/user_prizes`;
+  const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/user_prizes?profile_id=eq.${user.value?.id}`;
   console.log(user);
 
-  jwt.value = localStorage.getItem("sb-kxbzixfkcjexfwfacnzq-auth-token") as string;
+  jwt.value = localStorage.getItem(
+    "sb-kxbzixfkcjexfwfacnzq-auth-token"
+  ) as string;
 
   const supabaseHeaders = {
     apikey: config.public.supabase.key as string,
