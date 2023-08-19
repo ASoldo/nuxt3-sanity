@@ -52,7 +52,6 @@ const email = ref("");
 const toastStore = useToastStore();
 const loginStore = useLoginStore();
 loginStore.$onAction(({ name }) => {
-  console.log(name);
   login_dialog.value?.showModal();
 })
 

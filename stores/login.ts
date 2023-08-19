@@ -7,7 +7,6 @@ export const useLoginStore = defineStore('login', {
     },
     actions: {
         openLogin() {
-            console.log("Login open")
         }
     },
 })
