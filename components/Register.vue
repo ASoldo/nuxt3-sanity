@@ -128,6 +128,12 @@ const register = () => {
     return;
   }
 
+  if(password.value.length < 6) {
+
+    errorMsg.value = "Šifra mora imati barem 6 znakova!"
+    return;
+  }
+
 
   if( !validateEmail(email.value) ){
     errorMsg.value = "Nespravan mail!"
@@ -153,6 +159,10 @@ const signUp = async () => {
       },
     });
     console.log("SignUp Data: ", data);
+    if(data.error) {
+      errorMsg.value = "Pogreška pri registraciji!"
+      return;
+    }
     emitRegister();
   } catch (error) {
   } finally {
