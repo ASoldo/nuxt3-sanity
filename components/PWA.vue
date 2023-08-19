@@ -6,18 +6,18 @@
       role="alert">
       <div class="flex">
         <div class="py-1">
-          <span v-if="$pwa.offlineReady"> App ready to work offline </span>
+          <span v-if="$pwa.offlineReady"> Aplikacija spremna za izvanmrežni rad.</span>
           <span v-else>
-            New content available, click on reload button to update.
+            Novi sadržaj dostupan, kliknite na gumb za ponovno učitavanje kako biste ažurirali.
           </span>
         </div>
         <div class="pl-4 flex items-center">
           <button v-if="$pwa.needRefresh" @click="$pwa.updateServiceWorker()"
             class="font-bold text-blue-500 hover:text-blue-800">
-            Reload
+            Ponovno učitavanje
           </button>
           <button @click="$pwa.cancelPrompt()" class="font-bold text-blue-500 hover:text-blue-800 ml-4">
-            Close
+            Zatvori
           </button>
         </div>
       </div>
@@ -30,7 +30,7 @@
         <div class="py-1">
           <span> Instaliraj PWA za lakše igranje i potpuni doživljaj. </span>
         </div>
-        <div class="pl-4">
+        <div class="pl-4 flex">
           <button @click="$pwa.install()" class="font-bold text-blue-500 hover:text-blue-800">
             Instaliraj
           </button>
