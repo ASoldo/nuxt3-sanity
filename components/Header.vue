@@ -19,9 +19,12 @@
         </div>
       </div>
 
-      <div class="flex flex-col md:justify-start md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0">
-        <div ref="imageWrapper" class="fade-effect h-full object-cover overflow-hidden">
-          <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" class="h-full scale-[1.2] object-cover" />
+      <div class="flex flex-col md:justify-end md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0">
+        <div class="grid grid-cols-1">
+          <img :src="mobitel" alt="Okvir mobitela" class="h-full object-cover row-start-1 col-start-1" />
+          <div ref="imageWrapper" class="fade-effect h-full object-cover overflow-hidden row-start-1 col-start-1">
+            <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" class="h-full object-cover" />
+          </div>
         </div>
         <div class="flex justify-center mb-2 md:mb-4">
           <PlayButton />
@@ -38,13 +41,14 @@ const props = defineProps({
 
 import { ref, onMounted, onUnmounted } from "vue";
 import mobitel from "../assets/images/mobitel.png";
+import mobitel1 from "../assets/images/mobitel1.png";
 import mobitel2 from "../assets/images/mobitel2.png";
 import mobitel3 from "../assets/images/mobitel3.png";
 import mobitel4 from "../assets/images/mobitel4.png";
 import mobitel5 from "../assets/images/mobitel5.png";
 
 const images = ref([
-  { src: mobitel, alt: "Image description" },
+  { src: mobitel1, alt: "Image description" },
   { src: mobitel2, alt: "Image description" },
   { src: mobitel3, alt: "Image description" },
   { src: mobitel4, alt: "Image description" },
@@ -63,7 +67,7 @@ onMounted(async () => {
   }
 
   // Wait for a moment to display the first image before beginning the loop
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   interval = setInterval(async () => {
     // Fade out
@@ -72,7 +76,7 @@ onMounted(async () => {
     }
 
     // Wait for fade out effect to complete
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Switch the image
     currentImageIndex.value =
@@ -85,7 +89,7 @@ onMounted(async () => {
     if (imageWrapper.value) {
       imageWrapper.value.style.opacity = "1";
     }
-  }, 6000); // Giving an extra second for transitions (5s for image display + 1s for transitions)
+  }, 5500); // Giving an extra second for transitions (5s for image display + .5s for transitions)
 });
 
 onUnmounted(() => {
@@ -95,7 +99,7 @@ onUnmounted(() => {
 
 <style scoped>
 .fade-effect {
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   opacity: 0;
 }
 </style>
