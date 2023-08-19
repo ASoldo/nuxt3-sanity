@@ -3,7 +3,7 @@
       <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="loginFinished"><i class="pi pi-times"></i></div>
       <div class="skew-div absolute h-full w-full overflow-hidden z-0"></div>
       <div class="flex flex-col items-center p-10">
-        <h2 class="mb-10 text-center text-white text-4xl uppercase font-bold">Prijavi se u K-marke(t) igricu</h2>
+        <h2 class="mb-10 text-center text-white text-4xl uppercase font-kaufland-bold">Prijavi se u K-marke(t) igricu</h2>
         <div class="grid auto-rows-fr z-10 w-full md:w-2/3">
           <Input type="email" v-model="email" placeholder="Email" label="Email" class="mb-2"/>
           <Input :type="'password'" v-model="password" placeholder="Lozinka" label="Lozinka"/>

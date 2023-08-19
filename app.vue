@@ -17,7 +17,7 @@
           @register-from-login-clicked="registerFromLogin()"
           @forgot-password-clicked="forgotPassword()"/>
     </dialog>
-    <dialog ref="registerDialog" class="mx-auto my-auto inset-0 container md:w-1/2 w-full">
+    <dialog ref="registerDialog" class="mx-auto my-auto inset-0 container md:w-2/3 w-full">
       <Loading/>
       <Register
           @open-login="loginFromRegister()"

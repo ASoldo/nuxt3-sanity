@@ -3,8 +3,8 @@
     <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200"
          @click="closeDialog"><i class="pi pi-times"></i></div>
     <div class="bg-kaufland-red skew-div absolute h-full w-full overflow-hidden -z-10 pointer-events-none"></div>
-    <div class="px-8 pt-8 pb-8 mb-4 z-10">
-      <div class="flex justify-center items-center text-4xl font-bold mb-4 uppercase">
+    <div class="px-8 md:px-36 md:py-10 py-8 z-10">
+      <div class="flex justify-center items-center text-4xl font-kaufland-bold mb-4 pt-2 uppercase">
         Registriraj se
       </div>
       <div class="mb-2 z-10">
@@ -14,10 +14,13 @@
         <Input v-model="first_name" placeholder="Ime" label="Ime*"/>
         <Input v-model="last_name" placeholder="Prezime" label="Prezime*"/>
         <Input type="email" v-model="email" placeholder="Email" label="Email*"/>
-        <Input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Lozinka" label="Lozinka*"/>
-        <Input :type="showPassword ? 'text' : 'password'" v-model="repeatPassword" placeholder="Ponovi Lozinku"
+        <Input type="password" v-model="password" placeholder="Lozinka" label="Lozinka*"/>
+        <Input type="password" v-model="repeatPassword" placeholder="Ponovi Lozinku"
                label="Ponovi Lozinku*"/>
         <Input v-model="promo" placeholder="Kaufland Card Kod" label="Kaufland Card Kod"/>
+      </div>
+      <div class="mx-4 text-sm">
+        Svoj kod za ostvarivanje prednosti u igrici K-MARKE(t) možeš potražiti u Kaufland Card aplikaciji i unijeti ga sad ovdje ili naknadno u svom profilu.
       </div>
       <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
         <i v-if="errorMsg" class="pi pi-exclamation-triangle mr-2"></i>
@@ -25,26 +28,30 @@
       </div>
       <div class="">
         <div class="flex md:flex-row flex-col items-center justify-center">
-          <div class="mr-4 z-10">
-            <input type="checkbox" v-model="termsAndCond"/>
-            Suglasan/a sam i prihvaćam Pravila natječaja, Uvjete korištenja
-            i Pravila privatnosti te korištenje mojih osobnih podataka za
-            potrebe provođenja i informiranja o nagradnom natječaju, odnosno
-            za potrebe realizacije nagrade ako budem dobitnik/ca.
+          <div class="mr-4 pt-2 z-10">
+            <label>
+              <input type="checkbox" v-model="termsAndCond"/>
+              Suglasan/a sam i prihvaćam Pravila natječaja, Uvjete korištenja
+              i Pravila privatnosti te korištenje mojih osobnih podataka za
+              potrebe provođenja i informiranja o nagradnom natječaju, odnosno
+              za potrebe realizacije nagrade ako budem dobitnik/ca.
+            </label>
           </div>
           <div class="pt-2 z-10">
-            <input type="checkbox"/>
-            Prijavljujem se za dodatne pogodnosti i primanje informativnih i
-            promotivnih poruka i sadržaja od strane Kauflanda, kao i
-            kreiranje i informiranje o prilagođenim individualiziranim
-            prilikama, akcijama ili ponudama Kauflanda koje nastaju uz
-            primjenu napredne tehnologije i automatizirane obrade mojih
-            podataka.
+            <label>
+              <input type="checkbox"/>
+              Prijavljujem se za dodatne pogodnosti i primanje informativnih i
+              promotivnih poruka i sadržaja od strane Kauflanda, kao i
+              kreiranje i informiranje o prilagođenim individualiziranim
+              prilikama, akcijama ili ponudama Kauflanda koje nastaju uz
+              primjenu napredne tehnologije i automatizirane obrade mojih
+              podataka.
+            </label>
           </div>
         </div>
-        <div class="flex flex-col justify-center">
+        <div class="flex flex-col items-center">
           <Button
-              class="mb-2 mt-6"
+              class="mt-6"
               text="Registriraj se"
               @clicked="register"/>
         </div>
@@ -70,14 +77,9 @@ const repeatPassword = ref("");
 const promo = ref("");
 const successMsg = ref(null);
 const errorMsg = ref(null);
-const showPassword = ref(false);
 const termsAndCond = ref(false);
 
 const requiredData = [ first_name, last_name, email, password, repeatPassword ]
-
-const toggleShowPassword = () => {
-  showPassword.value = !showPassword.value;
-}
 
 const emit = defineEmits();
 

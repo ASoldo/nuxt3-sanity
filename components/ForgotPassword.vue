@@ -1,16 +1,18 @@
 <template>
-  <div class="border-2 bg-kaufland-red rounded border-gray-400 shadow-md rounded text-white relative" @keydown.enter="sendResetEmail">
-    <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="closeDialog"><i class="pi pi-times"></i></div>
-    <div class="px-8 pt-6 pb-8 mb-4 z-10 flex flex-col justify-center">
-      <div class="uppercase text-4xl font-bold mb-6 text-center">Zaboravljena lozinka</div>
+  <div class="border-2 bg-kaufland-red rounded border-gray-400 shadow-md rounded text-white relative"
+       @keydown.enter="sendResetEmail">
+    <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200"
+         @click="closeDialog"><i class="pi pi-times"></i></div>
+    <div class="p-8 md:p-16 mb-4 z-10 flex flex-col justify-center items-center">
+      <div class="uppercase text-4xl font-kaufland-bold mb-6 text-center">Zaboravljena lozinka</div>
       <Input type="email" v-model="email" placeholder="Upišite svoj email" label="Email" class="mb-2 w-full"/>
       <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
         <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
-        {{error}}
+        {{ error }}
       </div>
       <Button
           text="Obnovi lozinku"
-      @clicked="sendResetEmail"/>
+          @clicked="sendResetEmail"/>
     </div>
   </div>
 </template>
@@ -31,7 +33,7 @@ const toastStore = useToastStore();
 const emit = defineEmits();
 
 const sendResetEmail = async () => {
-  if( !validateEmail(email.value) ){
+  if (!validateEmail(email.value)) {
     error.value = "Nespravan mail!"
     return;
   }

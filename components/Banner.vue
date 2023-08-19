@@ -48,7 +48,7 @@
         <div class="w-full flex flex-col justify-center items-center p-4">
           <h1 class="text-white">Detaljniji opis igre možeš pročitati
             <a
-                class="underline hover:text-black font-bold transition-colors"
+                class="underline hover:text-black font-kaufland-bold transition-colors"
                 href="https://legal.k-marke-t.com/pravila.pdf"
                 target="_blank">ovdje</a></h1>
         </div>

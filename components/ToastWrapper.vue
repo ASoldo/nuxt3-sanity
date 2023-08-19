@@ -4,7 +4,7 @@
          v-if="toastStore.toastText"
          class="flex items-center w-full max-w-xs p-4 bg-kaufland-dark-red text-white rounded-lg shadow-xl border"
          role="alert">
-      <div class="ml-3 mr-2 h-8 font-4xl font-bold flex items-center">{{ toastStore.toastText }}</div>
+      <div class="ml-3 mr-2 h-8 font-4xl font-kaufland-bold flex items-center">{{ toastStore.toastText }}</div>
       <button type="button"
               class="ml-auto -mx-1.5 -my-1.5 text-white hover:text-gray-200 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8"
               data-dismiss-target="#toast-success" aria-label="Close"

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col md:flex-row md:items-center md:gap-4 self-center md:self-auto mb-4">
-    <div class="text-white w-[120px] font-bold text-xl uppercase">
+    <div class="text-white w-full md:w-[120px] font-kaufland-bold text-xl uppercase">
       {{ label }}
     </div>
     <div class="relative flex-1 flex items-center">
@@ -14,7 +14,7 @@
           @input="updateValue"
           :class="{'pl-10': icon, 'bg-gray-200': disabled}"
           :disabled="disabled"
-          class="outline-none shadow bg-white border w-full py-2 px-3 text-kaufland-dark-red font-bold text-xl leading-tight focus:outline-none focus:shadow-outline"
+          class="outline-none shadow bg-white border w-full py-2 px-3 text-kaufland-dark-red font-kaufland-bold text-xl leading-tight focus:outline-none focus:shadow-outline"
       />
       <div
           class="text-2xl text-kaufland-dark-red -ml-8 relative"

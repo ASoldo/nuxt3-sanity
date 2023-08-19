@@ -5,11 +5,11 @@
     <div class="flex flex-wrap justify-center items-center gap-4 ">
       <div class="flex flex-col gap-4 justify-center items-center">
         <div class="flex flex-col items-center uppercase text-center">
-          <div class="text-2xl font-bold">Opis</div>
+          <div class="text-2xl font-kaufland-bold">Opis</div>
           <div class="text-xl">{{ prize.prizes.description }}</div>
         </div>
         <div class="flex flex-col items-center uppercase text-center">
-          <div class="text-2xl font-bold">Datum dobitka</div>
+          <div class="text-2xl font-kaufland-bold">Datum dobitka</div>
           <div class="text-xl">{{ date }}</div>
         </div>
       </div>
@@ -23,7 +23,7 @@
            @click="fullScreenQR?.close">
         <i class="pi pi-times"></i>
       </div>
-      <div class="text-4xl font-bold">Kod nagrade</div>
+      <div class="text-4xl font-kaufland-bold">Kod nagrade</div>
       <PrizeCode
           class="w-full md:w-1/3 rounded"
           :prize="prize"/>
