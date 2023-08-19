@@ -1,4 +1,7 @@
 <template>
+  <div class="fixed top-16 right-2 z-100">
+    <ToastWrapper />
+  </div>
   <div class="flex flex-col h-screen">
     <NuxtLayout>
       <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items"
@@ -22,23 +25,11 @@
     </dialog>
 
     <dialog ref="success_msg" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
-      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div>
-          <h2 class="mb-4 text-center text-blue-900 text-xl">Uspješna registracija!</h2>
-          <p class="text-center mb-4">
-            Registracija je bila uspješna!
-            Molimo provjerite svoj e-mail za daljnje upute.
-          </p>
-          <div class="flex justify-center">
-            <button class="bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                    @click="success_msg?.close()">
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
+      <Loading />
+      <RegisterSuccess  @close="success_msg?.close()"/>
     </dialog>
     <dialog ref="forgot_password" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+      <Loading />
       <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <input v-model="email" type="email" placeholder="Enter your email"/>
 
@@ -49,14 +40,18 @@
 </template>
 
 <script lang="ts" setup>
+import RegisterSuccess from "~/components/RegisterSuccess.vue";
+
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
+import { useToastStore } from "@/stores/toast";
 import { document } from "postcss";
 // import { client } from "process";
 const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const page = ref(null);
 const email = ref("");
+const toastStore = useToastStore();
 
 const dialog = ref<DialogElement | null>(null);
 const dialog2 = ref<DialogElement | null>(null);
@@ -121,6 +116,7 @@ const itemsMenu = ref({
         icon: "pi pi-fw pi-sign-out",
         fn: () => {
           console.log("Log Out");
+          toastStore.showToast("Uspješna odjava")
           auth.signOut();
         },
       },

@@ -1,7 +1,9 @@
 <template>
   <div class="border-2 rounded border-gray-400 shadow-md rounded text-white relative">
+    <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200"
+         @click="closeDialog"><i class="pi pi-times"></i></div>
     <div class="bg-kaufland-red skew-div absolute h-full w-full overflow-hidden -z-10 pointer-events-none"></div>
-    <div class="px-8 pt-6 pb-8 mb-4 z-10">
+    <div class="px-8 pt-8 pb-8 mb-4 z-10">
       <div class="flex justify-center items-center text-4xl font-bold mb-4 uppercase">
         Registriraj se
       </div>
@@ -19,12 +21,12 @@
       </div>
       <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
         <i v-if="errorMsg" class="pi pi-exclamation-triangle mr-2"></i>
-        {{errorMsg}}
+        {{ errorMsg }}
       </div>
       <div class="">
         <div class="flex md:flex-row flex-col items-center justify-center">
           <div class="mr-4 z-10">
-            <input type="checkbox"/>
+            <input type="checkbox" v-model="termsAndCond"/>
             Suglasan/a sam i prihvaćam Pravila natječaja, Uvjete korištenja
             i Pravila privatnosti te korištenje mojih osobnih podataka za
             potrebe provođenja i informiranja o nagradnom natječaju, odnosno
@@ -41,18 +43,10 @@
           </div>
         </div>
         <div class="flex flex-col justify-center">
-          <button class="mt-4 mb-2 bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded" :class="{
-              'bg-gray-50':
-                email !== repeatPassword &&
-                email !== '' &&
-                repeatPassword !== '',
-            }" @click="checkPasswords()">
-            Registriraj se
-          </button>
-          <button class=" bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  @click="closeDialog()">
-            Odustani
-          </button>
+          <Button
+              class="mb-2 mt-6"
+              text="Registriraj se"
+              @clicked="register"/>
         </div>
       </div>
     </div>
@@ -64,6 +58,7 @@ import { ref } from 'vue';
 
 const { auth } = useSupabaseAuthClient();
 import { useLoadingStore } from '@/stores/loading';
+const loadingStore = useLoadingStore();
 
 // ... [rest of your script like data properties for registration] ...
 const first_name = ref("");
@@ -75,7 +70,9 @@ const promo = ref("");
 const successMsg = ref(null);
 const errorMsg = ref(null);
 const showPassword = ref(false);
-const loadingStore = useLoadingStore();
+const termsAndCond = ref(false);
+
+const requiredData = [ first_name, last_name, email, password, repeatPassword ]
 
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
@@ -108,15 +105,24 @@ const validateRegistrationData = () => {
   return email.value && password.value && first_name.value && last_name.value && (password.value === repeatPassword.value);
 };
 
-const checkPasswords = () => {
-  if (
-      email.value !== repeatPassword.value &&
-      email.value !== "" &&
-      repeatPassword.value !== ""
-  ) {
-    // auth.signUp({ email: email.value, password: password.value }),
-    signUp();
+const register = () => {
+  if(!termsAndCond.value) {
+    errorMsg.value = "Prihvatite uvjete korištenja!"
+    return;
   }
+
+  if (requiredData.findIndex((el) => !el.value) > -1) {
+    errorMsg.value = "Upišite sve podatke!"
+    return;
+  }
+
+  if (password.value != repeatPassword.value) {
+    // auth.signUp({ email: email.value, password: password.value }),
+    errorMsg.value = "Šifre se ne podudaraju!"
+    return;
+  }
+
+  signUp();
 };
 
 const signUp = async () => {

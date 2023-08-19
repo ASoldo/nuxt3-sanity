@@ -1,21 +1,22 @@
 <template>
-    <div class="bg-kaufland-red border-2 rounded border-gray-400 shadow-xl relative">
+    <div class="bg-kaufland-red border-2 rounded border-gray-400 shadow-xl relative" @keydown.enter="loginUser">
+      <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="loginFinished"><i class="pi pi-times"></i></div>
       <div class="skew-div absolute h-full w-full overflow-hidden z-0"></div>
       <div class="flex flex-col items-center p-10">
         <h2 class="mb-10 text-center text-white text-4xl uppercase font-bold">Prijavi se u K-marke(t) igricu</h2>
         <div class="flex flex-col z-10 w-full md:w-2/3">
-          <Input type="email" v-model="password" placeholder="Email" label="Email" class="mb-2"/>
+          <Input type="email" v-model="email" placeholder="Email" label="Email" class="mb-2"/>
           <Input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Lozinka" label="Lozinka"/>
           <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
             <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
             {{error}}
           </div>
-          <button class="mb-2 bg-kaufland-teal hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="loginUser">
-            Prijavi se
-          </button>
-          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="loginFinished">
-            Odustani
-          </button>
+          <div class="flex flex-col">
+            <Button
+                class="mb-2"
+                text="Prijavi se"
+                @clicked="loginUser"/>
+          </div>
           <div class="text-white flex flex-col underline mt-6 gap-4">
             <button @click="forgotPassword()" class="hover:text-gray-300 transition-colors">Zaboravljena lozinka?</button>
             <button @click="registerFromLogin()" class="hover:text-gray-300 transition-colors">Nisi registriran? Registriraj se ovdje</button>
@@ -30,17 +31,23 @@ import { ref } from 'vue';
 
 const { auth } = useSupabaseAuthClient();
 import { useLoadingStore } from '@/stores/loading';
+import { useToastStore } from '@/stores/toast';
 const email = ref("");
 const password = ref("");
 const error = ref("");
 const showPassword = ref(false);
 const loadingStore = useLoadingStore();
+const toastStore = useToastStore();
 
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
 }
 
 const loginUser = async () => {
+  if(!email.value || !password.value) {
+    error.value = "Upišite sve podatke!";
+    return;
+  }
   try {
     loadingStore.showLoading();
     const response = await auth.signInWithPassword({ email: email.value, password: password.value });
@@ -49,6 +56,7 @@ const loginUser = async () => {
       error.value = "Netočni login podaci";
     } else {
       loginFinished();
+      toastStore.showToast("Uspješna prijava")
     }
   } catch (error) {
     error.value = "Netočni login podaci";
