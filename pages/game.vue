@@ -9,6 +9,7 @@
 </template>
 <script setup lang="ts">
 const user = useSupabaseUser();
+const client = useSupabaseClient();
 const Score = ref<number>(201);
 const roomData = ref({});
 const drawers = ref({});
@@ -130,6 +131,8 @@ const setUpGame = async () => {
     items: items,
     drawers: drawers.value,
     questions: startGameData.data.gameData.result.correctItems,
+    profile: await client.from("profiles").select("*").eq("id", user.value?.id),
+
     // data: startGameData,
 
     user: user.value,
