@@ -41,6 +41,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useLoadingStore } from "~/stores/loading";
 
 definePageMeta({
   middleware: [ "auth" ],
@@ -51,6 +52,7 @@ const first_name = ref("");
 const last_name = ref("");
 const promo = ref("");
 const profile_data = ref<any>({});
+const loadingStore = useLoadingStore();
 
 profile_data.value = await client
     .from("profiles")
@@ -62,11 +64,13 @@ console.log("Profiles data: ", profile_data.value);
 console.log(user.value?.user_metadata);
 
 const leaderboard = ref();
+loadingStore.showLoading();
 leaderboard.value = await client
     .from("leaderboard")
     .select(
         "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
     );
+loadingStore.hideLoading();
 console.log("Leaderboard: ", leaderboard.value);
 watchEffect(() => {
   if (!user.value) {
