@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 rounded border-gray-400 shadow-md rounded text-white relative">
+  <div class="border-2 rounded border-gray-400 shadow-md rounded text-white relative" @keydown.enter="register">
     <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200"
          @click="closeDialog"><i class="pi pi-times"></i></div>
     <div class="bg-kaufland-red skew-div absolute h-full w-full overflow-hidden -z-10 pointer-events-none"></div>
@@ -58,6 +58,7 @@ import { ref } from 'vue';
 
 const { auth } = useSupabaseAuthClient();
 import { useLoadingStore } from '@/stores/loading';
+import { validateEmail } from "~/internals/validators";
 const loadingStore = useLoadingStore();
 
 // ... [rest of your script like data properties for registration] ...
@@ -80,6 +81,9 @@ const toggleShowPassword = () => {
 
 const emit = defineEmits();
 
+const goToLogin = () => {
+  emit('open-login');
+}
 const closeDialog = () => {
   emit('close-dialog');
 }
@@ -119,6 +123,12 @@ const register = () => {
   if (password.value != repeatPassword.value) {
     // auth.signUp({ email: email.value, password: password.value }),
     errorMsg.value = "Šifre se ne podudaraju!"
+    return;
+  }
+
+
+  if( !validateEmail(email.value) ){
+    errorMsg.value = "Nespravan mail!"
     return;
   }
 

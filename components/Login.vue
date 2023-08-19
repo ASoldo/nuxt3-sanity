@@ -4,9 +4,11 @@
       <div class="skew-div absolute h-full w-full overflow-hidden z-0"></div>
       <div class="flex flex-col items-center p-10">
         <h2 class="mb-10 text-center text-white text-4xl uppercase font-bold">Prijavi se u K-marke(t) igricu</h2>
-        <div class="flex flex-col z-10 w-full md:w-2/3">
+        <div class="grid auto-rows-fr z-10 w-full md:w-2/3">
           <Input type="email" v-model="email" placeholder="Email" label="Email" class="mb-2"/>
-          <Input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Lozinka" label="Lozinka"/>
+          <Input :type="'password'" v-model="password" placeholder="Lozinka" label="Lozinka"/>
+        </div>
+        <div class="flex flex-col z-10">
           <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
             <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
             {{error}}
@@ -32,20 +34,21 @@ import { ref } from 'vue';
 const { auth } = useSupabaseAuthClient();
 import { useLoadingStore } from '@/stores/loading';
 import { useToastStore } from '@/stores/toast';
+import { validateEmail } from "~/internals/validators";
 const email = ref("");
 const password = ref("");
 const error = ref("");
-const showPassword = ref(false);
 const loadingStore = useLoadingStore();
 const toastStore = useToastStore();
 
-const toggleShowPassword = () => {
-  showPassword.value = !showPassword.value;
-}
 
 const loginUser = async () => {
   if(!email.value || !password.value) {
     error.value = "Upišite sve podatke!";
+    return;
+  }
+  if( !validateEmail(email.value) ){
+    error.value = "Nespravan mail!"
     return;
   }
   try {

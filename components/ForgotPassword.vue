@@ -1,11 +1,16 @@
 <template>
-  <div class="border-2 rounded border-gray-400 shadow-md rounded text-white relative">
-    <div class="bg-kaufland-red skew-div absolute h-full w-full overflow-hidden -z-10 pointer-events-none"></div>
-    <div class="px-8 pt-6 pb-8 mb-4 z-10">
-      <Input />
-      <Input type="email" v-model="email" placeholder="Email" label="Email" class="mb-2"/>
-
-      <button @click="sendResetEmail">Resetiraj email</button>
+  <div class="border-2 bg-kaufland-red rounded border-gray-400 shadow-md rounded text-white relative" @keydown.enter="sendResetEmail">
+    <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="closeDialog"><i class="pi pi-times"></i></div>
+    <div class="px-8 pt-6 pb-8 mb-4 z-10 flex flex-col justify-center">
+      <div class="uppercase text-4xl font-bold mb-6 text-center">Zaboravljena lozinka</div>
+      <Input type="email" v-model="email" placeholder="Upišite svoj email" label="Email" class="mb-2 w-full"/>
+      <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
+        <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
+        {{error}}
+      </div>
+      <Button
+          text="Obnovi lozinku"
+      @clicked="sendResetEmail"/>
     </div>
   </div>
 </template>
@@ -15,21 +20,36 @@ import { ref } from 'vue';
 
 const { auth } = useSupabaseAuthClient();
 import { useLoadingStore } from '@/stores/loading';
+import { useToastStore } from '@/stores/toast';
+import { validateEmail } from '@/internals/validators';
 
 const email = ref("");
+const error = ref("");
 const loadingStore = useLoadingStore();
-
-const sendResetEmail = async () => {
-  await auth.resetPasswordForEmail(email.value, {
-    redirectTo: "https://k-marke-t.com/forgot_password",
-  });
-  emit('close-dialog')
-};
+const toastStore = useToastStore();
 
 const emit = defineEmits();
 
+const sendResetEmail = async () => {
+  if( !validateEmail(email.value) ){
+    error.value = "Nespravan mail!"
+    return;
+  }
+  loadingStore.showLoading();
+  try {
+    await auth.resetPasswordForEmail(email.value, {
+      redirectTo: "https://k-marke-t.com/forgot_password",
+    });
+    toastStore.showToast("Upute za ispravak su poslane na vaš mail")
+  } finally {
+    loadingStore.hideLoading();
+  }
+  closeDialog();
+};
+
 const closeDialog = () => {
   emit('close-dialog');
+  error.value = '';
 }
 
 </script>

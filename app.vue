@@ -9,7 +9,7 @@
       <NuxtPage ref="page" class="w-full grow"/>
     </NuxtLayout>
 
-    <dialog ref="dialog" class="mx-auto my-auto absolute inset-0 w-[95%] md:w-2/3 md:h-4/5">
+    <dialog ref="login_dialog" class="mx-auto my-auto absolute inset-0 w-[95%] md:w-2/3">
       <Loading />
       <Login
           class="w-full h-full"
@@ -17,9 +17,10 @@
           @register-from-login-clicked="registerFromLogin()"
           @forgot-password-clicked="forgotPassword()"/>
     </dialog>
-    <dialog ref="dialog2" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
+    <dialog ref="registerDialog" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
       <Loading />
       <Register
+          @open-login="loginFromRegister()"
           @close-dialog="closeRegister()"
           @register-clicked="handleRegister()"/>
     </dialog>
@@ -30,11 +31,7 @@
     </dialog>
     <dialog ref="forgot_password" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
       <Loading />
-      <div class="bg-kaufland-yellow shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <input v-model="email" type="email" placeholder="Enter your email"/>
-
-        <button @click="sendResetEmail">Send Reset Email</button>
-      </div>
+      <ForgotPassword @close-dialog="forgot_password?.close()"/>
     </dialog>
   </div>
 </template>
@@ -53,21 +50,15 @@ const page = ref(null);
 const email = ref("");
 const toastStore = useToastStore();
 
-const dialog = ref<DialogElement | null>(null);
-const dialog2 = ref<DialogElement | null>(null);
+const login_dialog = ref<DialogElement | null>(null);
+const registerDialog = ref<DialogElement | null>(null);
 const success_msg = ref<DialogElement | null>(null);
 const forgot_password = ref<DialogElement | null>(null);
 
 const closeLogin = () => {
-  dialog.value?.close();
+  login_dialog.value?.close();
 }
 
-const sendResetEmail = async () => {
-  await auth.resetPasswordForEmail(email.value, {
-    redirectTo: "https://k-marke-t.com/forgot_password",
-  });
-  forgot_password.value?.close();
-};
 const forgotPassword = async () => {
   // await auth.resetPasswordForEmail(email.value, {
   //   redirectTo: "https://k-marke-t.com/forgot_password",
@@ -76,20 +67,26 @@ const forgotPassword = async () => {
 };
 
 const handleRegister = () => {
-  dialog2.value?.close();
+  registerDialog.value?.close();
   success_msg.value?.showModal();
 }
 
 const closeRegister = () => {
-  dialog2.value?.close();
+  registerDialog.value?.close();
 }
 
-const registerFromLogin = async () => {
+const registerFromLogin = () => {
   // await auth.resetPasswordForEmail(email.value, {
   //   redirectTo: "https://k-marke-t.com/forgot_password",
   // });
-  dialog2.value?.showModal();
+  login_dialog.value?.close();
+  registerDialog.value?.showModal();
 };
+
+const loginFromRegister = () => {
+  registerDialog.value?.close();
+  login_dialog.value?.showModal();
+}
 
 
 const itemsMenu = ref({
@@ -127,7 +124,7 @@ const itemsMenu = ref({
         icon: "pi pi-fw pi-user",
         fn: () => {
           console.log("Log In");
-          dialog?.value?.showModal();
+          login_dialog?.value?.showModal();
         },
       },
       {
@@ -135,7 +132,7 @@ const itemsMenu = ref({
         icon: "pi pi-fw pi-cog",
         fn: () => {
           console.log("Register");
-          dialog2?.value?.showModal();
+          registerDialog?.value?.showModal();
         },
       },
     ],
