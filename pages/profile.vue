@@ -2,64 +2,37 @@
   <div class="flex flex-col pt-14">
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-1/2 justify-center">
-        <div class="w-full p-6 m-4 bg-white rounded shadow-lg">
-          <h1 class="text-2xl text-center mb-2 font-semibold text-gray-700">
+        <div class="w-full p-6 m-4 bg-kaufland-red text-white  rounded shadow-xl">
+          <h1 class="text-2xl text-center mb-2 font-semibold">
             Profil
           </h1>
           <!-- Insert profile related content here -->
-
-          <div class="relative">
-            <span class="absolute h-11 inset-y-0 left-0 flex items-center pl-3">
-              <i class="pi pi-fw pi-user"></i>
-            </span>
-            <input
-              class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="first_name" :placeholder="profile_data.data[0]?.first_name" />
-            <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
-            <!--   <i class="pi pi-fw pi-check"></i> -->
-            <!-- </button> -->
+          <div class="grid auto-rows-fr ">
+            <Input
+                v-model="first_name"
+                :placeholder="profile_data.data[0]?.first_name"
+                label="Ime"
+            />
+            <Input
+                v-model="last_name"
+                :placeholder="profile_data.data[0]?.last_name"
+                label="Prezime"
+            />
+            <Input
+                :disabled="true"
+                :placeholder="profile_data.data[0]?.email"
+                label="Email"
+            />
+            <Input
+                v-model="promo"
+                :placeholder="profile_data.data[0]?.promo"
+                label="KAUFLAND CARD KOD"
+            />
+          </div>
+          <div class="flex justify-center mt-4">
+            <Button text="Spremi promjene"/>
           </div>
 
-          <div class="relative">
-            <span class="absolute h-11 inset-y-0 left-0 flex items-center pl-3">
-              <i class="pi pi-fw pi-user"></i>
-            </span>
-            <input
-              class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="last_name" :placeholder="profile_data.data[0]?.last_name" />
-            <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
-            <!--   <i class="pi pi-fw pi-check"></i> -->
-            <!-- </button> -->
-          </div>
-
-          <div class="relative">
-            <span class="absolute h-11 inset-y-0 left-0 flex items-center pl-3">
-              <i class="pi pi-fw pi-envelope"></i>
-            </span>
-            <input
-              class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" disabled :placeholder="profile_data.data[0]?.email" />
-            <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
-            <!--   <i class="pi pi-fw pi-check"></i> -->
-            <!-- </button> -->
-          </div>
-
-          <div class="relative">
-            <span class="absolute h-11 inset-y-0 left-0 flex items-center pl-3">
-              <i class="pi pi-fw pi-hashtag"></i>
-            </span>
-            <input
-              class="pl-10 mb-4 outline-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" v-model="promo" :placeholder="profile_data.data[0]?.promo" />
-            <!-- <button class="absolute h-10 inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r"> -->
-            <!--   <i class="pi pi-fw pi-check"></i> -->
-            <!-- </button> -->
-          </div>
-          <button class="h-10 w-full inset-y-0 right-0 flex items-center px-4 bg-blue-500 text-white rounded-r">
-            <i class="w-full pi pi-fw pi-check">
-              <span class="ml-2">Spremi promjene</span>
-            </i>
-          </button>
         </div>
       </div>
     </div>
@@ -70,7 +43,7 @@
 import { ref } from "vue";
 
 definePageMeta({
-  middleware: ["auth"],
+  middleware: [ "auth" ],
 });
 const user = useSupabaseUser();
 const client = useSupabaseClient();
@@ -80,9 +53,9 @@ const promo = ref("");
 const profile_data = ref<any>({});
 
 profile_data.value = await client
-  .from("profiles")
-  .select("*")
-  .eq("id", user.value?.id);
+    .from("profiles")
+    .select("*")
+    .eq("id", user.value?.id);
 
 console.log("Profiles data: ", profile_data.value);
 
@@ -90,10 +63,10 @@ console.log(user.value?.user_metadata);
 
 const leaderboard = ref();
 leaderboard.value = await client
-  .from("leaderboard")
-  .select(
-    "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
-  );
+    .from("leaderboard")
+    .select(
+        "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
+    );
 console.log("Leaderboard: ", leaderboard.value);
 watchEffect(() => {
   if (!user.value) {
