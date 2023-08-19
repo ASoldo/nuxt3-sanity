@@ -186,6 +186,10 @@ const processMessage = async (e: MessageEvent) => {
       "*"
     );
   }
+  if (e.data.message === "Homepage" && game.value?.contentWindow != null) {
+    console.log(e.data);
+    navigateTo("/");
+  }
   // if (e.data.message === "EndGame") {
   //   console.log(e.data);
   //   // HERE WE SIMPLY SET VALUES
