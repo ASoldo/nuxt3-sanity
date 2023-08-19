@@ -11,7 +11,7 @@
       <div class="flex flex-col md:flex-1 md:h-auto">
         <div class="flex justify-center items-end md:h-full">
           <!-- Content for the first box -->
-          <img src="../assets/images/kmarket_logo_extra.png" alt="K-market" class="h-24 md:h-48" />
+          <img src="../assets/images/kmarket_logo_extra.png" alt="K-market" class="px-2 -mb-8" />
           <!-- <h1 class="text-3xl p-3 text-white">K-MARKE(t)</h1> -->
         </div>
         <div class="md:h-full flex flex-col justify-start items-center">
