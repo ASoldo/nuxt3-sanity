@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
       room_id
     },
     "correctItems": correctItems[]->{
+      name,
       question,
       slug, 
       "imageUrl": image.asset->url,
