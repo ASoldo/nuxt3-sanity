@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-16 right-2 z-100">
+  <div class="fixed top-16 right-2 z-[10000]">
     <ToastWrapper/>
   </div>
   <div class="flex flex-col h-screen">
@@ -9,7 +9,7 @@
       <NuxtPage ref="page" class="w-full grow"/>
     </NuxtLayout>
 
-    <dialog ref="login_dialog" class="mx-auto my-auto absolute inset-0 w-[95%] md:w-2/3">
+    <dialog ref="login_dialog" class="mx-auto my-auto absolute inset-0 container h-4/5 md:h-2/3 w-[95%] md:w-2/3">
       <Loading/>
       <Login
           class="w-full h-full"
@@ -48,7 +48,6 @@ import { useLoginStore } from "~/stores/login";
 const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const page = ref(null);
-const email = ref("");
 const toastStore = useToastStore();
 const loginStore = useLoginStore();
 loginStore.$onAction(({ name }) => {

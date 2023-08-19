@@ -1,7 +1,10 @@
-
 <template>
-  <dialog ref="loadingDialog" v-if="loadingStore.loading" class="bg-white bg-opacity-60 fixed top-0 left-0 w-full h-full flex justify-center items-center z-[1000]">
-    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  <dialog
+      ref="loadingDialog"
+      v-if="loadingStore.loading"
+      class="bg-white bg-opacity-60 fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
+    <i class="pi pi-spin pi-spinner opacity-100" style="font-size: 6rem"></i>
+    <div class="font-bold text-4xl">Učitavanje</div>
   </dialog>
 </template>
 
@@ -12,7 +15,7 @@ import { DialogElement } from "@/internals/interfaces";
 const loadingDialog = ref<DialogElement | null>(null);
 const loadingStore = useLoadingStore();
 loadingStore.$subscribe((mutation, state) => {
-  if(state.loading) {
+  if (state.loading) {
     loadingDialog.value?.showModal();
   } else {
     loadingDialog.value?.close();
@@ -29,6 +32,7 @@ loadingStore.$subscribe((mutation, state) => {
   height: 80px;
   opacity: 1;
 }
+
 .lds-ellipsis div {
   position: absolute;
   top: 33px;
@@ -39,22 +43,27 @@ loadingStore.$subscribe((mutation, state) => {
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
   opacity: 1;
 }
+
 .lds-ellipsis div:nth-child(1) {
   left: 8px;
   animation: lds-ellipsis1 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(2) {
   left: 8px;
   animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(3) {
   left: 32px;
   animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(4) {
   left: 56px;
   animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
   0% {
     transform: scale(0);
@@ -63,6 +72,7 @@ loadingStore.$subscribe((mutation, state) => {
     transform: scale(1);
   }
 }
+
 @keyframes lds-ellipsis3 {
   0% {
     transform: scale(1);
@@ -71,6 +81,7 @@ loadingStore.$subscribe((mutation, state) => {
     transform: scale(0);
   }
 }
+
 @keyframes lds-ellipsis2 {
   0% {
     transform: translate(0, 0);
