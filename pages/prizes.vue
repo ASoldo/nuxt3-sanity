@@ -114,10 +114,4 @@ onMounted(async () => {
 //
 //   console.log("User Prizes data: ", user_prizes_data.value);
 // });
-
-watchEffect(() => {
-  if (!user.value) {
-    navigateTo("/");
-  }
-});
 </script>

@@ -4,7 +4,7 @@
       v-if="loadingStore.loading"
       class="bg-white bg-opacity-60 fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
     <i class="pi pi-spin pi-spinner opacity-100" style="font-size: 6rem"></i>
-    <div class="font-kaufland-bold uppercase text-4xl">Učitavanje</div>
+    <div class="font-kaufland-bold uppercase text-4xl mt-4">Učitavanje</div>
   </dialog>
 </template>
 

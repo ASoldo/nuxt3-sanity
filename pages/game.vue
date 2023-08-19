@@ -153,11 +153,6 @@ onMounted(() => {
 
   // game.value?.addEventListener("load", loadScriptIntoIframe);
 });
-watchEffect(() => {
-  if (!user.value) {
-    navigateTo("/");
-  }
-});
 const processMessage = async (e: MessageEvent) => {
   if (e.data.message === "Signal" && game.value?.contentWindow != null) {
     console.log(e.data);

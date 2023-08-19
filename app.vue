@@ -44,11 +44,13 @@ import { DialogElement } from "@/internals/interfaces";
 import { useToastStore } from "@/stores/toast";
 import { document } from "postcss";
 import { useLoginStore } from "~/stores/login";
+import { useLoadingStore } from "~/stores/loading";
 // import { client } from "process";
 const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const page = ref(null);
 const toastStore = useToastStore();
+const loadingStore = useLoadingStore();
 const loginStore = useLoginStore();
 loginStore.$onAction(({ name }) => {
   login_dialog.value?.showModal();
@@ -117,8 +119,11 @@ const itemsMenu = ref({
         icon: "pi pi-fw pi-sign-out",
         fn: () => {
           console.log("Log Out");
-          toastStore.showToast("Uspješna odjava")
+          loadingStore.showLoading();
+          navigateTo("/");
           auth.signOut();
+          toastStore.showToast("Uspješna odjava")
+          loadingStore.hideLoading();
         },
       },
     ],

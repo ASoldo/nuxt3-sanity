@@ -1,4 +1,5 @@
 <template>
+  <Loading/>
   <div class="flex flex-col pt-14">
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-1/2 justify-center">
@@ -72,9 +73,4 @@ leaderboard.value = await client
     );
 loadingStore.hideLoading();
 console.log("Leaderboard: ", leaderboard.value);
-watchEffect(() => {
-  if (!user.value) {
-    navigateTo("/");
-  }
-});
 </script>
