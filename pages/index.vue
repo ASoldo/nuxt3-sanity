@@ -50,7 +50,7 @@
         </div>
       </div>
       <Products />
-      <Impressum id="how-to-play" />
+      <Impressum />
       <PWA class="w-full h-full" />
       <CookieControl locale="hr">
         <template #bar>

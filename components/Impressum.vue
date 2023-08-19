@@ -1,5 +1,5 @@
 <template>
-  <div id="impressum" class="grid grid-cols-1 md:grid-cols-2 gap-5 bg-kaufland-red text-white p-5">
+  <div id="how-to-play" class="grid grid-cols-1 md:grid-cols-2 gap-5 bg-kaufland-red text-white p-5">
     <div class="flex flex-col md:items-end items-center">
       <h1 class="font-kaufland-bold mb-2">PRATITE NAS</h1>
       <div class="flex flex-row md:justify-between">

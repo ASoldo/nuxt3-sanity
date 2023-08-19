@@ -1,5 +1,6 @@
 <template>
   <button @click="emit('clicked')"
+          :disabled="disabled"
           class="transition-all duration-500 px-5 py-2 bg-gradient-to-r
           from-white to-gray-300 hover:from-kaufland-red hover:to-red-600 rounded-xl
           text-kaufland-red hover:text-white border-b-4 border-red-800 hover:border-gray-500
@@ -10,7 +11,7 @@
 <script setup lang="ts">
 const emit = defineEmits();
 
-const { text } = defineProps([ 'text' ]);
+const { text, disabled } = defineProps([ 'text', 'disabled' ]);
 </script>
 
 <style scoped>

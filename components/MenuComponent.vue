@@ -64,7 +64,7 @@
           <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"
             @click.prevent="item.fn(), toggleMenu()">
-            <i :class="item.icon"></i>{{ item.label }}</a>
+            <i :class="item.icon" class="mr-2"></i>{{ item.label }}</a>
 
           <a v-else v-for="item in props.itemsUserMenu?.items.loggedOut" href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"

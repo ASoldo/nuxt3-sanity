@@ -13,6 +13,7 @@
           :value="inputValue"
           @input="updateValue"
           :class="{'pl-10': icon}"
+          :disabled="disabled"
           class="outline-none shadow bg-white border w-full py-2 px-3 text-kaufland-dark-red font-bold text-xl leading-tight focus:outline-none focus:shadow-outline"
       />
       <div
@@ -55,6 +56,10 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, {emit}) {

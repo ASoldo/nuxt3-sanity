@@ -1,6 +1,6 @@
 <template>
   <div class="fixed top-16 right-2 z-100">
-    <ToastWrapper />
+    <ToastWrapper/>
   </div>
   <div class="flex flex-col h-screen">
     <NuxtLayout>
@@ -10,7 +10,7 @@
     </NuxtLayout>
 
     <dialog ref="login_dialog" class="mx-auto my-auto absolute inset-0 w-[95%] md:w-2/3">
-      <Loading />
+      <Loading/>
       <Login
           class="w-full h-full"
           @login-finished="closeLogin()"
@@ -18,7 +18,7 @@
           @forgot-password-clicked="forgotPassword()"/>
     </dialog>
     <dialog ref="registerDialog" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
-      <Loading />
+      <Loading/>
       <Register
           @open-login="loginFromRegister()"
           @close-dialog="closeRegister()"
@@ -26,11 +26,11 @@
     </dialog>
 
     <dialog ref="success_msg" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
-      <Loading />
-      <RegisterSuccess  @close="success_msg?.close()"/>
+      <Loading/>
+      <RegisterSuccess @close="success_msg?.close()"/>
     </dialog>
     <dialog ref="forgot_password" class="mx-auto my-auto absolute inset-0 container md:w-1/2 w-full">
-      <Loading />
+      <Loading/>
       <ForgotPassword @close-dialog="forgot_password?.close()"/>
     </dialog>
   </div>
@@ -43,12 +43,18 @@ const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
 import { useToastStore } from "@/stores/toast";
 import { document } from "postcss";
+import { useLoginStore } from "~/stores/login";
 // import { client } from "process";
 const config = useRuntimeConfig();
 const logRegToggle = ref(true);
 const page = ref(null);
 const email = ref("");
 const toastStore = useToastStore();
+const loginStore = useLoginStore();
+loginStore.$onAction(({ name }) => {
+  console.log(name);
+  login_dialog.value?.showModal();
+})
 
 const login_dialog = ref<DialogElement | null>(null);
 const registerDialog = ref<DialogElement | null>(null);
@@ -164,28 +170,28 @@ const items = ref({
       label: "Kako igrati",
       icon: "pi pi-fw pi-external-link",
       fn: () => {
-        navigateTo("#how-to-play");
+        navigateTo("/#how-to-play");
       },
     },
     {
       label: "Nagrade",
       icon: "pi pi-fw pi-qrcode",
       fn: () => {
-        navigateTo("#nagrade");
+        navigateTo("/#nagrade");
       },
     },
     {
       label: "Kaufland Card",
       icon: "pi pi-fw pi-id-card",
       fn: () => {
-        navigateTo("#promo");
+        navigateTo("/#promo");
       },
     },
     {
       label: "Rang lista",
       icon: "pi pi-fw pi-list",
       fn: () => {
-        navigateTo("#ranglist");
+        navigateTo("/#ranglist");
       },
     },
   ],
