@@ -1,5 +1,5 @@
 <template>
-  <Loading />
+  <Loading/>
   <div class="flex flex-col pt-14 h-full">
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-2/3 justify-center">
@@ -8,7 +8,7 @@
           <!-- Insert profile related content here -->
           <div>
             <div v-for="(item, key) in user_prizes_data" :key="key" class="p-3 flex flex-wrap justify-center gap-8">
-              <Prize :prize="item" />
+              <Prize :prize="item"/>
             </div>
           </div>
           <div class="mt-5 ml-2" v-if="user_prizes_data?.length === 0">
@@ -23,8 +23,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useLoadingStore } from "~/stores/loading";
+
 definePageMeta({
-  middleware: ["auth"],
+  middleware: [ "auth" ],
 });
 
 const user = useSupabaseUser();
@@ -36,10 +37,9 @@ const jwt = ref("");
 const loadingStore = useLoadingStore();
 
 onMounted(async () => {
-  loadingStore.showLoading();
-
+  const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/user_prizes?profile_id=eq.${ user.value?.id }`;
+  console.log(user);
   try {
-    // Set JWT from local storage
     jwt.value = localStorage.getItem(
         "sb-kxbzixfkcjexfwfacnzq-auth-token"
     ) as string;
@@ -66,7 +66,54 @@ onMounted(async () => {
 
     loadingStore.hideLoading();
   }
+  // // Fetch detailed information for each prize
+  // for (let userPrize of user_prizes_data.value) {
+  //   const { data: prizeDetails, error: prizeError } = await client
+  //     .from("prizes")
+  //     .select("*")
+  //     .eq("id", 1);
+  //   console.log("Prize response: ", userPrize);
+  //
+  //   if (prizeError) {
+  //     console.error("Error fetching prize details:", prizeError.message);
+  //     continue;
+  //   }
+  //
+  //   userPrize.prizeDetails = prizeDetails[0]; // Assuming each prize ID corresponds to a single prize
+  // }
+  //
+  // console.log("User Prizes with details:", user_prizes_data.value);
+
 });
+
+// onMounted(async () => {
+//   const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/user_prizes?profile_id=eq.${user.value?.id}`;
+//   console.log(user);
+//
+//   jwt.value = localStorage.getItem(
+//     "sb-kxbzixfkcjexfwfacnzq-auth-token"
+//   ) as string;
+//
+//   const supabaseHeaders = {
+//     apikey: config.public.supabase.key as string,
+//     Authorization: `Bearer ${JSON.parse(jwt.value as string).access_token}`,
+//     "Content-Type": "application/json",
+//   };
+//
+//   const supabaseResponse = await fetch(supabaseUrl, {
+//     method: "GET",
+//     headers: supabaseHeaders,
+//   });
+//
+//   if (!supabaseResponse.ok) {
+//     console.error(`Error fetching user prizes: ${supabaseResponse.statusText}`);
+//     return;
+//   }
+//
+//   user_prizes_data.value = await supabaseResponse.json();
+//
+//   console.log("User Prizes data: ", user_prizes_data.value);
+// });
 
 watchEffect(() => {
   if (!user.value) {
