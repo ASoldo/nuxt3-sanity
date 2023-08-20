@@ -39,6 +39,7 @@
 <script lang="ts" setup>
 import RegisterSuccess from "~/components/RegisterSuccess.vue";
 
+const user = useSupabaseUser();
 const { auth } = useSupabaseAuthClient();
 import { DialogElement } from "@/internals/interfaces";
 import { useToastStore } from "@/stores/toast";
@@ -166,6 +167,11 @@ const items = ref({
       label: "Igraj",
       icon: "pi pi-fw pi-palette",
       fn: () => {
+        if(!user.value) {
+          loginStore.openLogin();
+          toastStore.showToast("Za igru se potrebno prijaviti!");
+          return;
+        }
         navigateTo("/game");
       },
     },
@@ -217,6 +223,6 @@ dialog {
 }
 dialog::backdrop{
   background-color: white;
-  opacity: 0.5;
+  opacity: 0.35;
 }
 </style>
