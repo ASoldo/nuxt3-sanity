@@ -43,7 +43,7 @@ const email = ref("");
 const promo = ref();
 const profile_data = ref<any>({});
 const loadingStore = useLoadingStore();
-const leaderboard = ref();
+// const leaderboard = ref();
 
 // Fetch user's profile data on component mount
 onMounted(async () => {
@@ -59,13 +59,13 @@ onMounted(async () => {
   promo.value = profile_data.value.data[0].promo;
   console.log("profile data: ", profile_data.value.data[0].first_name);
 
-  leaderboard.value = await client
-    .from("leaderboard")
-    .select(
-      "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
-    );
+  // leaderboard.value = await client
+  //   .from("leaderboard")
+  //   .select(
+  //     "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
+  //   );
   loadingStore.hideLoading();
-  console.log("Leaderboard: ", leaderboard.value);
+  // console.log("Leaderboard: ", leaderboard.value);
 });
 
 // Update profile function
