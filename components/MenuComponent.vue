@@ -58,7 +58,8 @@
             <!--   alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" /> -->
             <i v-if="user"
               class="pi pi-user bg-white h-6 w-6 mr-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"></i>
-            {{ user?.user_metadata.first_name }}
+            <!-- {{ user?.user_metadata.first_name }} -->
+            {{ profile.data[0].first_name }}
           </div>
 
           <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
@@ -93,19 +94,29 @@
   <!-- </div> -->
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
 // import { DialogElement } from "../internals/interfaces";
 //
 // const dialog = ref<DialogElement | null>(null);
 
 const user = useSupabaseUser();
+const client = useSupabaseClient();
 
 const target = ref(null);
 const navigationTarget = ref(null);
 
 const menuState = ref(false);
 const navigationState = ref(false);
+const profile = ref();
+onMounted(async () => {
+  profile.value = await client
+    .from("profiles")
+    .select("*")
+    .eq("id", user.value?.id);
+
+  console.log(profile.value);
+});
 
 onClickOutside(target, () => toggleMenu());
 onClickOutside(navigationTarget, () => toggleNavigationMenu());
