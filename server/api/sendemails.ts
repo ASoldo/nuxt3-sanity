@@ -105,7 +105,7 @@ export default defineEventHandler(async (event) => {
       const message = {
         from_email: "noreply@k-marke-t.com",
         to: [{ email: user.profiles.email, type: "to" }],
-        subject: "K-MARKE-T Nagrada",
+        subject: "ČESTITAMO NA NAGRADI!",
         global_merge_vars: [
           {
             name: "our_custom_field",
@@ -147,3 +147,5 @@ export default defineEventHandler(async (event) => {
 
 // (profile_id = auth.uid()) for user_prizes
 // curl -v "http://localhost:3000/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
+// curl -v "http://k-marke-t.com/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
+// curl -v "https://k-marke-t.com/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
