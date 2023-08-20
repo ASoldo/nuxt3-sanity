@@ -55,17 +55,11 @@
       <CookieControl locale="hr">
         <template #bar>
           <div class="flex flex-col">
-            <h3>Koristimo kolačiće</h3>
+            <h3>Naša stranica koristi kolačiće</h3>
           </div>
         </template>
         <template #modal>
           <h3>Kolačići</h3>
-          <p>
-            {{ ($cookies as any).moduleOptions.cookies.optional[0].name.en }}
-          </p>
-        </template>
-        <template #cookie="{ config }">
-          <span v-for="c in config" :key="c.id" v-text="c.cookies" />
         </template>
       </CookieControl>
     </div>

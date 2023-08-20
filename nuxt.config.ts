@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     isModalForced: false,
     isCssEnabled: false,
     isCookieIdVisible: true,
+    isAcceptNecessaryButtonEnabled: false,
     cookieNameIsConsentGiven: "ncc_c",
     cookieNameCookiesEnabledIds: "ncc_e",
     locales: ['en', 'hr'],
@@ -59,25 +60,12 @@ export default defineNuxtConfig({
           },
 
           description: {
-            en: "Used for cookie control.",
-            hr: "Koristi se za upravljanje kolačićima.",
+            en: "Basic cookies are essential for the proper functioning of our website. Without these cookies, we could not provide basic functionalities and services. These cookies allow you access to secure areas of the website, ensure proper navigation, and ensure that your settings are remembered during visits.",
+            hr: "Osnovni kolačići su neophodni za pravilno funkcioniranje naše web stranice. Bez ovih kolačića, ne bismo mogli pružiti osnovne funkcionalnosti i usluge. Ovi kolačići omogućavaju vam pristup sigurnim područjima web stranice, omogućuju pravilnu navigaciju i osiguravaju da se vaše postavke pamte tijekom posjeta.",
           },
-          targetCookieIds: ["soldo"],
         },
       ],
       optional: [
-        {
-          name: {
-            en: "Google Analytics",
-            hr: "Google Analitika",
-          },
-          description: {
-            en: "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.",
-            hr: "Google Analytics je usluga web analitike koju nudi Google i prati te izvješćuje o prometu na web stranicama."
-          },
-          src: "",
-          targetCookieIds: ["_o", "_p", "_t"],
-        },
       ],
     },
   },
