@@ -20,10 +20,10 @@
       </div>
 
       <div class="flex flex-col md:justify-end md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0">
-        <div class="grid grid-cols-1">
-          <img :src="mobitel" alt="Okvir mobitela" class="h-full object-cover row-start-1 col-start-1" />
-          <div ref="imageWrapper" class="fade-effect h-full object-cover overflow-hidden row-start-1 col-start-1">
-            <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" class="h-full object-cover" />
+        <div class="relative">
+          <img :src="mobitel" alt="Okvir mobitela" />
+          <div ref="imageWrapper" class="fade-effect overflow-hidden absolute -translate-y-full">
+            <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" />
           </div>
         </div>
         <div class="flex justify-center mb-2 md:mb-4">
