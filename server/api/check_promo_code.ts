@@ -51,10 +51,14 @@ export default defineEventHandler(async (event) => {
   // 3. Check if promo_card_code exists
   if (data && data.length > 0) {
     console.log("Promo card code exists");
-    return { status: "success", message: "Promo card code exists" };
+    return { status: "success", message: "Promo card code exists", code: true };
   } else {
     console.error("Promo card code does not exist");
-    return { status: "error", message: "Promo card code does not exist" };
+    return {
+      status: "error",
+      message: "Promo card code does not exist",
+      code: false,
+    };
   }
 });
 
