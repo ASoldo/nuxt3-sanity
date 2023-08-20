@@ -62,10 +62,10 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-
-const { auth } = useSupabaseAuthClient();
 import { useLoadingStore } from '@/stores/loading';
 import { validateEmail } from "~/internals/validators";
+
+const { auth } = useSupabaseAuthClient();
 const loadingStore = useLoadingStore();
 
 // ... [rest of your script like data properties for registration] ...
@@ -75,8 +75,7 @@ const email = ref("");
 const password = ref("");
 const repeatPassword = ref("");
 const promo = ref("");
-const successMsg = ref(null);
-const errorMsg = ref(null);
+const errorMsg = ref("");
 const termsAndCond = ref(false);
 
 const requiredData = [ first_name, last_name, email, password, repeatPassword ]
@@ -110,8 +109,17 @@ const validateRegistrationData = () => {
   // Add any other validation logic you need
   return email.value && password.value && first_name.value && last_name.value && (password.value === repeatPassword.value);
 };
+const checkPromoCode = async () => {
+  if(!promo.value) {
+    return true;
+  }
+  const promoCode =  await $fetch(
+      `/api/check_promo_code?promo_card_code=${ promo.value }`
+  );
+  return promoCode.code;
+};
 
-const register = () => {
+const register = async () => {
   if(!termsAndCond.value) {
     errorMsg.value = "Prihvatite uvjete korištenja!"
     return;
@@ -127,7 +135,6 @@ const register = () => {
     errorMsg.value = "Šifre se ne podudaraju!"
     return;
   }
-
   if(password.value.length < 6) {
 
     errorMsg.value = "Šifra mora imati barem 6 znakova!"
@@ -137,6 +144,11 @@ const register = () => {
 
   if( !validateEmail(email.value) ){
     errorMsg.value = "Nespravan mail!"
+    return;
+  }
+
+  if(!(await checkPromoCode())) {
+    errorMsg.value = "Nespravan Kaufland card kod!"
     return;
   }
 

@@ -4,14 +4,14 @@
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-2/3 justify-center">
         <div class="w-full p-6 m-4 bg-kaufland-red text-white min-h-[95%] rounded shadow-lg">
-          <h1 class="text-2xl font-semibold">Moje nagrade</h1>
+          <h1 class="text-2xl font-kaufland-bold">Moje nagrade</h1>
           <!-- Insert profile related content here -->
           <div>
             <div v-for="(item, key) in user_prizes_data" :key="key" class="p-3 flex flex-wrap justify-center gap-8">
               <Prize :prize="item"/>
             </div>
           </div>
-          <div class="mt-5 ml-2" v-if="user_prizes_data?.length === 0">
+          <div class="mt-5 ml-2 font-kaufland-bold" v-if="user_prizes_data?.length === 0">
             Još uvijek nemate nagrada
           </div>
         </div>
