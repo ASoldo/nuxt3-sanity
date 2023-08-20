@@ -5,7 +5,7 @@
   <div class="flex flex-col h-screen">
     <NuxtLayout>
       <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items"
-                     class="fixed top-0"/>
+                     class="fixed top-0 z-[11000]"/>
       <NuxtPage ref="page" class="w-full grow"/>
     </NuxtLayout>
 

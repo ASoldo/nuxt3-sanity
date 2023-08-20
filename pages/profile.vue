@@ -11,22 +11,23 @@
           <div class="grid auto-rows-fr ">
             <Input
                 v-model="first_name"
-                :placeholder="profile_data.data[0]?.first_name"
+                placeholder="Ime"
                 label="Ime"
             />
             <Input
                 v-model="last_name"
-                :placeholder="profile_data.data[0]?.last_name"
+                placeholder="Prezime"
                 label="Prezime"
             />
             <Input
+                v-model="email"
                 :disabled="true"
-                :placeholder="profile_data.data[0]?.email"
+                placeholder="Email"
                 label="Email"
             />
             <Input
                 v-model="promo"
-                :placeholder="profile_data.data[0]?.promo"
+                placeholder="KAUFLAND CARD KOD"
                 label="KAUFLAND CARD KOD"
             />
           </div>
@@ -51,14 +52,20 @@ const user = useSupabaseUser();
 const client = useSupabaseClient();
 const first_name = ref("");
 const last_name = ref("");
+const email = ref("");
 const promo = ref("");
 const profile_data = ref<any>({});
 const loadingStore = useLoadingStore();
-
 profile_data.value = await client
     .from("profiles")
     .select("*")
     .eq("id", user.value?.id);
+
+first_name.value = profile_data.value.data[0]?.first_name;
+last_name.value = profile_data.value.data[0]?.last_name;
+email.value = profile_data.value.data[0]?.email;
+promo.value = profile_data.value.data[0]?.promo;
+
 
 console.log("Profiles data: ", profile_data.value);
 

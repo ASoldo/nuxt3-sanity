@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-kaufland-red border-2 rounded border-gray-400 shadow-xl relative" @keydown.enter="loginUser">
+    <div class="bg-kaufland-red border-2 rounded border-gray-400 shadow-xl relative overflow-auto" @keydown.enter="loginUser">
       <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="loginFinished"><i class="pi pi-times"></i></div>
-      <div class="skew-div absolute h-full w-full overflow-hidden z-0"></div>
+      <div class="skew-div hidden md:block absolute h-full w-full overflow-hidden z-0"></div>
       <div class="flex flex-col items-center p-10">
         <h2 class="mb-10 text-center text-white text-4xl uppercase font-kaufland-bold">Prijavi se u K-marke(t) igricu</h2>
         <div class="grid auto-rows-fr z-10 w-full md:w-2/3">
@@ -20,8 +20,8 @@
                 @clicked="loginUser"/>
           </div>
           <div class="text-white flex flex-col underline mt-6 gap-4">
-            <button @click="forgotPassword()" class="hover:text-gray-300 transition-colors">Zaboravljena lozinka?</button>
-            <button @click="registerFromLogin()" class="hover:text-gray-300 transition-colors">Nisi registriran? Registriraj se ovdje</button>
+            <button @click="forgotPassword()" class="hover:text-gray-300 font-kaufland-bold transition-colors">Zaboravljena lozinka?</button>
+            <button @click="registerFromLogin()" class="hover:text-gray-300 font-kaufland-bold transition-colors">Nisi registriran? Registriraj se ovdje</button>
           </div>
         </div>
       </div>

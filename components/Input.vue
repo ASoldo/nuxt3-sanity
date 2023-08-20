@@ -12,7 +12,7 @@
           :placeholder="placeholder"
           :value="inputValue"
           @input="updateValue"
-          :class="{'pl-10': icon, 'bg-gray-200': disabled}"
+          :class="{'pl-10': icon, 'bg-gray-200 disabled': disabled}"
           :disabled="disabled"
           class="outline-none shadow bg-white border w-full py-2 px-3 text-kaufland-dark-red font-kaufland-bold text-xl leading-tight focus:outline-none focus:shadow-outline"
       />
@@ -94,5 +94,11 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.disabled {
+  -webkit-text-fill-color: rgba(130, 0, 1, 0.6);
+  color: rgba(130, 0, 1, 0.6);
+  opacity: 1; /* required on iOS */
 }
 </style>

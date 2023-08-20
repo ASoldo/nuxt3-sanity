@@ -7,7 +7,7 @@
       <div class="flex justify-center items-center text-4xl font-kaufland-bold mb-4 pt-2 uppercase">
         Registriraj se
       </div>
-      <div class="mb-2 z-10">
+      <div class="mb-2 z-10 font-kaufland-bold">
         Prije unosa podataka upoznaj se s Pravilima natječaja, Uvjetima korištenja i Pravilima privatnosti
       </div>
       <div class="grid auto-rows-fr z-10">
@@ -19,7 +19,7 @@
                label="Ponovi Lozinku*"/>
         <Input v-model="promo" placeholder="Kaufland Card Kod" label="Kaufland Card Kod"/>
       </div>
-      <div class="mx-4 text-sm">
+      <div class="mx-4 text-sm font-kaufland-bold">
         Svoj kod za ostvarivanje prednosti u igrici K-MARKE(t) možeš potražiti u Kaufland Card aplikaciji i unijeti ga sad ovdje ili naknadno u svom profilu.
       </div>
       <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
@@ -29,7 +29,7 @@
       <div class="">
         <div class="flex md:flex-row flex-col items-center justify-center">
           <div class="mr-4 pt-2 z-10">
-            <label>
+            <label class="font-kaufland-bold">
               <input type="checkbox" v-model="termsAndCond"/>
               Suglasan/a sam i prihvaćam Pravila natječaja, Uvjete korištenja
               i Pravila privatnosti te korištenje mojih osobnih podataka za
@@ -38,7 +38,7 @@
             </label>
           </div>
           <div class="pt-2 z-10">
-            <label>
+            <label class="font-kaufland-bold">
               <input type="checkbox"/>
               Prijavljujem se za dodatne pogodnosti i primanje informativnih i
               promotivnih poruka i sadržaja od strane Kauflanda, kao i

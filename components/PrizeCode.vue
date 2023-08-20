@@ -1,6 +1,6 @@
 
 <template>
-  <img src="../assets/images/qrcodedummy.png" alt="" />
+  <img :src="prize.prizes.qr_code_url" alt="QR kod nagrade" />
 </template>
 
 <script setup lang="ts">

@@ -20,7 +20,7 @@
           <!-- </h1> -->
         </div>
         <h1 class="text-white font-kaufland-bold z-10">
-          TOP 10 najboljih igraca danas
+          TOP 10 najboljih igrača danas
         </h1>
         <div class="overflow-x-auto w-full md:w-fit z-10">
           <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
