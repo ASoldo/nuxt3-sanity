@@ -63,6 +63,9 @@ type UserPrize = {
 };
 
 export default defineEventHandler(async (event) => {
+  const queryParam = getQuery(event);
+  const qr_code_url = queryParam.qr_code_url;
+  const prize_id = queryParam.prize_id;
   try {
     // Initialize the Supabase client
     const client = serverSupabaseClient(event);
@@ -82,7 +85,7 @@ export default defineEventHandler(async (event) => {
       const userPrizeData: UserPrize[] = [
         {
           profile_id: user.user_uuid,
-          prize_id: 1, // Uncomment and set if you have a prize_id
+          prize_id: prize_id as any,
         },
       ];
       console.log(userPrizeData);
@@ -99,32 +102,39 @@ export default defineEventHandler(async (event) => {
       }
 
       // 2b. Send email
-      // const message = {
-      //   from_email: 'noreply@k-marke-t.com',
-      //   to: [{ email: user.profiles.email, type: 'to' }],
-      //   subject: 'K-MARKE-T Nagrada',
-      //   global_merge_vars: [
-      //     {
-      //       name: 'our_custom_field',
-      //       content: `Best score: ${user.best_score}`, // Assuming you want to send the best score
-      //     },
-      //   ],
-      // };
-      //
-      // const emailResponse = await fetch('https://mandrillapp.com/api/1.0/messages/send-template.json', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     key: 'md-pJDueXYIpD8oYQInMqPDVA',
-      //     template_name: 'kauf-weekly',
-      //     template_content: [{ name: 'main', content: '<h1>Example content</h1>' }],
-      //     message: message,
-      //   }),
-      // });
-      //
-      // if (!emailResponse.ok) {
-      //   console.error(`Error sending email to ${user.profiles.email}: ${emailResponse.statusText}`);
-      // }
+      const message = {
+        from_email: "noreply@k-marke-t.com",
+        to: [{ email: user.profiles.email, type: "to" }],
+        subject: "K-MARKE-T Nagrada",
+        global_merge_vars: [
+          {
+            name: "our_custom_field",
+            content: qr_code_url,
+          },
+        ],
+      };
+
+      const emailResponse = await fetch(
+        "https://mandrillapp.com/api/1.0/messages/send-template.json",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            key: "md-pJDueXYIpD8oYQInMqPDVA",
+            template_name: "kauf-weekly",
+            template_content: [
+              { name: "main", content: "<h1>Example content</h1>" },
+            ],
+            message: message,
+          }),
+        }
+      );
+
+      if (!emailResponse.ok) {
+        console.error(
+          `Error sending email to ${user.profiles.email}: ${emailResponse.statusText}`
+        );
+      }
     }
 
     // return { status: 'success', message: 'Emails sent' };
@@ -136,3 +146,4 @@ export default defineEventHandler(async (event) => {
 });
 
 // (profile_id = auth.uid()) for user_prizes
+// curl -v "http://localhost:3000/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
