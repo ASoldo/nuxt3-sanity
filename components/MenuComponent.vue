@@ -103,6 +103,7 @@ import { useProfileUpdateStore } from "~/stores/profile_update";
 
 const user = useSupabaseUser();
 const client = useSupabaseClient();
+const { auth } = useSupabaseAuthClient();
 
 const target = ref(null);
 const navigationTarget = ref(null);
@@ -121,11 +122,21 @@ onMounted(() => {
   getProfileData()
 });
 
-const getProfileData = async () => {
+auth.onAuthStateChange((event, session) => {
+  if (event == 'SIGNED_IN') {
+    getProfileData(session?.user.id);
+  }
+})
+
+const getProfileData = async (userId: string | undefined = user.value?.id) => {
+  console.log('userId', userId)
+  if(!userId) {
+    return;
+  }
   profile.value = await client
       .from("profiles")
       .select("*")
-      .eq("id", user.value?.id);
+      .eq("id", userId);
 
   console.log(profile.value);
   console.log(
