@@ -26,7 +26,7 @@
           <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
             <table class="min-w-full">
               <tbody class="">
-                <tr v-for="(item, index) in leaderboard.data" :key="index"
+                <tr v-for="(item, index) in leaderboard.data.slice(0, 10)" :key="index"
                   :class="{ 'bg-black': item.user_uuid == user?.id }">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span class="text-white text-center">
