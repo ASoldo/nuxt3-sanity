@@ -130,7 +130,7 @@ const getProfileData = async () => {
   console.log(profile.value);
   console.log(
       "Menu component profile data: ",
-      profile.value.data[0].first_name
+      profile.value?.data?.[0]?.first_name
   );
 }
 

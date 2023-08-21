@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { promoCodeValidator } from "~/internals/validators";
+import { promoCodeValidator, updatePromoCode } from "~/internals/validators";
 
 interface UserProfile {
   first_name: string;
@@ -87,6 +87,11 @@ const updateProfile = async () => {
 
   if (!(await promoCodeValidator(promo.value))) {
     errorMsg.value = "Nespravan Kaufland Card kod!"
+    return;
+  }
+
+  if(promo.value != profile_data.value.data[0].promo && !(await updatePromoCode(promo.value))) {
+    errorMsg.value = "Kaufland Card već iskorišten!"
     return;
   }
 

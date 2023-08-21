@@ -8,7 +8,7 @@
         Registriraj se
       </div>
       <div class="mb-2 z-10 font-kaufland-bold">
-        Prije unosa podataka upoznaj se s Pravilima natječaja, Uvjetima korištenja i Pravilima privatnosti
+        Prije unosa podataka upoznaj se s <KmarketLink href="https://legal.k-marke-t.com/pravila.pdf">Pravilima natječaja</KmarketLink>, Uvjetima korištenja i Pravilima privatnosti
       </div>
       <div class="grid auto-rows-fr z-10">
         <Input v-model="first_name" placeholder="Ime" label="Ime*"/>
@@ -31,7 +31,7 @@
           <div class="mr-4 pt-2 z-10">
             <label class="font-kaufland-bold">
               <input type="checkbox" v-model="termsAndCond"/>
-              Suglasan/a sam i prihvaćam Pravila natječaja, Uvjete korištenja
+              Suglasan/a sam i prihvaćam <KmarketLink href="https://legal.k-marke-t.com/pravila.pdf">Pravila natječaja</KmarketLink>, Uvjete korištenja
               i Pravila privatnosti te korištenje mojih osobnih podataka za
               potrebe provođenja i informiranja o nagradnom natječaju, odnosno
               za potrebe realizacije nagrade ako budem dobitnik/ca.
@@ -63,7 +63,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useLoadingStore } from '@/stores/loading';
-import { promoCodeValidator, validateEmail } from "~/internals/validators";
+import { promoCodeValidator, updatePromoCode, validateEmail } from "~/internals/validators";
+import KmarketLink from "~/components/KmarketLink.vue";
 
 const { auth } = useSupabaseAuthClient();
 const loadingStore = useLoadingStore();
@@ -142,13 +143,18 @@ const register = async () => {
     return;
   }
 
+  if(!(await updatePromoCode(promo.value))) {
+    errorMsg.value = "Kaufland Card već iskorišten!"
+    return;
+  }
+
   signUp();
 };
 
 const signUp = async () => {
   try {
     loadingStore.showLoading();
-    const data = await auth.signUp({
+    const { user, error } = await auth.signUp({
       email: email.value,
       password: password.value,
       options: {
@@ -160,9 +166,12 @@ const signUp = async () => {
         },
       },
     });
-    console.log("SignUp Data: ", data);
-    if(data.error) {
-      errorMsg.value = "Pogreška pri registraciji!"
+
+    if (error) {
+      console.error('SignUp Error:', error.message);
+      errorMsg.value = error.message.includes('already exists')
+          ? 'Račun sa ovim emailom već postoji!'
+          : 'Pogreška pri registraciji!';
       return;
     }
     emitRegister();

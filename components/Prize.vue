@@ -49,7 +49,7 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  date.value = moment(String(props.prize.created_at)).format('MM.DD.YYYY')
+  date.value = moment(String(props.prize.created_at)).format('DD.MM.YYYY')
 })
 
 const showQRFull = () => {
