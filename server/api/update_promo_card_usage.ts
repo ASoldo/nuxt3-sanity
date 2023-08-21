@@ -33,8 +33,8 @@
 import { serverSupabaseClient } from "#supabase/server";
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
-  const promo = body.promo;
+  const queryParam = getQuery(event);
+  const promo = queryParam.promo;
   const promoCardCodeToSetTrue = promo;
 
   // Check if promoCardCodeToSetTrue is valid before proceeding
@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
       }
 
       // If the promo card code is already used, return an error
-      if (existingData?.used) {
+      if ((existingData as any)?.used) {
         console.error("Promo card code is already used.");
         return { status: "Kod kartice je već iskorišten", code: false };
       }
