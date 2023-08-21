@@ -59,7 +59,7 @@
             <i v-if="user"
               class="pi pi-user bg-white h-6 w-6 mr-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"></i>
             <!-- {{ user?.user_metadata.first_name }} -->
-            {{ profile?.data[0].first_name }}
+            {{ profile?.data[0]?.first_name }}
           </div>
 
           <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
