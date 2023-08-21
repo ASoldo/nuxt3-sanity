@@ -58,8 +58,8 @@
             <!--   alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" /> -->
             <i v-if="user"
               class="pi pi-user bg-white h-6 w-6 mr-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"></i>
-            {{ user?.user_metadata.first_name }}
-            <!-- {{ profile?.data[0]?.first_name }} -->
+<!--            {{ user?.user_metadata.first_name }}-->
+             {{ profile?.data?.[0]?.first_name }}
           </div>
 
           <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
@@ -96,6 +96,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useProfileUpdateStore } from "~/stores/profile_update";
 // import { DialogElement } from "../internals/interfaces";
 //
 // const dialog = ref<DialogElement | null>(null);
@@ -109,18 +110,29 @@ const navigationTarget = ref(null);
 const menuState = ref(false);
 const navigationState = ref(false);
 const profile = ref();
-onMounted(async () => {
+
+const profileUpdatedStore = useProfileUpdateStore();
+
+profileUpdatedStore.$onAction(({ name }) => {
+  getProfileData();
+})
+
+onMounted(() => {
+  getProfileData()
+});
+
+const getProfileData = async () => {
   profile.value = await client
-    .from("profiles")
-    .select("*")
-    .eq("id", user.value?.id);
+      .from("profiles")
+      .select("*")
+      .eq("id", user.value?.id);
 
   console.log(profile.value);
   console.log(
-    "Menu component profile data: ",
-    profile.value.data[0].first_name
+      "Menu component profile data: ",
+      profile.value.data[0].first_name
   );
-});
+}
 
 onClickOutside(target, () => toggleMenu());
 onClickOutside(navigationTarget, () => toggleNavigationMenu());

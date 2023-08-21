@@ -3,7 +3,8 @@
     <div class="text-white w-full md:w-[120px] font-kaufland-bold text-xl uppercase">
       {{ label }}
     </div>
-    <div class="relative flex-1 flex items-center">
+    <div class="relative flex-1 flex items-center"
+         v-if="!readonly">
       <span v-if="icon" class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
         <i :class="'pi pi-fw ' + icon"></i>
       </span>
@@ -27,6 +28,9 @@
           <i class="pi pi-eye-slash absolute top-[-10px]" v-if="showPassword"></i>
         </Transition>
       </div>
+    </div>
+    <div class="text-xl font-kaufland-bold" v-if="readonly">
+      {{inputValue}}
     </div>
   </div>
 </template>
@@ -58,6 +62,10 @@ export default {
       default: ''
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }

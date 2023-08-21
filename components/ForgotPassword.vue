@@ -6,7 +6,7 @@
     <div class="p-8 md:p-16 mb-4 z-10 flex flex-col justify-center items-center">
       <div class="uppercase text-4xl font-kaufland-bold mb-6 text-center">Zaboravljena lozinka</div>
       <Input type="email" v-model="email" placeholder="Upišite svoj email" label="Email" class="mb-2 w-full"/>
-      <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
+      <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
         <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
         {{ error }}
       </div>

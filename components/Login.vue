@@ -9,7 +9,7 @@
           <Input :type="'password'" v-model="password" placeholder="Lozinka" label="Lozinka"/>
         </div>
         <div class="flex flex-col z-10">
-          <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
+          <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
             <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
             {{error}}
           </div>

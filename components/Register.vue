@@ -22,7 +22,7 @@
       <div class="mx-4 text-sm font-kaufland-bold">
         Svoj kod za ostvarivanje prednosti u igrici K-MARKE(t) možeš potražiti u Kaufland Card aplikaciji i unijeti ga sad ovdje ili naknadno u svom profilu.
       </div>
-      <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
+      <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
         <i v-if="errorMsg" class="pi pi-exclamation-triangle mr-2"></i>
         {{ errorMsg }}
       </div>
@@ -63,7 +63,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useLoadingStore } from '@/stores/loading';
-import { validateEmail } from "~/internals/validators";
+import { promoCodeValidator, validateEmail } from "~/internals/validators";
 
 const { auth } = useSupabaseAuthClient();
 const loadingStore = useLoadingStore();
@@ -109,16 +109,6 @@ const validateRegistrationData = () => {
   // Add any other validation logic you need
   return email.value && password.value && first_name.value && last_name.value && (password.value === repeatPassword.value);
 };
-const checkPromoCode = async () => {
-  if(!promo.value) {
-    return true;
-  }
-  const promoCode =  await $fetch(
-      `/api/check_promo_code?promo_card_code=${ promo.value }`
-  );
-  return promoCode.code;
-};
-
 const register = async () => {
   if(!termsAndCond.value) {
     errorMsg.value = "Prihvatite uvjete korištenja!"
@@ -147,7 +137,7 @@ const register = async () => {
     return;
   }
 
-  if(!(await checkPromoCode())) {
+  if(!(await promoCodeValidator(promo.value))) {
     errorMsg.value = "Nespravan Kaufland card kod!"
     return;
   }

@@ -13,7 +13,7 @@
             <Input type="password" v-model="newPassword" placeholder="Lozinka" label="Lozinka*"/>
             <Input type="password" v-model="confirmPassword" placeholder="Ponovi Lozinku" label="Ponovi Lozinku*" />
           </div>
-          <div class="relative text-white text-2xl flex justify-center items-baseline h-[40px]">
+          <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
             <i v-if="updateErrorMessage" class="pi pi-exclamation-triangle mr-2"></i>
             {{ updateErrorMessage }}
           </div>
