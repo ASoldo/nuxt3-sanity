@@ -138,7 +138,7 @@ const register = async () => {
   }
 
   if(!(await promoCodeValidator(promo.value))) {
-    errorMsg.value = "Nespravan Kaufland card kod!"
+    errorMsg.value = "Nespravan Kaufland Card kod!"
     return;
   }
 

@@ -20,7 +20,7 @@
             <!-- </div> -->
             <!-- <div class="bg-kaufland-red p-3 text-white font-bold text-xl"> -->
             <!--   <h1> -->
-            <!--     Iz Kaufland card aplikacije i ostvari -->
+            <!--     Iz Kaufland Card aplikacije i ostvari -->
             <!--     <span class="font-kaufland-heavy">10 SEKUNDI PREDNOSTI U IGRICI!</span> -->
             <!--   </h1> -->
             <!-- </div> -->
@@ -49,7 +49,7 @@
       <!-- </div> -->
       <div class="w-full flex flex-col justify-center items-center p-4">
         <h1 class="text-white">
-          Ako još uvijek nemaš Kaufland card, nabavi ga
+          Ako još uvijek nemaš Kaufland Card, nabavi ga
           <a href="https://moj.kaufland.hr/prijava.html" target="_blank" class="underline hover:text-black font-kaufland-bold transition-colors" >ovdje</a>
         </h1>
       </div>
@@ -80,7 +80,7 @@ const steps = [
     number: 1,
     imageSrc: popustBox,
     imageAlt: '',
-    description: 'Uđi u Kaufland card aplikaciju i klikni na kupone.',
+    description: 'Uđi u Kaufland Card aplikaciju i klikni na kupone.',
   },
   {
     number: 2,
