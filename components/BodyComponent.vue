@@ -53,14 +53,16 @@
           klikom na rubriku Moje nagrade.
         </p>
         <p class="mb-2 text-md font-bold text-center">
-          <span class="text-white">Aktivacija kôda prilikom preuzimanja dnevne nagrade iznosi 0,02
-            €.</span>
+          <span class="text-white">Aktivacija nagradnog natječaja prilikom preuzimanja dnevne nagrade
+            iznosi ukupno 0,02 € (0,01 € za aktivaciju koda i 0,01 € za
+            aktivaciju odabranog proizvoda).</span>
         </p>
       </div>
 
       <!-- Image Container -->
       <div class="w-full md:w-1/2 px-4 -mt-12 md:mt-0 ml-0 md:-ml-24 flex justify-center">
-        <img src="../assets/images/kolica.png" alt="Description" class="w-96 md:w-full z-10 overflow-hidden md:scale-125" />
+        <img src="../assets/images/kolica.png" alt="Description"
+          class="w-96 md:w-full z-10 overflow-hidden md:scale-125" />
       </div>
     </div>
   </div>
