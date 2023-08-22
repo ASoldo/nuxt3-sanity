@@ -24,6 +24,11 @@ export default defineEventHandler(async (event) => {
   const gameSession = await fetchResponse.json();
   const latestSession = gameSession[0];
 
+  // If there's no session data, return immediately with a positive response
+  if (!latestSession) {
+    return { code: true, message: "Igraj Igru!", error: null };
+  }
+
   const sessionDate = new Date(latestSession.created_at)
     .toISOString()
     .slice(0, 10);
