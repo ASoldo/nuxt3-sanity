@@ -36,11 +36,11 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (!user.value && to.path === "/game") {
     return navigateTo("/");
   }
-  if (user.value && to.path === "/game") {
-    // checkGameSession();
-    console.log("Check Game Session");
-    console.log(checkGameSession());
-  }
+  // if (user.value && to.path === "/game") {
+  //   // checkGameSession();
+  //   console.log("Check Game Session");
+  //   console.log(checkGameSession());
+  // }
 
   if (!user.value && to.path === "/profile") {
     return navigateTo("/");
