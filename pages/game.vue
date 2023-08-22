@@ -93,8 +93,8 @@ const setUpGame = async () => {
   //const correctItems = gameConfigData.correctItems;
   const activeRoom = startGameData.data.gameData.result.active_room;
   // console.log(gameConfigData);
-  console.log(startGameData);
-  console.log(activeRoom);
+  // console.log(startGameData);
+  // console.log(activeRoom);
 
   // Store roomData to the reactive roomData reference
   // roomData.value = roomDataVal;
@@ -140,7 +140,7 @@ const setUpGame = async () => {
   };
 
   CustomObject.value = JSON.stringify(customObject);
-  console.log(JSON.stringify(CustomObject.value));
+  // console.log(JSON.stringify(CustomObject.value));
   // console.log("JWT: ", customObject.jwt.access_token);
   return CustomObject.value;
 };
@@ -155,7 +155,7 @@ onMounted(() => {
 });
 const processMessage = async (e: MessageEvent) => {
   if (e.data.message === "Signal" && game.value?.contentWindow != null) {
-    console.log(e.data);
+    // console.log(e.data);
 
     game.value?.contentWindow?.postMessage(
       {
@@ -169,7 +169,7 @@ const processMessage = async (e: MessageEvent) => {
     );
   }
   if (e.data.message === "Handshake" && game.value?.contentWindow != null) {
-    console.log(e.data);
+    // console.log(e.data);
 
     game.value?.contentWindow?.postMessage(
       {
@@ -182,7 +182,7 @@ const processMessage = async (e: MessageEvent) => {
     );
   }
   if (e.data.message === "Homepage" && game.value?.contentWindow != null) {
-    console.log(e.data);
+    // console.log(e.data);
     navigateTo("/");
   }
   // if (e.data.message === "EndGame") {

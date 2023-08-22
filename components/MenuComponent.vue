@@ -58,8 +58,8 @@
             <!--   alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" /> -->
             <i v-if="user"
               class="pi pi-user bg-white h-6 w-6 mr-2 flex flex-row justify-center items-center rounded-full outline outline-1 outline-red-500"></i>
-<!--            {{ user?.user_metadata.first_name }}-->
-             {{ profile?.data?.[0]?.first_name }}
+            <!--            {{ user?.user_metadata.first_name }}-->
+            {{ profile?.data?.[0]?.first_name }}
           </div>
 
           <a v-if="user" v-for="(item, index) in props.itemsUserMenu?.items.loggedIn" :key="index" href="#"
@@ -116,35 +116,31 @@ const profileUpdatedStore = useProfileUpdateStore();
 
 profileUpdatedStore.$onAction(({ name }) => {
   getProfileData();
-})
+});
 
 onMounted(() => {
-  getProfileData()
+  getProfileData();
 });
 
 auth.onAuthStateChange((event, session) => {
-  if (event == 'SIGNED_IN') {
+  if (event == "SIGNED_IN") {
     getProfileData(session?.user.id);
   }
-})
+});
 
 const getProfileData = async (userId: string | undefined = user.value?.id) => {
-  console.log('userId', userId)
-  if(!userId) {
+  // console.log('userId', userId)
+  if (!userId) {
     return;
   }
-  profile.value = await client
-      .from("profiles")
-      .select("*")
-      .eq("id", userId);
+  profile.value = await client.from("profiles").select("*").eq("id", userId);
 
-  console.log(profile.value);
-  console.log(
-      "Menu component profile data: ",
-      profile.value?.data?.[0]?.first_name
-  );
-}
-
+  // console.log(profile.value);
+  // console.log(
+  //     "Menu component profile data: ",
+  //     profile.value?.data?.[0]?.first_name
+  // );
+};
 onClickOutside(target, () => toggleMenu());
 onClickOutside(navigationTarget, () => toggleNavigationMenu());
 const props = defineProps({

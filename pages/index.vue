@@ -100,7 +100,7 @@ const invoke_edge = async () => {
     console.error("Error invoking function:", error);
     return;
   }
-  console.log(data);
+  // console.log(data);
   edgeLordData.value = data;
 };
 
@@ -114,7 +114,7 @@ const increment_clicks = async () => {
   if (error) {
     console.error(error);
   } else {
-    console.log(data);
+    // console.log(data);
   }
 };
 
@@ -122,7 +122,7 @@ const { count, increment } = useCounterStore();
 
 const leaderboard = ref();
 leaderboard.value = await $fetch("/api/leaderboard");
-console.log(leaderboard.value);
+// console.log(leaderboard.value);
 
 definePageMeta({
   middleware: ["auth"],

@@ -33,14 +33,8 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-x-6 gap-y-4 p-4">
-        <StepComponent
-            v-for="(step, index) in steps"
-            :key="index"
-            :stepNumber="step.number"
-            :imageSrc="step.imageSrc"
-            :imageAlt="step.imageAlt"
-            :stepDescription="step.description"
-        />
+        <StepComponent v-for="(step, index) in steps" :key="index" :stepNumber="step.number" :imageSrc="step.imageSrc"
+          :imageAlt="step.imageAlt" :stepDescription="step.description" />
       </div>
     </div>
     <div class="w-full pt-5 mt-5">
@@ -50,7 +44,8 @@
       <div class="w-full flex flex-col justify-center items-center p-4">
         <h1 class="text-white">
           Ako još uvijek nemaš Kaufland Card, nabavi ga
-          <a href="https://moj.kaufland.hr/prijava.html" target="_blank" class="underline hover:text-black font-kaufland-bold transition-colors" >ovdje</a>
+          <a href="https://moj.kaufland.hr/prijava.html" target="_blank"
+            class="underline hover:text-black font-kaufland-bold transition-colors">ovdje</a>
         </h1>
       </div>
     </div>
@@ -68,37 +63,38 @@ const props = defineProps({
   image: Object,
 });
 
-console.log(props.image);
+// console.log(props.image);
 
-import popustBox from '../assets/images/popust_box.png';
-import popust from '../assets/images/popust.png';
-import tockiceStrelica from '../assets/images/tockice_strelica.png';
-import stoperica from '../assets/images/stoperica.png';
+import popustBox from "../assets/images/popust_box.png";
+import popust from "../assets/images/popust.png";
+import tockiceStrelica from "../assets/images/tockice_strelica.png";
+import stoperica from "../assets/images/stoperica.png";
 
 const steps = [
   {
     number: 1,
     imageSrc: popustBox,
-    imageAlt: '',
-    description: 'Uđi u Kaufland Card aplikaciju i klikni na kupone.',
+    imageAlt: "",
+    description: "Uđi u Kaufland Card aplikaciju i klikni na kupone.",
   },
   {
     number: 2,
     imageSrc: popust,
-    imageAlt: '',
-    description: 'Pronađi kupon za 10 sekundi prednosti u K-MARKE(t) igrici.',
+    imageAlt: "",
+    description: "Pronađi kupon za 10 sekundi prednosti u K-MARKE(t) igrici.",
   },
   {
     number: 3,
     imageSrc: tockiceStrelica,
-    imageAlt: '',
-    description: 'Registriraj se prije početka igre i pritom unesi broj kupona.',
+    imageAlt: "",
+    description:
+      "Registriraj se prije početka igre i pritom unesi broj kupona.",
   },
   {
     number: 4,
     imageSrc: stoperica,
-    imageAlt: '',
-    description: 'Svaki dan u igrici iskoristi 10 sekundi prednosti.',
+    imageAlt: "",
+    description: "Svaki dan u igrici iskoristi 10 sekundi prednosti.",
   },
 ];
 

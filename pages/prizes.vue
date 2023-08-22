@@ -1,5 +1,26 @@
+<!-- <template> -->
+<!--   <Loading /> -->
+<!--   <div class="flex flex-col pt-14 h-full"> -->
+<!--     <div class="flex grow justify-center"> -->
+<!--       <div class="flex w-full md:w-2/3 justify-center"> -->
+<!--         <div class="w-full p-6 m-4 bg-kaufland-red text-white min-h-[95%] rounded shadow-lg"> -->
+<!--           <h1 class="text-2xl font-kaufland-bold">Moje nagrade</h1> -->
+<!--           <div> -->
+<!--             <div v-for="(item, key) in user_prizes_data" :key="key" class="p-3 flex flex-wrap justify-center gap-8"> -->
+<!--               <Prize :prize="item" /> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="mt-5 ml-2 font-kaufland-bold" v-if="user_prizes_data?.length === 0"> -->
+<!--             Još uvijek nemate nagrada -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </template> -->
+
 <template>
-  <Loading/>
+  <Loading />
   <div class="flex flex-col pt-14 h-full">
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-2/3 justify-center">
@@ -8,7 +29,7 @@
           <!-- Insert profile related content here -->
           <div>
             <div v-for="(item, key) in user_prizes_data" :key="key" class="p-3 flex flex-wrap justify-center gap-8">
-              <Prize :prize="item"/>
+              <Prize v-if="isPrizeValid(item)" :prize="item" />
             </div>
           </div>
           <div class="mt-5 ml-2 font-kaufland-bold" v-if="user_prizes_data?.length === 0">
@@ -25,7 +46,7 @@ import { ref, onMounted } from "vue";
 import { useLoadingStore } from "~/stores/loading";
 
 definePageMeta({
-  middleware: [ "auth" ],
+  middleware: ["auth"],
 });
 
 const user = useSupabaseUser();
@@ -36,21 +57,29 @@ const jwt = ref("");
 
 const loadingStore = useLoadingStore();
 
+const isPrizeValid = (prize: any) => {
+  const currentDate = new Date();
+  const validFrom = new Date(prize.prizes.valid_from);
+  const validTo = new Date(prize.prizes.valid_to);
+
+  return currentDate >= validFrom && currentDate <= validTo;
+};
+
 onMounted(async () => {
-  const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/user_prizes?profile_id=eq.${ user.value?.id }`;
-  console.log(user);
+  const supabaseUrl = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/user_prizes?profile_id=eq.${user.value?.id}`;
+  // console.log(user);
   try {
     jwt.value = localStorage.getItem(
-        "sb-kxbzixfkcjexfwfacnzq-auth-token"
+      "sb-kxbzixfkcjexfwfacnzq-auth-token"
     ) as string;
 
     // Fetch user prizes based on profile_id
     const { data: userPrizes, error: userPrizesError } = await client
-        .from("user_prizes")
-        .select(
-            "id,prize_id, profile_id, created_at, prizes: prize_id(id,prize_code,description, qr_code_url)"
-        )
-        .eq("profile_id", user.value?.id);
+      .from("user_prizes")
+      .select(
+        "id,prize_id, profile_id, created_at, prizes: prize_id(id,prize_code,description, qr_code_url, valid_from, valid_to)"
+      )
+      .eq("profile_id", user.value?.id);
 
     if (userPrizesError) {
       console.error("Error fetching user prizes:", userPrizesError.message);
@@ -58,12 +87,11 @@ onMounted(async () => {
     }
 
     user_prizes_data.value = userPrizes;
+    // isPrizeValid(user_prizes_data.value);
     console.log("User prize data: ", user_prizes_data.value);
-
   } catch (error) {
     console.error("Unexpected error:", error);
   } finally {
-
     loadingStore.hideLoading();
   }
   // // Fetch detailed information for each prize
@@ -83,7 +111,6 @@ onMounted(async () => {
   // }
   //
   // console.log("User Prizes with details:", user_prizes_data.value);
-
 });
 
 // onMounted(async () => {

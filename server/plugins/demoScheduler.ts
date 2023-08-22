@@ -9,7 +9,7 @@ function startScheduler() {
 
   scheduler
     .run(() => {
-      console.log("Cool beans! I run when Roots tells me to");
+      // console.log("Cool beans! I run when Roots tells me to");
     })
     .everySeconds(5);
 }
