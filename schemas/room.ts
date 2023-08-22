@@ -53,9 +53,10 @@ export const room = {
     },
     prepare(selection: any) {
       return {
-        title: `${selection.title} > Hotspots: ${selection.hotspotCount.length || 0
-          } > Interactable: ${selection.interactableCount.length * 4 || 0
-          } > Total: ${selection.hotspotCount.length + selection.interactableCount.length * 4
+        title: `${selection?.title} > Hotspots: ${selection?.hotspotCount?.length || 0
+          } > Interactable: ${selection?.interactableCount?.length * 4
+          } > Total: ${selection?.hotspotCount?.length ||
+          0 + selection?.interactableCount?.length * 4
           }`,
       };
     },
