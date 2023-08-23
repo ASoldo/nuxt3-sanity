@@ -32,6 +32,7 @@
 
 <script lang="ts" setup>
 import RegisterSuccess from "~/components/RegisterSuccess.vue";
+import { onMounted } from "vue";
 
 const user = useSupabaseUser();
 const { auth } = useSupabaseAuthClient();
@@ -55,6 +56,14 @@ const login_dialog = ref<DialogElement | null>(null);
 const registerDialog = ref<DialogElement | null>(null);
 const success_msg = ref<DialogElement | null>(null);
 const forgot_password = ref<DialogElement | null>(null);
+
+// onMounted(() => {
+//   if (user.value) {
+//     setInterval(() => {
+//       window.location.reload();
+//     }, 1000);
+//   }
+// });
 
 const closeLogin = () => {
   login_dialog.value?.close();

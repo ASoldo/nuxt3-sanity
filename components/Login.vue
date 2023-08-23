@@ -1,39 +1,46 @@
 <template>
-    <div class="bg-kaufland-red border-2 rounded border-gray-400 shadow-xl relative overflow-auto" @keydown.enter="loginUser">
-      <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="loginFinished"><i class="pi pi-times"></i></div>
-      <div class="skew-div hidden md:block absolute h-full w-full overflow-hidden z-0"></div>
-      <div class="flex flex-col items-center p-10">
-        <h2 class="mb-10 text-center text-white text-4xl uppercase font-kaufland-bold">Prijavi se u K-marke(t) igricu</h2>
-        <div class="grid auto-rows-fr z-10 w-full md:w-2/3">
-          <Input type="email" v-model="email" placeholder="Email" label="Email" class="mb-2"/>
-          <Input :type="'password'" v-model="password" placeholder="Lozinka" label="Lozinka"/>
+  <div class="bg-kaufland-red border-2 rounded border-gray-400 shadow-xl relative overflow-auto"
+    @keydown.enter="loginUser">
+    <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200"
+      @click="loginFinished">
+      <i class="pi pi-times"></i>
+    </div>
+    <div class="skew-div hidden md:block absolute h-full w-full overflow-hidden z-0"></div>
+    <div class="flex flex-col items-center p-10">
+      <h2 class="mb-10 text-center text-white text-4xl uppercase font-kaufland-bold">
+        Prijavi se u K-marke(t) igricu
+      </h2>
+      <div class="grid auto-rows-fr z-10 w-full md:w-2/3">
+        <Input type="email" v-model="email" placeholder="Email" label="Email" class="mb-2" />
+        <Input :type="'password'" v-model="password" placeholder="Lozinka" label="Lozinka" />
+      </div>
+      <div class="flex flex-col z-10">
+        <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
+          <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
+          {{ error }}
         </div>
-        <div class="flex flex-col z-10">
-          <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
-            <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
-            {{error}}
-          </div>
-          <div class="flex flex-col">
-            <Button
-                class="mb-2"
-                text="Prijavi se"
-                @clicked="loginUser"/>
-          </div>
-          <div class="text-white flex flex-col underline mt-6 gap-4">
-            <button @click="forgotPassword()" class="hover:text-gray-300 font-kaufland-bold transition-colors">Zaboravljena lozinka?</button>
-            <button @click="registerFromLogin()" class="hover:text-gray-300 font-kaufland-bold transition-colors">Nisi registriran? Registriraj se ovdje</button>
-          </div>
+        <div class="flex flex-col">
+          <Button class="mb-2" text="Prijavi se" @clicked="loginUser" />
+        </div>
+        <div class="text-white flex flex-col underline mt-6 gap-4">
+          <button @click="forgotPassword()" class="hover:text-gray-300 font-kaufland-bold transition-colors">
+            Zaboravljena lozinka?
+          </button>
+          <button @click="registerFromLogin()" class="hover:text-gray-300 font-kaufland-bold transition-colors">
+            Nisi registriran? Registriraj se ovdje
+          </button>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const { auth } = useSupabaseAuthClient();
-import { useLoadingStore } from '@/stores/loading';
-import { useToastStore } from '@/stores/toast';
+import { useLoadingStore } from "@/stores/loading";
+import { useToastStore } from "@/stores/toast";
 import { validateEmail } from "~/internals/validators";
 const email = ref("");
 const password = ref("");
@@ -41,35 +48,37 @@ const error = ref("");
 const loadingStore = useLoadingStore();
 const toastStore = useToastStore();
 
-
 const loginUser = async () => {
-  if(!email.value || !password.value) {
+  if (!email.value || !password.value) {
     error.value = "Upišite sve podatke!";
     return;
   }
-  if( !validateEmail(email.value) ){
-    error.value = "Nespravan mail!"
+  if (!validateEmail(email.value)) {
+    error.value = "Nespravan mail!";
     return;
   }
   try {
     loadingStore.showLoading();
-    const response = await auth.signInWithPassword({ email: email.value, password: password.value });
+    const response = await auth.signInWithPassword({
+      email: email.value,
+      password: password.value,
+    });
     console.log(response);
-    if(response.error) {
+    if (response.error) {
       error.value = "Netočni login podaci";
     } else {
       loginFinished();
-      toastStore.showToast("Uspješna prijava")
+      toastStore.showToast("Uspješna prijava");
     }
   } catch (error) {
-    error.value = "Netočni login podaci";
+    error = "Netočni login podaci";
   } finally {
     loadingStore.hideLoading();
   }
 };
 
 const loginFinished = () => {
-  emit('login-finished');
+  emit("login-finished");
   error.value = "";
 };
 
@@ -77,14 +86,13 @@ const emit = defineEmits();
 
 const forgotPassword = () => {
   loginFinished();
-  emit('forgot-password-clicked');
+  emit("forgot-password-clicked");
 };
 
 const registerFromLogin = () => {
   loginFinished();
-  emit('register-from-login-clicked');
+  emit("register-from-login-clicked");
 };
-
 </script>
 
 <style scoped>

@@ -48,4 +48,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (!user.value && to.path === "/prizes") {
     return navigateTo("/");
   }
+  // if (user.value && to.path === "/success") {
+  //   return navigateTo("/");
+  // }
 });
