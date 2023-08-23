@@ -5,7 +5,7 @@
         <div class="w-full p-6 m-4 bg-kaufland-red text-white rounded shadow-xl">
           <h1 class="text-2xl text-center mb-2 font-semibold">Čestitamo!</h1>
           <h1 class="text-2xl text-center mb-2 font-semibold">
-            Uspjesno ste napravili korisnika
+            Uspješno ste kreirali korisnika
           </h1>
           <!-- <a class="text-center flex justify-center" href="#" @click.prevent="navigateTo('/')">Naslovnica</a> -->
         </div>
@@ -18,9 +18,9 @@
 import { onMounted } from "vue";
 const { auth } = useSupabaseAuthClient();
 onMounted(() => {
-  setInterval(() => {
-    // auth.signOut();
-    navigateTo("/");
-  }, 1000);
+  // setInterval(() => {
+  auth.signOut();
+  navigateTo("/");
+  // }, 1000);
 });
 </script>
