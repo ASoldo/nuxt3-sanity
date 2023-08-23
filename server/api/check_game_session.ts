@@ -12,8 +12,18 @@ export default defineEventHandler(async (event) => {
     Prefer: "return=representation",
   };
 
-  // Fetch the latest game session for the user on the current day with status=1
-  const currentDate = new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  // Get today's date in Europe/Zagreb timezone
+  const currentDateWithSlashes = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Zagreb",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+  const currentDate = currentDateWithSlashes.replace(/\//g, "-");
+
+  console.log("Current date: ", currentDate);
+
   let fetchUrl = `${supabaseUrl}?user_uuid=eq.${user_uuid}&status=eq.1&created_at.gte.${currentDate}T00:00:00+02:00&order=created_at.desc`;
   let fetchResponse = await fetch(fetchUrl, { headers: supabaseHeaders });
 
@@ -26,12 +36,27 @@ export default defineEventHandler(async (event) => {
 
   // If there's no session data, return immediately with a positive response
   if (!latestSession) {
-    return { code: true, message: "Igraj Igru!", error: null };
+    return {
+      code: true,
+      message: "Igraj Igru jer nema sessiona!",
+      error: null,
+      latestSession: latestSession.created_at,
+      currentDate: currentDate,
+    };
   }
 
-  const sessionDate = new Date(latestSession.created_at)
-    .toISOString()
-    .slice(0, 10);
+  const sessionTimestamp = new Date(latestSession.created_at);
+  const sessionDateWithSlashes = sessionTimestamp.toLocaleDateString("en-GB", {
+    timeZone: "Europe/Zagreb",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const sessionDate = sessionDateWithSlashes.replace(/\//g, "-");
+
+  console.log("Session date: ", sessionDate);
+  console.log("Comparing dates:", sessionDate, currentDate);
+
   // If user has a session with status 1 for the current day, don't allow another play
   if (latestSession && sessionDate === currentDate) {
     return {
@@ -43,7 +68,13 @@ export default defineEventHandler(async (event) => {
     };
   }
 
-  return { code: true, message: "Igraj Igru!", error: null };
+  return {
+    code: true,
+    message: "Igraj Igru!",
+    error: null,
+    latestSession: latestSession.created_at,
+    currentDate: currentDate,
+  };
 });
 
 // curl -X POST -v "http://localhost:3000/api/check_game_session" -H "Content-Type: application/json" -d '{"user_uuid": "2c524b6d-6460-49f7-9475-314ef044c313"}' | jq

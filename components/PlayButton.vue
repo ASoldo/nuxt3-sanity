@@ -52,7 +52,7 @@ const playClicked = async () => {
 
     enablePlay.value = response;
     // const timeLeft = timeUntilMidnight(enablePlay?.value?.latestSession) as any;
-    const timeLeft = timeUntilMidnight(Date.now()) as any;
+    const timeLeft = timeUntilMidnight(Date.now());
     playText.value = `Igraj za ${timeLeft.hours}h:${timeLeft.minutes}m`;
 
     console.log("Enable to play status:", enablePlay.value);
