@@ -13,8 +13,7 @@
             <Input v-model="promo" label="KAUFLAND CARD KOD" />
             <p>
               Svoj kod za ostvarivanje prednosti možeš potražiti u Kaufland Card
-              aplikaciji u odjeljku „Moji kuponi" i unijeti ga sad ovdje ili
-              naknadno u svom profilu.
+              aplikaciji u odjeljku „Moji kuponi" i unijeti ga ovdje.
             </p>
           </div>
           <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
