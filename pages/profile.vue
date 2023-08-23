@@ -3,30 +3,21 @@
   <div class="flex flex-col pt-14">
     <div class="flex grow justify-center">
       <div class="flex w-full md:w-1/2 justify-center">
-        <div
-          class="w-full p-6 m-4 bg-kaufland-red text-white rounded shadow-xl"
-          @keydown.enter="updateProfile"
-        >
+        <div class="w-full p-6 m-4 bg-kaufland-red text-white rounded shadow-xl" @keydown.enter="updateProfile">
           <h1 class="text-2xl text-center mb-2 font-semibold">Profil</h1>
           <!-- Insert profile related content here -->
           <div class="grid auto-rows-fr">
-            <Input
-              v-model="email"
-              :readonly="true"
-              placeholder="Email"
-              label="Email"
-            />
+            <Input v-model="email" :readonly="true" placeholder="Email" label="Email" />
             <Input v-model="first_name" placeholder="Upišite ime" label="Ime" />
-            <Input
-              v-model="last_name"
-              placeholder="Upišite prezime"
-              label="Prezime"
-            />
+            <Input v-model="last_name" placeholder="Upišite prezime" label="Prezime" />
             <Input v-model="promo" label="KAUFLAND CARD KOD" />
+            <p>
+              Svoj kod za ostvarivanje prednosti možeš potražiti u Kaufland Card
+              aplikaciji u odjeljku „Moji kuponi" i unijeti ga sad ovdje ili
+              naknadno u svom profilu.
+            </p>
           </div>
-          <div
-            class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]"
-          >
+          <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
             <i v-if="errorMsg" class="pi pi-exclamation-triangle mr-2"></i>
             {{ errorMsg }}
           </div>

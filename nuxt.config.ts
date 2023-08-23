@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     isAcceptNecessaryButtonEnabled: false,
     cookieNameIsConsentGiven: "ncc_c",
     cookieNameCookiesEnabledIds: "ncc_e",
-    locales: ['en', 'hr'],
+    locales: ["en", "hr"],
     cookies: {
       necessary: [
         {
@@ -65,8 +65,7 @@ export default defineNuxtConfig({
           },
         },
       ],
-      optional: [
-      ],
+      optional: [],
     },
   },
 
@@ -101,8 +100,8 @@ export default defineNuxtConfig({
       type: "module",
     },
     manifest: {
-      name: "Kaufland Game",
-      short_name: "KaudlandGame",
+      name: "Kaufland Igra",
+      short_name: "Kaudland Igra",
       theme_color: "#ffffff",
       icons: [
         {

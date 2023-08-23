@@ -35,9 +35,7 @@
                   </td>
                   <td class="text-center text-white px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium">
                     <!-- <span class="pi pi-user pr-2 text-blue-500"></span> -->
-                    {{
-                      item.profiles.first_name + " " + item.profiles.last_name
-                    }}
+                    {{ item.profiles.first_name }}
                   </td>
                   <td class="text-center px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
                     <!-- <span class="pi pi-check px-1 text-green-500"></span> -->
@@ -105,9 +103,9 @@ const invoke_edge = async () => {
 };
 
 const my_user = ref(null);
-const fetchUser = async () => {
-  my_user.value = await $fetch("api/me");
-};
+// const fetchUser = async () => {
+//   my_user.value = await $fetch("api/me");
+// };
 
 const increment_clicks = async () => {
   const { data, error } = await client.rpc("increment_clicks");

@@ -156,18 +156,18 @@ const items = ref({
         navigateTo("/");
       },
     },
-    {
-      label: "Igraj",
-      icon: "pi pi-fw pi-palette",
-      fn: () => {
-        if (!user.value) {
-          loginStore.openLogin();
-          toastStore.showToast("Za igru se potrebno prijaviti!");
-          return;
-        }
-        navigateTo("/game");
-      },
-    },
+    // {
+    //   label: "Igraj",
+    //   icon: "pi pi-fw pi-palette",
+    //   fn: () => {
+    //     if (!user.value) {
+    //       loginStore.openLogin();
+    //       toastStore.showToast("Za igru se potrebno prijaviti!");
+    //       return;
+    //     }
+    //     navigateTo("/game");
+    //   },
+    // },
     {
       label: "Kako igrati",
       icon: "pi pi-fw pi-external-link",
