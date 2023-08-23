@@ -40,12 +40,12 @@ export default defineEventHandler(async (event) => {
       code: true,
       message: "Igraj Igru jer nema sessiona!",
       error: null,
-      latestSession: latestSession.created_at,
+      // latestSession: latestSession.created_at,
       currentDate: currentDate,
     };
   }
 
-  const sessionTimestamp = new Date(latestSession.created_at);
+  const sessionTimestamp = new Date(latestSession?.created_at);
   const sessionDateWithSlashes = sessionTimestamp.toLocaleDateString("en-GB", {
     timeZone: "Europe/Zagreb",
     year: "numeric",
