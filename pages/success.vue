@@ -19,7 +19,7 @@ import { onMounted } from "vue";
 const { auth } = useSupabaseAuthClient();
 onMounted(() => {
   // setInterval(() => {
-  auth.signOut();
+  // auth.signOut();
   navigateTo("/");
   // }, 1000);
 });
