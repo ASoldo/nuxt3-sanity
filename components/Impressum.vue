@@ -23,14 +23,13 @@
 
     <div class="flex flex-col md:items-start items-center">
       <h1 class="font-kaufland-bold mb-2">POLITIKA PRIVATNOSTI</h1>
-      <a href="#" download>O KOLACICIMA</a>
-      <a href="#" download>POLITIKA PRIVATNOSTI</a>
-      <a href="#" download>UVJETI KORISTENJA</a>
+      <a href="https://legal.k-marke-t.com/politikaKolacica.pdf" download>O KOLACICIMA</a>
+      <a href="https://legal.k-marke-t.com/politikaPrivatnosti.pdf" download>POLITIKA PRIVATNOSTI</a>
+      <a href="https://legal.k-marke-t.com/pravila.pdf" download>UVJETI KORISTENJA</a>
     </div>
   </div>
   <div class="flex flex-col items-end w-full bg-kaufland-red">
     <img src="../assets/images/kaufland-logo.png" width="50" class="bg-white m-5" />
   </div>
 </template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

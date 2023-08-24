@@ -73,6 +73,7 @@ const loginUser = async () => {
   } catch (error) {
     error = "Netočni login podaci";
   } finally {
+    console.log("Close loader.");
     loadingStore.hideLoading();
   }
 };

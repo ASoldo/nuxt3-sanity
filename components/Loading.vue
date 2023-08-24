@@ -1,28 +1,27 @@
 <template>
-  <dialog
-      ref="loadingDialog"
-      v-if="loadingStore.loading"
-      class="bg-white bg-opacity-60 fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
+  <dialog ref="loadingDialog" v-if="loadingStore.loading"
+    class="bg-white bg-opacity-60 fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
     <i class="pi pi-spin pi-spinner opacity-100" style="font-size: 6rem"></i>
     <div class="font-kaufland-bold uppercase text-4xl mt-4">Učitavanje</div>
   </dialog>
 </template>
 
 <script setup lang="ts">
-import { useLoadingStore } from '@/stores/loading';
+import { useLoadingStore } from "@/stores/loading";
 import { DialogElement } from "@/internals/interfaces";
 
 const loadingDialog = ref<DialogElement | null>(null);
 const loadingStore = useLoadingStore();
 loadingStore.$subscribe((mutation, state) => {
   if (state.loading) {
+    console.log("Showing modal");
     loadingDialog.value?.showModal();
   } else {
+    console.log("Hide modal");
     loadingDialog.value?.close();
   }
-})
+});
 </script>
-
 
 <style scoped>
 .lds-ellipsis {
@@ -39,7 +38,7 @@ loadingStore.$subscribe((mutation, state) => {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #F60101;
+  background: #f60101;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
   opacity: 1;
 }
@@ -68,6 +67,7 @@ loadingStore.$subscribe((mutation, state) => {
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
@@ -77,6 +77,7 @@ loadingStore.$subscribe((mutation, state) => {
   0% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(0);
   }
@@ -86,6 +87,7 @@ loadingStore.$subscribe((mutation, state) => {
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(24px, 0);
   }
