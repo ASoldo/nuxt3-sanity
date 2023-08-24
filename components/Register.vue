@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 rounded border-gray-400 shadow-md rounded text-white relative" @keydown.enter="register">
+  <div class="border-2 border-gray-400 shadow-md rounded text-white relative" @keydown.enter="register">
     <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="closeDialog">
       <i class="pi pi-times"></i>
     </div>

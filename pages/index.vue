@@ -119,7 +119,7 @@ const increment_clicks = async () => {
 const { count, increment } = useCounterStore();
 
 const leaderboard = ref();
-leaderboard.value = await $fetch("/api/leaderboard");
+leaderboard.value = await $fetch("/api/leaderboard-frontend");
 // console.log(leaderboard.value);
 
 definePageMeta({

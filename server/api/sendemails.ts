@@ -65,6 +65,8 @@ type UserPrize = {
 export default defineEventHandler(async (event) => {
   const queryParam = getQuery(event);
   const qr_code_url = queryParam.qr_code_url;
+  const item_name = queryParam.item_name;
+  const validity = queryParam.validity;
   const prize_id = queryParam.prize_id;
   try {
     // Initialize the Supabase client
@@ -111,6 +113,14 @@ export default defineEventHandler(async (event) => {
             name: "our_custom_field",
             content: qr_code_url,
           },
+          {
+            name: "item_name",
+            content: item_name,
+          },
+          {
+            name: "validity",
+            content: validity,
+          },
         ],
       };
 
@@ -149,3 +159,5 @@ export default defineEventHandler(async (event) => {
 // curl -v "http://localhost:3000/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
 // curl -v "http://k-marke-t.com/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
 // curl -v "https://k-marke-t.com/api/sendemails?prize_id=1&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/2a9a59e4276d36ac58e764574724607502efeb30-300x300.png" | jq
+// "https://k-marke-t.com/api/sendemails?prize_id=2&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/67468e1c0c14b42baed8a574107d2bf5e2520a80-375x375.png&validity=25.8.2023-26.8.2023&item_name=K-Classic American cookies čokolada"
+// curl -v "https://k-marke-t.com/api/sendemails?prize_id=2&qr_code_url=https://cdn.sanity.io/images/u678c0qn/production/67468e1c0c14b42baed8a574107d2bf5e2520a80-375x375.png&validity=25.8.2023-26.8.2023&item_name=K-Classic%20American%20cookies%20cokolada"

@@ -62,7 +62,7 @@ const playClicked = async () => {
       return;
     }
 
-    toastStore.showToast("Igrajte ponovno nakon 23:59:59");
+    toastStore.showToast("Danas si već odigrao, pokušaj ponovno sutra!");
     return;
   }
   // navigateTo("/game");
