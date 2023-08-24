@@ -36,11 +36,13 @@
             <label class="font-kaufland-bold">
               <input type="checkbox" v-model="termsAndCond" />
               Suglasan/a sam i prihvaćam
-              <KmarketLink href="https://legal.k-marke-t.com/pravila.pdf">Pravila natječaja</KmarketLink>, Uvjete
-              korištenja i Pravila privatnosti te korištenje mojih
-              osobnih podataka za potrebe provođenja i informiranja o nagradnom
-              natječaju, odnosno za potrebe realizacije nagrade ako budem
-              dobitnik/ca.
+              <KmarketLink href="https://legal.k-marke-t.com/pravila.pdf">Pravila natječaja</KmarketLink>,
+              <KmarketLink href="https://legal.k-marke-t.com/politikaPrivatnosti.pdf">Uvjete korištenja</KmarketLink>
+              i
+              <KmarketLink href="https://legal.k-marke-t.com/politikaKolacica.pdf">Pravila privatnosti</KmarketLink>
+              te korištenje mojih osobnih podataka za potrebe provođenja i
+              informiranja o nagradnom natječaju, odnosno za potrebe realizacije
+              nagrade ako budem dobitnik/ca.
             </label>
           </div>
           <div class="pt-2 z-10">
