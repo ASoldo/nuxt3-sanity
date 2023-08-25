@@ -26,8 +26,8 @@
           <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
             <table class="min-w-full">
               <tbody class="">
-                <tr v-for="(item, index) in leaderboard.data.slice(0, 10)" :key="index"
-                  :class="{ 'bg-black': item.user_uuid == user?.id }">
+                <!-- :class="{ 'bg-black': item.user_uuid == user?.id }" -->
+                <tr v-for="(item, index) in leaderboard.data.slice(0, 10)" :key="index">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span class="text-white text-center">
                       {{ index + 1 }}.
@@ -53,7 +53,13 @@
       <CookieControl locale="hr">
         <template #bar>
           <div class="flex flex-col">
-            <h3>Naša stranica koristi kolačiće</h3>
+            <h3>
+              Naša stranica koristi samo osnovne (tehnički neophodne) kolačiće.
+              Klikom na gumb „Dozvoli" prihvaćate sve tehnički neophodne
+              kolačiće. Klikom na gumb „Upravljaj kolačićima" možete isključiti
+              korištenje tehnički neophodnih kolačića. Dodatne informacije
+              možete pronaći u našoj politici o kolačićima web stranice.
+            </h3>
           </div>
         </template>
         <template #modal>

@@ -22,9 +22,9 @@
         <Input v-model="promo" placeholder="Kaufland Card Kod" label="Kaufland Card Kod" />
       </div>
       <div class="mx-4 text-sm font-kaufland-bold">
-        Svoj kod za ostvarivanje prednosti u igrici K-MARKE(t) možeš potražiti u
-        Kaufland Card aplikaciji i unijeti ga sad ovdje ili naknadno u svom
-        profilu.
+        Svoj kod za ostvarivanje 10 sekundi prednosti prilikom igranja igrice,
+        možeš naći u Kaufland Card aplikaciji u dijelu „Moji kuponi“ i unijeti
+        ga ovdje ili naknadno u svom profilu.
       </div>
       <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
         <i v-if="errorMsg" class="pi pi-exclamation-triangle mr-2"></i>

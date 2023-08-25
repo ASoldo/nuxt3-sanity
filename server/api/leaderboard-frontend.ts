@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   // Fetch leaderboard data with related user details
   const leaderboardResponse = await client
     .from("leaderboard")
-    .select("user_uuid, best_score, profiles: user_uuid(first_name)")
+    .select("best_score, profiles: user_uuid(first_name)")
     .order("best_score", { ascending: true })
     .limit(10);
 
