@@ -27,7 +27,7 @@
             <table class="min-w-full">
               <tbody class="">
                 <!-- :class="{ 'bg-black': item.user_uuid == user?.id }" -->
-                <tr v-for="(item, index) in leaderboard.data.slice(0, 10)" :key="index">
+                <tr v-for="(item, index) in leaderboard" :key="index">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span class="text-white text-center">
                       {{ index + 1 }}.
@@ -83,16 +83,16 @@ const pageData = computed(() => (data.value as PageData[]) ?? []);
 const user = useSupabaseUser();
 
 const client = useSupabaseClient();
-const { data: cats } = await useAsyncData<CatsResponse[] | null>(
-  "cats",
-  async () => {
-    const { data } = await client
-      .from("cats")
-      .select("*")
-      .order("age", { ascending: false });
-    return data;
-  }
-);
+// const { data: cats } = await useAsyncData<CatsResponse[] | null>(
+//   "cats",
+//   async () => {
+//     const { data } = await client
+//       .from("cats")
+//       .select("*")
+//       .order("age", { ascending: false });
+//     return data;
+//   }
+// );
 const edgeLordData = ref(null);
 
 const invoke_edge = async () => {
