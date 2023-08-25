@@ -74,7 +74,12 @@ export default defineEventHandler(async (event) => {
 
     // 1. Fetch leaderboard from the API
     const leaderboardResponse = await fetch(
-      "https://k-marke-t.com/api/leaderboard"
+      "https://k-marke-t.com/api/leaderboard",
+      {
+        headers: {
+          "X-Secret-Header": "1",
+        },
+      }
     );
     if (!leaderboardResponse.ok) {
       throw new Error(
