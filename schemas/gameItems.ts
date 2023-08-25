@@ -9,6 +9,12 @@ export const item = {
       title: "Name",
     },
     {
+      name: "active",
+      type: "boolean",
+      title: "Active",
+      initialValue: true,
+    },
+    {
       name: "slug",
       type: "slug",
       title: "Slug",

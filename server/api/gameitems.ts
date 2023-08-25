@@ -1,7 +1,7 @@
 export default defineEventHandler(async () => {
   const baseUrl =
     "https://u678c0qn.api.sanity.io/v2021-10-21/data/query/production";
-  const query = `*[_type == "item"]
+  const query = `*[_type == "item" && active == true]
   {
     name,
     slug,
