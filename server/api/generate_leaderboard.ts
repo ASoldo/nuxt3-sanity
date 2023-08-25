@@ -13,3 +13,5 @@ export default defineEventHandler(async (event) => {
 });
 
 // curl -v "http://localhost:3000/api/generate_leaderboard" | jq
+//
+// curl -v -X GET "https://k-marke-t.com/api/generate_leaderboard | jq
