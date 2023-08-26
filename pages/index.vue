@@ -27,7 +27,7 @@
             <table class="min-w-full">
               <tbody class="">
                 <!-- :class="{ 'bg-black': item.user_uuid == user?.id }" -->
-                <tr v-for="(item, index) in leaderboard.data" :key="index">
+                <tr v-for="(item, index) in leaderboard?.data" :key="index">
                   <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                     <span class="text-white text-center">
                       {{ index + 1 }}.
@@ -126,7 +126,11 @@ const { count, increment } = useCounterStore();
 
 const leaderboard = ref();
 leaderboard.value = await $fetch("/api/leaderboard-frontend");
-// console.log(leaderboard.value);
+console.log(leaderboard.value);
+
+const leader = ref();
+leader.value = await $fetch("/api/leader");
+console.log("Leader", leader.value);
 
 definePageMeta({
   middleware: ["auth"],
