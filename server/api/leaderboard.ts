@@ -98,61 +98,63 @@ import { serverSupabaseUser, serverSupabaseClient } from "#supabase/server";
 //   // return result;
 // });
 
-export default defineEventHandler(async (event) => {
-  const supabaseUrl = (import.meta as any).env.SUPABASE_QUERY_URL;
-  const apiKey = import.meta.env.API_KEY;
-  const bearerToken = import.meta.env.API_KEY;
-  const supabaseHeaders = {
-    apikey: apiKey,
-    Authorization: `Bearer ${bearerToken}`,
-    "Content-Type": "application/json",
-    Prefer: "return=minimal",
-  };
-
-  const client = serverSupabaseClient(event);
-
-  // Fetch leaderboard data with related user details
-  const leaderboardResponse = await client
-    .from("leaderboard")
-    .select(
-      "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
-    )
-    .order("best_score", { ascending: true });
-
-  // Check if response is successful
-  if (!leaderboardResponse || leaderboardResponse.error) {
-    return { error: leaderboardResponse.error };
-  }
-  console.log(leaderboardResponse);
-  return leaderboardResponse;
-});
-
 // export default defineEventHandler(async (event) => {
 //   const supabaseUrl = (import.meta as any).env.SUPABASE_QUERY_URL;
 //   const apiKey = import.meta.env.API_KEY;
 //   const bearerToken = import.meta.env.API_KEY;
+//   const supabaseHeaders = {
+//     apikey: apiKey,
+//     Authorization: `Bearer ${bearerToken}`,
+//     "Content-Type": "application/json",
+//     Prefer: "return=minimal",
+//   };
 //
-//   const endpoint = `https://kxbzixfkcjexfwfacnzq.supabase.co/rest/v1/leaderboard?select=user_uuid,best_score,profiles: user_uuid(first_name)&order=best_score.asc`;
+//   const client = serverSupabaseClient(event);
 //
-//   const response = await fetch(endpoint, {
-//     method: "GET",
-//     headers: {
-//       apikey: apiKey,
-//       Authorization: `Bearer ${bearerToken}`,
-//       "Content-Type": "application/json",
-//       Prefer: "return=minimal",
-//     },
-//   });
+//   // Fetch leaderboard data with related user details
+//   const leaderboardResponse = await client
+//     .from("leaderboard")
+//     .select(
+//       "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
+//     )
+//     .order("best_score", { ascending: true });
 //
-//   if (!response.ok) {
-//     console.error(`Failed to fetch leaderboard data: ${response.statusText}`);
-//     return { error: response.statusText };
+//   // Check if response is successful
+//   if (!leaderboardResponse || leaderboardResponse.error) {
+//     return { error: leaderboardResponse.error };
 //   }
-//
-//   const leaderboardData = await response.json();
-//
-//   console.log(leaderboardData);
-//   return leaderboardData;
+//   console.log(leaderboardResponse);
+//   return leaderboardResponse;
 // });
+
+export default defineEventHandler(async (event) => {
+  // const supabaseUrl = (import.meta as any).env.SUPABASE_QUERY_URL;
+  // const apiKey = import.meta.env.API_KEY;
+  // const bearerToken = import.meta.env.API_KEY;
+  // const supabaseHeaders = {
+  //   apikey: apiKey,
+  //   Authorization: `Bearer ${bearerToken}`,
+  //   "Content-Type": "application/json",
+  //   Prefer: "return=minimal",
+  // };
+  //
+  // const client = serverSupabaseClient(event);
+  //
+  // // Fetch leaderboard data with related user details
+  // const leaderboardResponse = await client
+  //   .from("leaderboard")
+  //   .select(
+  //     "user_uuid, best_score, profiles: user_uuid(id, first_name, last_name, email)"
+  //   )
+  //   .order("best_score", { ascending: true });
+  //
+  // // Check if response is successful
+  // if (!leaderboardResponse || leaderboardResponse.error) {
+  //   return { error: leaderboardResponse.error };
+  // }
+  // console.log(leaderboardResponse);
+  // return leaderboardResponse;
+  return { message: "Not Found" };
+});
 
 // (id = auth.uid())

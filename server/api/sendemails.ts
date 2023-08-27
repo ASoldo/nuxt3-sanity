@@ -73,14 +73,11 @@ export default defineEventHandler(async (event) => {
     const client = serverSupabaseClient(event);
 
     // 1. Fetch leaderboard from the API
-    const leaderboardResponse = await fetch(
-      "https://k-marke-t.com/api/leaderboard",
-      {
-        headers: {
-          "X-Secret-Header": "1",
-        },
-      }
-    );
+    const leaderboardResponse = await fetch("https://k-marke-t.com/api/draw", {
+      headers: {
+        "X-Secret-Header": "1",
+      },
+    });
     if (!leaderboardResponse.ok) {
       throw new Error(
         `Failed to fetch leaderboard: ${leaderboardResponse.statusText}`

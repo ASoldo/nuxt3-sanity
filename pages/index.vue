@@ -126,6 +126,9 @@ const { count, increment } = useCounterStore();
 
 const leaderboard = ref();
 leaderboard.value = await $fetch("/api/leaderboard-frontend");
+// {
+//   headers: { "X-Secret-Header": "1" },
+// }
 // console.log(leaderboard.value);
 
 // const leader = ref();
