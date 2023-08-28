@@ -77,7 +77,7 @@ onMounted(async () => {
     const { data: userPrizes, error: userPrizesError } = await client
       .from("user_prizes")
       .select(
-        "id,prize_id, profile_id, created_at, prizes: prize_id(id,prize_code,description, qr_code_url, valid_from, valid_to)"
+        "id,prize_id, profile_id, created_at, prizes: prize_id(id,prize_code,description, qr_code_url, valid_from, valid_to, prize_image_url)"
       )
       .eq("profile_id", user.value?.id);
 
@@ -88,7 +88,7 @@ onMounted(async () => {
 
     user_prizes_data.value = userPrizes;
     // isPrizeValid(user_prizes_data.value);
-    console.log("User prize data: ", user_prizes_data.value);
+    // console.log("User prize data: ", user_prizes_data.value);
   } catch (error) {
     console.error("Unexpected error:", error);
   } finally {
