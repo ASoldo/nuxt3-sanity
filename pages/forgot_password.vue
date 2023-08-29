@@ -72,7 +72,7 @@ const updatePassword = async () => {
     navigateTo("/");
     toastStore.showToast("Lozinka uspješno izmijenjena!")
   } catch (error) {
-    updateErrorMessage.value = error;
+    updateErrorMessage.value = "Pogreška pri promjeni lozinke";
   } finally {
     loadingStore.hideLoading();
   }
