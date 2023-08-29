@@ -52,7 +52,7 @@
         </button>
 
         <div ref="target" v-if="menuState"
-          class="absolute right-0 mt-2 w-40 bg-white outline outline-black outline-1 overflow-hidden shadow-xl z-10">
+          class="absolute right-0 mt-2 min-w-[10rem] bg-white outline outline-black outline-1 overflow-hidden shadow-xl z-10">
           <div v-if="user" class="px-4 py-2 text-sm text-gray-700 flex flex-row justify-stretch">
             <!-- <img src="https://secure.gravatar.com/avatar/47552ae1736c078b2068c8a87396608a?s=80&d=identicon" -->
             <!--   alt="Profile Picture" class="h-6 w-6 rounded-full outline outline-1 outline-red-500 mr-1" /> -->

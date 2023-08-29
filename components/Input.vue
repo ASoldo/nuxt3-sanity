@@ -3,7 +3,7 @@
     <div class="text-white w-full md:w-[120px] font-kaufland-bold text-xl uppercase">
       {{ label }}
     </div>
-    <div class="relative flex-1 flex items-center"
+    <div class="relative flex-1 flex"
          v-if="!readonly">
       <span v-if="icon" class="absolute inset-y-0 left-0 h-11 flex items-center pl-3">
         <i :class="'pi pi-fw ' + icon"></i>
@@ -13,19 +13,19 @@
           :placeholder="placeholder"
           :value="inputValue"
           @input="updateValue"
-          :class="{'pl-10': icon, 'bg-gray-200 disabled': disabled}"
+          :class="{'pl-10': icon, 'bg-gray-200 disabled': disabled, 'rounded-r-none': type === 'password'}"
           :disabled="disabled"
           class="outline-none shadow bg-white border w-full py-2 px-3 text-kaufland-dark-red font-kaufland-bold text-xl leading-tight focus:outline-none focus:shadow-outline"
       />
       <div
-          class="text-2xl text-kaufland-dark-red -ml-8 relative"
+          class="text-2xl text-kaufland-dark-red flex bg-gray-100 items-center border border-left-none px-1 relative w-[36px]"
           v-if="type === 'password'"
           @click="toggleShowPassword">
         <Transition>
-          <i class="pi pi-eye absolute top-[-10px]" v-if="!showPassword"></i>
+          <i class="pi pi-eye absolute" v-if="!showPassword"></i>
         </Transition>
         <Transition>
-          <i class="pi pi-eye-slash absolute top-[-10px]" v-if="showPassword"></i>
+          <i class="pi pi-eye-slash absolute" v-if="showPassword"></i>
         </Transition>
       </div>
     </div>
@@ -108,5 +108,8 @@ export default {
   -webkit-text-fill-color: rgba(130, 0, 1, 0.6);
   color: rgba(130, 0, 1, 0.6);
   opacity: 1; /* required on iOS */
+}
+input::-ms-reveal {
+  display:none;
 }
 </style>

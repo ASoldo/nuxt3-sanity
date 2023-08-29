@@ -1,27 +1,34 @@
 <template>
   <div></div>
-  <!-- <dialog ref="loadingDialog" v-if="loadingStore.loading" -->
-  <!--   class="bg-white bg-opacity-60 fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red"> -->
-  <!--   <i class="pi pi-spin pi-spinner opacity-100" style="font-size: 6rem"></i> -->
-  <!--   <div class="font-kaufland-bold uppercase text-4xl mt-4">Učitavanje</div> -->
-  <!-- </dialog> -->
+   <div v-if="loadingStore.loading"
+     class="bg-white bg-opacity-80 fixed bottom-4 left-4 rounded-2xl border-2 shadow-2xl w-[100px] h-[100px] flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
+     <i class="pi pi-spin pi-spinner opacity-100 font-bold" style="font-size: 3rem"></i>
+   </div>
 </template>
 
 <script setup lang="ts">
-// import { useLoadingStore } from "@/stores/loading";
-// import { DialogElement } from "@/internals/interfaces";
-//
-// const loadingDialog = ref<DialogElement | null>(null);
-// const loadingStore = useLoadingStore();
-// loadingStore.$subscribe((mutation, state) => {
-//   if (state.loading) {
-//     console.log("Showing modal");
-//     loadingDialog.value?.showModal();
-//   } else {
-//     console.log("Hide modal");
-//     loadingDialog.value?.close();
-//   }
-// });
+import { useLoadingStore } from "@/stores/loading";
+import { DialogElement } from "@/internals/interfaces";
+
+const loadingDialog = ref<DialogElement | null>(null)
+const loadingStore = useLoadingStore();
+loadingStore.$subscribe((mutation, state) => {
+  if (state.loading) {
+    console.log("Showing loading");
+    showLoading();
+  } else {
+    console.log("Hide loading");
+    hideLoading();
+  }
+});
+
+const showLoading = () => {
+  // loadingDialog.value?.showModal();
+}
+
+const hideLoading = () => {
+  // loadingDialog.value?.close();
+}
 </script>
 
 <style scoped>
