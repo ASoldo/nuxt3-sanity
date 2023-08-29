@@ -7,7 +7,7 @@
       <div class="uppercase text-4xl font-kaufland-bold mb-6 text-center">Zaboravljena lozinka</div>
       <Input type="email" v-model="email" placeholder="Upišite svoj email" label="Email" class="mb-2 w-full"/>
       <div>
-        *Nekada je mailu potrebno nekoliko minuta da stigne. Nemojte odmah tražiti opet promjenu lozinke jer će ona poništiti svaki prethodni pokušaj
+        *Nekada je mailu potrebno nekoliko minuta da se pojavi u tvom pretincu. Pričekaj prije ponovnog zahtjeva za promjenom lozinke jer će se prethodni zajtjev poništiti.
       </div>
       <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
         <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
