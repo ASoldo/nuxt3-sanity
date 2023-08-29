@@ -1,6 +1,6 @@
 <template>
   <div></div>
-   <div v-if="true"
+   <div v-if="loadingStore.loading"
      class="bg-white bg-opacity-80 fixed bottom-4 left-4 rounded-2xl border-2 shadow-2xl w-[100px] h-[100px] flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
      <i class="pi pi-spin pi-spinner opacity-100 font-bold" style="font-size: 3rem"></i>
    </div>
