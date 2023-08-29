@@ -15,11 +15,16 @@
 
 <script lang="ts" setup>
 import { onMounted } from "vue";
+import { useToastStore } from "~/stores/toast";
 const { auth } = useSupabaseAuthClient();
+console.log(auth)
+const toastStore = useToastStore();
 onMounted(() => {
   // setInterval(() => {
   // auth.signOut();
   navigateTo("/");
+  console.log(auth)
+  toastStore.showToast("Uspješna registracija")
   // }, 1000);
 });
 </script>

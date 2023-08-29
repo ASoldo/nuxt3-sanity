@@ -80,7 +80,7 @@ const query = groq`*[_type == 'page']|order(id asc){...,"components": components
 const sanity = useSanity();
 const { data } = useAsyncData("page", () => sanity.fetch(query));
 const pageData = computed(() => (data.value as PageData[]) ?? []);
-const user = useSupabaseUser();
+// const user = useSupabaseUser();
 
 const client = useSupabaseClient();
 // const { data: cats } = await useAsyncData<CatsResponse[] | null>(
