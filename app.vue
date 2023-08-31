@@ -210,7 +210,7 @@ const items = ref({
 
 useHead({
   title: "K-MARKE-T",
-  meta: [{ name: "description", content: "My amazing site." }],
+  meta: [{ name: "K-MARKE-T", content: "Kaufland Nagradna Igra" }],
 });
 </script>
 

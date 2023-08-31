@@ -16,8 +16,8 @@
       </div>
       <div class="flex flex-col z-10">
         <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
-          <i v-if="error" class="pi pi-exclamation-triangle mr-2"></i>
-          {{ error }}
+          <i v-if="loginError" class="pi pi-exclamation-triangle mr-2"></i>
+          {{ loginError }}
         </div>
         <div class="flex flex-col">
           <Button class="mb-2" text="Prijavi se" @clicked="loginUser" />
@@ -44,17 +44,17 @@ import { useToastStore } from "@/stores/toast";
 import { validateEmail } from "~/internals/validators";
 const email = ref("");
 const password = ref("");
-const error = ref("");
+const loginError = ref("");
 const loadingStore = useLoadingStore();
 const toastStore = useToastStore();
 
 const loginUser = async () => {
   if (!email.value || !password.value) {
-    error.value = "Upišite sve podatke!";
+    loginError.value = "Upišite sve podatke!";
     return;
   }
   if (!validateEmail(email.value)) {
-    error.value = "Nespravan mail!";
+    loginError.value = "Nespravan mail!";
     return;
   }
   try {
@@ -65,13 +65,13 @@ const loginUser = async () => {
     });
     console.log(response);
     if (response.error) {
-      error.value = "Netočni login podaci";
+      loginError.value = "Netočni login podaci";
     } else {
       loginFinished();
       toastStore.showToast("Uspješna prijava");
     }
   } catch (error) {
-    error = "Netočni login podaci";
+    loginError.value = "Prijava nije uspjela";
   } finally {
     console.log("Close loader.");
     loadingStore.hideLoading();
@@ -80,7 +80,7 @@ const loginUser = async () => {
 
 const loginFinished = () => {
   emit("login-finished");
-  error.value = "";
+  loginError.value = "";
 };
 
 const emit = defineEmits();
