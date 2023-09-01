@@ -95,11 +95,9 @@ jobs:
 
       - name: Build Project
         run: pnpm build # adjust if your build command is different
-        with:
-          context: .
-          build-args: |
-            SUPABASE_URL=${{ secrets.SUPABASE_URL }}
-            SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
+        env: |
+          SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
 
       - name: Zip the build
         run: zip -r build.zip .output # adjust the path to your build output
