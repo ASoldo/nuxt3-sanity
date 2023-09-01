@@ -116,7 +116,7 @@ jobs:
         run: |
           echo "TEST"
           ls -la
-          scp build.zip digital@62.171.179.164:~/home/digital/git/test_env
+          scp build.zip digital@62.171.179.164:~/git/test_env
           ssh digital@62.171.179.164 "echo 'RUN ON SERVER AGAIN'"
         # scp build.zip digital@62.171.179.164:~/home/digital/git/test_env
         # echo "RUN ON SERVER"
