@@ -115,8 +115,8 @@ jobs:
       - name: SCP .zip to the server
         run: sudo scp build.zip digital@62.171.179.164:~/home/digital/git/test_env/ # adjust the server path
 #        run: scp -i ${{ secrets.SSH_DEV_PRIVATE_KEY }} build.zip digital@62.171.179.164:~/home/digital/git/test_env/
-#        env:
-#          SSH_AUTH_SOCK: /tmp/ssh-auth.sock
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh-auth.sock
 
       - name: Unzip and Restart NGINX
         run: |
