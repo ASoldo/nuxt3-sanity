@@ -95,9 +95,14 @@ jobs:
 
       - name: Build Project
         run: pnpm build # adjust if your build command is different
+        with:
+          context: .
+          build-args: |
+            SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+            SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
 
       - name: Zip the build
-        run: zip -r build.zip /home/digital/git/ # adjust the path to your build output
+        run: zip -r build.zip .output # adjust the path to your build output
 
       - name: Set up SSH
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1
