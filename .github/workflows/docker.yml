@@ -114,10 +114,8 @@ jobs:
 
       - name: SCP .zip to the server
         run: |
-          echo "TEST"
-          ls -la
           scp build.zip digital@62.171.179.164:~/git/test_env
-          ssh digital@62.171.179.164 "echo 'RUN ON SERVER AGAIN'"
+        # ssh digital@62.171.179.164 "echo 'RUN ON SERVER AGAIN'"
         # scp build.zip digital@62.171.179.164:~/home/digital/git/test_env
         # echo "RUN ON SERVER"
         # sudo scp build.zip digital@62.171.179.164:~/home/digital/git/test_env/ # adjust the server path
@@ -127,5 +125,5 @@ jobs:
 
       - name: Unzip and Restart NGINX
         run: |
-          ssh digital@62.171.179.164 "sudo unzip ~/git/test_env/build.zip"
+          ssh digital@62.171.179.164 "sudo unzip ~/git/test_env/build.zip ."
           ssh digital@62.171.179.164 "sudo systemctl restart nginx"
