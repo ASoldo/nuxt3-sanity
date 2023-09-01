@@ -109,7 +109,7 @@ jobs:
           ssh-host: 62.171.179.164
 
       - name: SCP .zip to the server
-        run: scp build.zip digital@62.171.179.164:/home/digital/git/test_env/ # adjust the server path
+        run: sudo scp build.zip digital@62.171.179.164:/home/digital/git/test_env/ # adjust the server path
 
       - name: Unzip and Restart NGINX
         run: |
