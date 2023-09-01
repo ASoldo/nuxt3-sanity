@@ -116,8 +116,9 @@ jobs:
         run: |
           echo "TEST"
           ls -la
+          scp build.zip digital@62.171.179.164:~/home/digital/git/test_env
           ssh digital@62.171.179.164 "echo 'RUN ON SERVER AGAIN'"
-          scp -i ${{ secrets.SSH_DEV_PRIVATE_KEY }} build.zip digital@62.171.179.164:~/home/digital/git/test_env
+        # scp build.zip digital@62.171.179.164:~/home/digital/git/test_env
         # echo "RUN ON SERVER"
         # sudo scp build.zip digital@62.171.179.164:~/home/digital/git/test_env/ # adjust the server path
 #        run: scp -i ${{ secrets.SSH_DEV_PRIVATE_KEY }} build.zip digital@62.171.179.164:~/home/digital/git/test_env/
