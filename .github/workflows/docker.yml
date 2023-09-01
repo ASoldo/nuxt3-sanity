@@ -108,8 +108,12 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_DEV_PRIVATE_KEY }}
           ssh-host: 62.171.179.164
 
+      - name: Add SSH key to known hosts
+        run: |
+          echo "$(ssh-keyscan -t rsa 62.171.179.164)" >> ~/.ssh/known_hosts
+
       - name: SCP .zip to the server
-        run: sudo scp build.zip digital@62.171.179.164:/home/digital/git/test_env/ # adjust the server path
+        run: sudo scp build.zip digital@62.171.179.164:~/home/digital/git/test_env/ # adjust the server path
 
       - name: Unzip and Restart NGINX
         run: |
