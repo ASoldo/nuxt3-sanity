@@ -115,11 +115,6 @@ jobs:
       - name: SCP .zip to the server
         run: |
           scp build.zip digital@62.171.179.164:~/git/test_env
-        # ssh digital@62.171.179.164 "echo 'RUN ON SERVER AGAIN'"
-        # scp build.zip digital@62.171.179.164:~/home/digital/git/test_env
-        # echo "RUN ON SERVER"
-        # sudo scp build.zip digital@62.171.179.164:~/home/digital/git/test_env/ # adjust the server path
-#        run: scp -i ${{ secrets.SSH_DEV_PRIVATE_KEY }} build.zip digital@62.171.179.164:~/home/digital/git/test_env/
         env:
           SSH_AUTH_SOCK: /tmp/ssh-auth.sock
 
@@ -128,6 +123,3 @@ jobs:
           ssh digital@62.171.179.164 "sudo rm -rf ~/git/test_env/.output"
           ssh digital@62.171.179.164 "sudo unzip ~/git/test_env/build.zip -d ~/git/test_env"
           ssh digital@62.171.179.164 "sudo systemctl restart kaufland-dev"
-
-        # ssh digital@62.171.179.164 "node ~/git/test_env/.output/server/index.mjs"
-        #ssh digital@62.171.179.164 "sudo systemctl restart nginx"
