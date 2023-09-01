@@ -2,11 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 jobs:
   docker:
+    if: github.ref == 'refs/head/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,32 +35,9 @@ jobs:
           build-args: |
             SUPABASE_URL=${{ secrets.SUPABASE_URL }}
             SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
-  # deploy:
-  #   needs: docker
-  #   runs-on: ubuntu-latest
-  #
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #
-  #     - name: Set up SSH
-  #       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
-  #       with:
-  #         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-  #         ssh-host: 38.242.250.189
-  #
-  #     - name: Remove Docker Compose stack
-  #       run: |
-  #         echo "Removing previous stack"
-  #         ssh digital@38.242.250.189 "docker system prune -a -f"
-  #         ssh digital@38.242.250.189 "docker stack rm kaufland-stack"
-  #
-  #     - name: Start new stack
-  #       run: |
-  #         echo "Starting new stack"
-  #         sleep 10  # Add a delay of 10 seconds
-  #         ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
 
   deploy:
+    if: github.ref == 'refs/head/main'
     needs: docker
     runs-on: ubuntu-latest
 
@@ -96,3 +74,41 @@ jobs:
         run: |
           echo "Starting new stack"
           ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
+
+  build-and-deploy:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # adjust if you use another version
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Project
+        run: pnpm build # adjust if your build command is different
+
+      - name: Zip the build
+        run: zip -r build.zip /home/digital/git/ # adjust the path to your build output
+
+      - name: Set up SSH
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+        with:
+          ssh-private-key: ${{ secrets.SSH_DEV_PRIVATE_KEY }}
+          ssh-host: 62.171.179.164
+
+      - name: SCP .zip to the server
+        run: scp build.zip digital@62.171.179.164:/home/digital/git/test_env/ # adjust the server path
+
+      - name: Unzip and Restart NGINX
+        run: |
+          ssh digital@62.171.179.164 "unzip /home/digital/git/test_env/build.zip"
+          ssh digital@62.171.179.164 "sudo systemctl restart nginx"
