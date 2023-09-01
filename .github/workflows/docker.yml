@@ -125,7 +125,7 @@ jobs:
 
       - name: Unzip and Restart NGINX
         run: |
-          ssh digital@62.171.179.164 "sudo unzip ~/git/test_env/build.zip -d ~/git/test_env"
+          ssh digital@62.171.179.164 "sudo unzip ~/git/test_env/build.zip -d ~/git/test_env -y"
           ssh digital@62.171.179.164 "sudo systemctl restart kaufland-dev"
 
         # ssh digital@62.171.179.164 "node ~/git/test_env/.output/server/index.mjs"
