@@ -95,7 +95,7 @@ jobs:
 
       - name: Build Project
         run: pnpm build # adjust if your build command is different
-        env: |
+        env:
           SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
 
