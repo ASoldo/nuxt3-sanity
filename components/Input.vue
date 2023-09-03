@@ -9,10 +9,11 @@
         <i :class="'pi pi-fw ' + icon"></i>
       </span>
       <input
+          ref="input"
           :type="(type === 'password' && showPassword) ? 'text' : type"
           :placeholder="placeholder"
-          :value="inputValue"
-          @input="updateValue"
+          :value="modelValue"
+          @input="$emit('update:modelValue', $event.target.value)"
           :class="{'pl-10': icon, 'bg-gray-200 disabled': disabled, 'rounded-r-none': type === 'password'}"
           :disabled="disabled"
           class="outline-none shadow bg-white border w-full py-2 px-3 text-kaufland-dark-red font-kaufland-bold text-xl leading-tight focus:outline-none focus:shadow-outline"
@@ -30,67 +31,60 @@
       </div>
     </div>
     <div class="text-xl font-kaufland-bold" v-if="readonly">
-      {{inputValue}}
+      {{modelValue}}
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import {ref} from 'vue';
 
-export default {
-  name: 'Input',
-  props: {
-    modelValue: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    icon: {
-      type: String,
-      default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    }
+const input = ref("");
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: ''
   },
-  setup(props, {emit}) {
-    const inputValue = ref(props.modelValue);
-    const showPassword = ref(false);
-
-    const updateValue = (event) => {
-      inputValue.value = event.target.value;
-      emit('update:modelValue', inputValue.value);
-    };
-
-    const toggleShowPassword = () => {
-      showPassword.value = !showPassword.value;
-    }
-
-    return {
-      inputValue,
-      showPassword,
-      updateValue,
-      toggleShowPassword
-    };
+  type: {
+    type: String,
+    default: 'text'
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  label: {
+    type: String,
+    default: ''
+  },
+  icon: {
+    type: String,
+    default: ''
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
+    type: Boolean,
+    default: false
   }
+})
+const emit = defineEmits(['update:modelValue'])
+const showPassword = ref(false);
+
+const toggleShowPassword = () => {
+  showPassword.value = !showPassword.value;
 }
+
+onMounted(() => {
+  const inputValue = input.value.value;
+  if(inputValue) {
+    props.modelValue =  input.value.value
+    emit('update:modelValue', input.value.value);
+  }
+})
 </script>
 
 <style scoped>

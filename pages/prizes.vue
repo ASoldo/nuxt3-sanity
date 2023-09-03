@@ -29,7 +29,7 @@
           <!-- Insert profile related content here -->
           <div>
             <div v-for="(item, key) in user_prizes_data" :key="key" class="p-3 flex flex-wrap justify-center gap-8">
-              <Prize v-if="isPrizeValid(item)" :prize="item" />
+              <Prize :prize="item" />
             </div>
           </div>
           <div class="mt-5 ml-2 font-kaufland-bold" v-if="user_prizes_data?.length === 0">
@@ -86,7 +86,7 @@ onMounted(async () => {
       return;
     }
 
-    user_prizes_data.value = userPrizes;
+    user_prizes_data.value = userPrizes?.filter(prize => isPrizeValid(prize));
     // isPrizeValid(user_prizes_data.value);
     // console.log("User prize data: ", user_prizes_data.value);
   } catch (error) {
