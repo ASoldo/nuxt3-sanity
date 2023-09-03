@@ -39,11 +39,7 @@
                   </td>
                   <td class="text-center px-6 py-4 whitespace-no-wrap text-sm leading-5 text-white">
                     <!-- <span class="pi pi-check px-1 text-green-500"></span> -->
-                    &nbsp;{{
-                      item.best_score.toString()[0] == "-"
-                      ? item.best_score.toString().slice(0, 6)
-                      : item.best_score.toString().slice(0, 5)
-                    }}
+                    &nbsp;{{ sliceScore(item.best_score) }}
                   </td>
                 </tr>
               </tbody>
@@ -130,6 +126,11 @@ const { count, increment } = useCounterStore();
 
 const leaderboard = ref();
 leaderboard.value = await $fetch("/api/leaderboard-frontend");
+
+const sliceScore = (number: Number) => {
+  let re = new RegExp('^-?\\d+(?:\.\\d{0,' + (3 || -1) + '})?');
+  return (+(number.toString().match(re)?.[0] as string)).toFixed(3);
+}
 // {
 //   headers: { "X-Secret-Header": "1" },
 // }
