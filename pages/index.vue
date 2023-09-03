@@ -128,7 +128,7 @@ const leaderboard = ref();
 leaderboard.value = await $fetch("/api/leaderboard-frontend");
 
 const sliceScore = (number: Number) => {
-  let re = new RegExp('^-?\\d+(?:\.\\d{0,' + (3 || -1) + '})?');
+  let re = new RegExp('^-?\\d+(?:\.\\d{0,3})?');
   return (+(number.toString().match(re)?.[0] as string)).toFixed(3);
 }
 // {
