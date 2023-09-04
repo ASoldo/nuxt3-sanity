@@ -86,7 +86,7 @@ onMounted(async () => {
       return;
     }
 
-    user_prizes_data.value = userPrizes?.filter(prize => isPrizeValid(prize));
+    user_prizes_data.value = userPrizes?.filter(prize => isPrizeValid(prize)).sort((a,b) => (new Date(a.created_at)).getTime() - (new Date(b.created_at)).getTime());
     // isPrizeValid(user_prizes_data.value);
     // console.log("User prize data: ", user_prizes_data.value);
   } catch (error) {
