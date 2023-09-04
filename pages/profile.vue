@@ -74,6 +74,7 @@ email.value = profile_data.value.data[0].email;
 promo.value = profile_data.value.data[0].promo;
 // console.log("profile data: ", profile_data.value.data[0].first_name);
 
+
 // leaderboard.value = await client
 //   .from("leaderboard")
 //   .select(
