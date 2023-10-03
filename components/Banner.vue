@@ -42,7 +42,6 @@
       </div>
       <div class="w-full pt-5 mt-5">
         <div class="w-full flex flex-col justify-center items-center">
-          <PlayButton class="m-4" />
           <img class="md:hidden absolute right-0 translate-x-1/2"  />
         </div>
         <div class="w-full flex flex-col justify-center items-center p-4">
