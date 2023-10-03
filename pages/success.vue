@@ -10,8 +10,6 @@
       <div class="grid grid-rows-2 gap-2">
         <Button
             text="Idi na naslovnu stranicu" @clicked="navigateToHome"/>
-        <Button
-            text="Idi na igru" @clicked="navigateToGame"/>
       </div>
     </div>
   </div>
@@ -40,8 +38,5 @@ onMounted(() => {
 
 const navigateToHome = () => {
   navigateTo("/");
-}
-const navigateToGame = () => {
-  navigateTo("/game");
 }
 </script>

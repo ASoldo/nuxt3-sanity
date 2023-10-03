@@ -15,7 +15,14 @@
           <!-- <h1 class="text-3xl p-3 text-white">K-MARKE(t)</h1> -->
         </div>
         <div class="md:h-full flex flex-col justify-start items-center">
-          <img src="../assets/images/Headline.png" alt="Igraj k-market igricu" class="h-24 md:h-40" />
+          <div class="text-white text-2xl md:text-3xl xl:text-4xl text-center inline-block px-2 flex flex-col items-center">
+            <div class="bg-kaufland-red font-kaufland-bold p-2 -rotate-[1deg]">K-MARKE(t) IGRA JE ZAVRŠENA.</div>
+            <div class="bg-kaufland-red font-kaufland-bold p-2">HVALA NA IGRANJU,</div>
+            <div class="bg-kaufland-red font-kaufland-bold p-2">VIDIMO SE U KAUFLANDU!</div>
+          </div>
+          <div class="uppercase font-kaufland-bold text-white mt-2">
+            *Stranica će ostati aktivna do 9.10.
+          </div>
         </div>
       </div>
 
@@ -27,7 +34,6 @@
           </div>
         </div>
         <div class="flex justify-center mb-2 md:mb-4">
-          <PlayButton />
         </div>
       </div>
     </div>

@@ -165,46 +165,6 @@ const items = ref({
         navigateTo("/");
       },
     },
-    // {
-    //   label: "Igraj",
-    //   icon: "pi pi-fw pi-palette",
-    //   fn: () => {
-    //     if (!user.value) {
-    //       loginStore.openLogin();
-    //       toastStore.showToast("Za igru se potrebno prijaviti!");
-    //       return;
-    //     }
-    //     navigateTo("/game");
-    //   },
-    // },
-    {
-      label: "Kako igrati",
-      icon: "pi pi-fw pi-external-link",
-      fn: () => {
-        navigateTo("/#how-to-play");
-      },
-    },
-    {
-      label: "Nagrade",
-      icon: "pi pi-fw pi-qrcode",
-      fn: () => {
-        navigateTo("/#nagrade");
-      },
-    },
-    {
-      label: "Kaufland Card",
-      icon: "pi pi-fw pi-id-card",
-      fn: () => {
-        navigateTo("/#promo");
-      },
-    },
-    {
-      label: "Rang lista",
-      icon: "pi pi-fw pi-list",
-      fn: () => {
-        navigateTo("/#ranglist");
-      },
-    },
   ],
 });
 
