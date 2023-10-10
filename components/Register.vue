@@ -220,7 +220,7 @@ const signUp = async () => {
           promo: promo.value,
           email: email.value,
         },
-        emailRedirectTo: "https://demo.kaufland.files.digitalarena.hr/success",
+        emailRedirectTo: "https://demo.kaufland.digitalarena.hr/success",
       },
     });
 
