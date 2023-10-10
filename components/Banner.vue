@@ -13,7 +13,9 @@
     <!-- Other elements -->
     <div class="relative">
       <div class="container mx-auto md:grid md:grid-cols-3 mt-3 pt-14">
-        <div class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center">
+        <div
+          class="md:col-span-1 md:h-full flex justify-center md:justify-end items-center"
+        >
           <!-- Content for 0 -->
           <div class="flex md:flex-col flex-row">
             <img src="../assets/images/how_to_play.png" alt="" />
@@ -29,27 +31,34 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-x-6 gap-y-4 p-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 gap-x-6 gap-y-4 p-4"
+        >
           <StepComponent
-              v-for="(step, index) in steps"
-              :key="index"
-              :stepNumber="step.number"
-              :imageSrc="step.imageSrc"
-              :imageAlt="step.imageAlt"
-              :stepDescription="step.description"
+            v-for="(step, index) in steps"
+            :key="index"
+            :stepNumber="step.number"
+            :imageSrc="step.imageSrc"
+            :imageAlt="step.imageAlt"
+            :stepDescription="step.description"
           />
         </div>
       </div>
       <div class="w-full pt-5 mt-5">
         <div class="w-full flex flex-col justify-center items-center">
-          <img class="md:hidden absolute right-0 translate-x-1/2"  />
+          <PlayButton class="m-4" />
+          <img class="md:hidden absolute right-0 translate-x-1/2" />
         </div>
         <div class="w-full flex flex-col justify-center items-center p-4">
-          <h1 class="text-white">Detaljniji opis igre možeš pročitati
+          <h1 class="text-white">
+            Detaljniji opis igre možeš pročitati
             <a
-                class="underline hover:text-black font-kaufland-bold transition-colors"
-                href="https://legal.k-marke-t.com/pravila.pdf"
-                target="_blank">ovdje</a></h1>
+              class="underline hover:text-black font-kaufland-bold transition-colors"
+              href="https://demo.kaufland.files.digitalarena.hr/pravila.pdf"
+              target="_blank"
+              >ovdje</a
+            >
+          </h1>
         </div>
       </div>
     </div>
@@ -57,38 +66,37 @@
 </template>
 
 <script setup lang="ts">
-import tockice from '../assets/images/tockice_strelica.png';
-import upitnik from '../assets/images/upitnik.png';
-import boca from '../assets/images/boca.png';
-import boca2 from '../assets/images/boca2.png';
+import tockice from "../assets/images/tockice_strelica.png";
+import upitnik from "../assets/images/upitnik.png";
+import boca from "../assets/images/boca.png";
+import boca2 from "../assets/images/boca2.png";
 
 const steps = [
   {
     number: 1,
     imageSrc: tockice,
-    imageAlt: 'Strelica',
-    description: 'Registriraj se i pokreni K-MARKE(t) igricu.'
+    imageAlt: "Strelica",
+    description: "Registriraj se i pokreni K-MARKE(t) igricu.",
   },
   {
     number: 2,
     imageSrc: upitnik,
-    imageAlt: 'Upitnik',
-    description: 'Pročitaj i riješi 3 zagonetke.'
+    imageAlt: "Upitnik",
+    description: "Pročitaj i riješi 3 zagonetke.",
   },
   {
     number: 3,
     imageSrc: boca,
-    imageAlt: 'Boca',
-    description: 'U prostoriji potraži proizvode koji se kriju iza zagonetki.'
+    imageAlt: "Boca",
+    description: "U prostoriji potraži proizvode koji se kriju iza zagonetki.",
   },
   {
     number: 4,
     imageSrc: boca2,
-    imageAlt: 'Boca',
-    description: 'Klikni na tražene proizvode i pokupi dnevnu nagradu.'
+    imageAlt: "Boca",
+    description: "Klikni na tražene proizvode i pokupi dnevnu nagradu.",
   },
 ];
-
 
 const igraj = () => {
   console.log("igraj");

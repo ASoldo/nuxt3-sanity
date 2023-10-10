@@ -2,12 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [main, dev]
   pull_request:
-    branches: [ main, dev ]
+    branches: [main, dev]
 jobs:
   docker:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main-production'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,7 +37,7 @@ jobs:
             SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main-production'
     needs: docker
     runs-on: ubuntu-latest
 
@@ -76,7 +76,7 @@ jobs:
           ssh digital@38.242.250.189 "docker stack deploy -c /home/digital/git/docker-compose.yml kaufland-stack"
 
   build-and-deploy:
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -85,7 +85,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16' # adjust if you use another version
+          node-version: "16" # adjust if you use another version
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -114,12 +114,12 @@ jobs:
 
       - name: SCP .zip to the server
         run: |
-          scp build.zip digital@62.171.179.164:~/git/test_env
+          scp build.zip digital@62.171.179.164:~/demos/kaufland-game
         env:
           SSH_AUTH_SOCK: /tmp/ssh-auth.sock
 
       - name: Unzip and Restart Node
         run: |
-          ssh digital@62.171.179.164 "sudo rm -rf ~/git/test_env/.output"
-          ssh digital@62.171.179.164 "sudo unzip ~/git/test_env/build.zip -d ~/git/test_env"
-          ssh digital@62.171.179.164 "sudo systemctl restart kaufland-dev"
+          ssh digital@62.171.179.164 "sudo rm -rf ~/demos/kaufland-game/.output"
+          ssh digital@62.171.179.164 "sudo unzip ~/demos/kaufland-game/build.zip -d ~/demos/kaufland-game"
+          ssh digital@62.171.179.164 "sudo systemctl restart kaufland-demo"

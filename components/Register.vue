@@ -1,32 +1,65 @@
 <template>
-  <div class="border-2 border-gray-400 shadow-md rounded text-white relative" @keydown.enter="register">
-    <div class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200" @click="closeDialog">
+  <div
+    class="border-2 border-gray-400 shadow-md rounded text-white relative"
+    @keydown.enter="register"
+  >
+    <div
+      class="absolute right-2 top-2 text-white text-4xl cursor-pointer z-10 hover:text-gray-200"
+      @click="closeDialog"
+    >
       <i class="pi pi-times"></i>
     </div>
-    <div class="bg-kaufland-red skew-div absolute h-full w-full overflow-hidden -z-10 pointer-events-none"></div>
+    <div
+      class="bg-kaufland-red skew-div absolute h-full w-full overflow-hidden -z-10 pointer-events-none"
+    ></div>
     <div class="px-8 md:px-36 md:py-10 py-8 z-10">
-      <div class="flex justify-center items-center text-4xl font-kaufland-bold mb-4 pt-2 uppercase">
+      <div
+        class="flex justify-center items-center text-4xl font-kaufland-bold mb-4 pt-2 uppercase"
+      >
         Registriraj se
       </div>
       <div class="mb-2 z-10 font-kaufland-bold">
         Prije unosa podataka upoznaj se s
-        <KmarketLink href="https://legal.k-marke-t.com/pravila.pdf">Pravilima natječaja</KmarketLink>, Uvjetima korištenja
-        i Pravilima privatnosti
+        <KmarketLink
+          href="https://demo.kaufland.files.digitalarena.hr/pravila.pdf"
+          >Pravilima natječaja</KmarketLink
+        >, Uvjetima korištenja i Pravilima privatnosti
       </div>
       <div class="grid auto-rows-fr z-10">
         <Input v-model="first_name" placeholder="Ime" label="Ime*" />
         <Input v-model="last_name" placeholder="Prezime" label="Prezime*" />
-        <Input type="email" v-model="email" placeholder="Email" label="Email*" />
-        <Input type="password" v-model="password" placeholder="Lozinka" label="Lozinka*" />
-        <Input type="password" v-model="repeatPassword" placeholder="Ponovi Lozinku" label="Ponovi Lozinku*" />
-        <Input v-model="promo" placeholder="Kaufland Card Kod" label="Kaufland Card Kod" />
+        <Input
+          type="email"
+          v-model="email"
+          placeholder="Email"
+          label="Email*"
+        />
+        <Input
+          type="password"
+          v-model="password"
+          placeholder="Lozinka"
+          label="Lozinka*"
+        />
+        <Input
+          type="password"
+          v-model="repeatPassword"
+          placeholder="Ponovi Lozinku"
+          label="Ponovi Lozinku*"
+        />
+        <Input
+          v-model="promo"
+          placeholder="Kaufland Card Kod"
+          label="Kaufland Card Kod"
+        />
       </div>
       <div class="mx-4 text-sm font-kaufland-bold">
         Svoj kod za ostvarivanje 10 sekundi prednosti prilikom igranja igrice,
         možeš naći u Kaufland Card aplikaciji u dijelu „Moji kuponi“ i unijeti
         ga ovdje ili naknadno u svom profilu.
       </div>
-      <div class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]">
+      <div
+        class="relative text-white text-2xl flex justify-center items-baseline min-h-[40px]"
+      >
         <i v-if="errorMsg" class="pi pi-exclamation-triangle mr-2"></i>
         {{ errorMsg }}
       </div>
@@ -36,10 +69,19 @@
             <label class="font-kaufland-bold">
               <input type="checkbox" v-model="termsAndCond" />
               Suglasan/a sam i prihvaćam
-              <KmarketLink href="https://legal.k-marke-t.com/pravila.pdf">Pravila natječaja</KmarketLink>,
-              <KmarketLink href="https://legal.k-marke-t.com/politikaPrivatnosti.pdf">Uvjete korištenja</KmarketLink>
+              <KmarketLink
+                href="https://demo.kaufland.files.digitalarena.hr/pravila.pdf"
+                >Pravila natječaja</KmarketLink
+              >,
+              <KmarketLink
+                href="https://demo.kaufland.files.digitalarena.hr/politikaPrivatnosti.pdf"
+                >Uvjete korištenja
+              </KmarketLink>
               i
-              <KmarketLink href="https://legal.k-marke-t.com/politikaKolacica.pdf">Pravila privatnosti</KmarketLink>
+              <KmarketLink
+                href="https://demo.kaufland.files.digitalarena.hr/politikaKolacica.pdf"
+                >Pravila privatnosti
+              </KmarketLink>
               te korištenje mojih osobnih podataka za potrebe provođenja i
               informiranja o nagradnom natječaju, odnosno za potrebe realizacije
               nagrade ako budem dobitnik/ca.
@@ -110,7 +152,7 @@ const emitRegister = () => {
     });
   } else {
     console.error(
-      "Validation failed. Ensure all required fields are filled and passwords match."
+      "Validation failed. Ensure all required fields are filled and passwords match.",
     );
     // You can also set some UI indication or a message for the user here.
   }
@@ -178,7 +220,7 @@ const signUp = async () => {
           promo: promo.value,
           email: email.value,
         },
-        emailRedirectTo: "https://k-marke-t.com/success",
+        emailRedirectTo: "https://demo.kaufland.files.digitalarena.hr/success",
       },
     });
 

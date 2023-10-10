@@ -2,7 +2,9 @@
   <!-- <header class="h-96 w-full flex flex-col justify-center align-middle outline outline-black outline-1"> -->
   <!--   <h1 class="text-center">{{ props.title }}</h1> -->
   <!-- </header> -->
-  <div class="pb-5 w-full bg-gradient-to-t from-kaufland-dark-red to-kaufland-red">
+  <div
+    class="pb-5 w-full bg-gradient-to-t from-kaufland-dark-red to-kaufland-red"
+  >
     <!-- <header class="h-96 w-full flex flex-col justify-center align-middle outline outline-black outline-1"> -->
     <!--   <h1 class="text-center">{{ props.title }}</h1> -->
     <!-- </header> -->
@@ -11,29 +13,39 @@
       <div class="flex flex-col md:flex-1 md:h-auto">
         <div class="flex justify-center items-end md:h-full">
           <!-- Content for the first box -->
-          <img src="../assets/images/kmarket_logo_extra.png" alt="K-market" class="px-2 -mb-8" />
+          <img
+            src="../assets/images/kmarket_logo_extra.png"
+            alt="K-market"
+            class="px-2 -mb-8"
+          />
           <!-- <h1 class="text-3xl p-3 text-white">K-MARKE(t)</h1> -->
         </div>
         <div class="md:h-full flex flex-col justify-start items-center">
-          <div class="text-white text-2xl md:text-3xl xl:text-4xl text-center inline-block px-2 flex flex-col items-center">
-            <div class="bg-kaufland-red font-kaufland-bold p-2 -rotate-[1deg]">K-MARKE(t) IGRA JE ZAVRŠENA.</div>
-            <div class="bg-kaufland-red font-kaufland-bold p-2">HVALA NA IGRANJU,</div>
-            <div class="bg-kaufland-red font-kaufland-bold p-2">VIDIMO SE U KAUFLANDU!</div>
-          </div>
-          <div class="uppercase font-kaufland-bold text-white mt-2">
-            *Stranica će ostati aktivna do 9.10.
-          </div>
+          <img
+            src="../assets/images/Headline.png"
+            alt="Igraj k-market igricu"
+            class="h-24 md:h-40"
+          />
         </div>
       </div>
 
-      <div class="flex flex-col md:justify-end md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0">
+      <div
+        class="flex flex-col md:justify-end md:flex-1 md:h-auto md:ml-4 mt-4 md:mt-0"
+      >
         <div class="relative">
           <img :src="mobitel" alt="Okvir mobitela" />
-          <div ref="imageWrapper" class="fade-effect overflow-hidden absolute -translate-y-full">
-            <img :src="images[currentImageIndex].src" :alt="images[currentImageIndex].alt" />
+          <div
+            ref="imageWrapper"
+            class="fade-effect overflow-hidden absolute -translate-y-full"
+          >
+            <img
+              :src="images[currentImageIndex].src"
+              :alt="images[currentImageIndex].alt"
+            />
           </div>
         </div>
         <div class="flex justify-center mb-2 md:mb-4">
+          <PlayButton />
         </div>
       </div>
     </div>

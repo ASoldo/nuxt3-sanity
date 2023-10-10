@@ -2,7 +2,14 @@
   <div class="flex flex-col pt-14">
     <div class="flex grow bg-black justify-center">
       <div class="h-full w-full bg-green-500">
-        <iframe ref="game" height="1024" width="512" :src="gameSrc" frameborder="0" class="w-full h-full"></iframe>
+        <iframe
+          ref="game"
+          height="1024"
+          width="512"
+          :src="gameSrc"
+          frameborder="0"
+          class="w-full h-full"
+        ></iframe>
       </div>
     </div>
   </div>
@@ -17,7 +24,7 @@ const jwt = ref<string | null>(null);
 
 const CustomObject = ref<string>("");
 // https://game.dev.kaufland.game.ecolabel.cc/
-const gameSrc = ref<string>("https://game.k-marke-t.com/");
+const gameSrc = ref<string>("https://demo.kaufland.game.digitalarena.hr/");
 // const gameSrc = ref<string>("http://localhost:8000/");
 const game = ref<null | HTMLIFrameElement>(null);
 definePageMeta({
@@ -78,7 +85,7 @@ const startGame = async () => {
   const response = await fetch("/api/start_game");
   if (!response.ok) {
     console.error(
-      `Failed to fetch start_game response: ${response.statusText}`
+      `Failed to fetch start_game response: ${response.statusText}`,
     );
     return;
   }
@@ -116,7 +123,7 @@ const setUpGame = async () => {
   for (let i = 0; i < hotspotInteractablePositions.length; i++) {
     const drawer = shuffledItems.slice(
       hotspotPositions.length + i * 4,
-      hotspotPositions.length + (i + 1) * 4
+      hotspotPositions.length + (i + 1) * 4,
     );
     drawersArr.push(drawer);
   }
@@ -131,7 +138,10 @@ const setUpGame = async () => {
     items: items,
     drawers: drawers.value,
     questions: startGameData.data.gameData.result.correctItems,
-    profile: await client.from("profiles").select("*").eq("id", user.value?.id),
+    profile: await client
+      .from("profiles")
+      .select("*")
+      .eq("id", user.value?.id as never),
 
     // data: startGameData,
 
@@ -165,7 +175,7 @@ const processMessage = async (e: MessageEvent) => {
           CustomObject: await setUpGame(),
         },
       },
-      "*"
+      "*",
     );
   }
   if (e.data.message === "Handshake" && game.value?.contentWindow != null) {
@@ -178,7 +188,7 @@ const processMessage = async (e: MessageEvent) => {
           User_uuid: user.value?.id,
         },
       },
-      "*"
+      "*",
     );
   }
   if (e.data.message === "Homepage" && game.value?.contentWindow != null) {
