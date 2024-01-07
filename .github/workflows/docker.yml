@@ -50,6 +50,11 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-host: 18.185.113.51
 
+      - name: Manually add SSH key to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H 18.185.113.51 >> ~/.ssh/known_hosts
+
       # - name: Remove Docker Compose stack
       #   run: |
       #     echo "Removing previous stack"
