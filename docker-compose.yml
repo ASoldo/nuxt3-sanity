@@ -1,26 +1,62 @@
-version: '3.1'
+# version: '3.1'
+#
+# services:
+#   nginx:
+#     image: nginx:latest
+#     volumes:
+#       - /home/digital/git/nginx.conf:/etc/nginx/nginx.conf
+#       - /home/digital/git/game:/var/www/html/game
+#       - /home/digital/git/cms:/var/www/html/cms
+#       - /etc/letsencrypt/live/dev.kaufland.game.ecolabel.cc/fullchain.pem:/etc/nginx/ssl/dev.kaufland.game.ecolabel.cc/fullchain.pem
+#       - /etc/letsencrypt/live/dev.kaufland.game.ecolabel.cc/privkey.pem:/etc/nginx/ssl/dev.kaufland.game.ecolabel.cc/privkey.pem
+#       - /etc/letsencrypt/live/game.dev.kaufland.game.ecolabel.cc/fullchain.pem:/etc/nginx/ssl/game.dev.kaufland.game.ecolabel.cc/fullchain.pem
+#       - /etc/letsencrypt/live/game.dev.kaufland.game.ecolabel.cc/privkey.pem:/etc/nginx/ssl/game.dev.kaufland.game.ecolabel.cc/privkey.pem
+#       - /etc/letsencrypt/live/cms.dev.kaufland.game.ecolabel.cc/fullchain.pem:/etc/nginx/ssl/cms.dev.kaufland.game.ecolabel.cc/fullchain.pem
+#       - /etc/letsencrypt/live/cms.dev.kaufland.game.ecolabel.cc/privkey.pem:/etc/nginx/ssl/cms.dev.kaufland.game.ecolabel.cc/privkey.pem
+#     ports:
+#       - 80:80
+#       - 443:443
+#   app:
+#     image: spearx/kaufland-game:main
+#     env_file:
+#       - /home/digital/git/.env
+#     deploy:
+#       replicas: 4
+#       restart_policy:
+#         condition: on-failure
+
+version: "3.1"
 
 services:
-  nginx:
-    image: nginx:latest
-    volumes:
-      - /home/digital/git/nginx.conf:/etc/nginx/nginx.conf
-      - /home/digital/git/game:/var/www/html/game
-      - /home/digital/git/cms:/var/www/html/cms
-      - /etc/letsencrypt/live/dev.kaufland.game.ecolabel.cc/fullchain.pem:/etc/nginx/ssl/dev.kaufland.game.ecolabel.cc/fullchain.pem
-      - /etc/letsencrypt/live/dev.kaufland.game.ecolabel.cc/privkey.pem:/etc/nginx/ssl/dev.kaufland.game.ecolabel.cc/privkey.pem
-      - /etc/letsencrypt/live/game.dev.kaufland.game.ecolabel.cc/fullchain.pem:/etc/nginx/ssl/game.dev.kaufland.game.ecolabel.cc/fullchain.pem
-      - /etc/letsencrypt/live/game.dev.kaufland.game.ecolabel.cc/privkey.pem:/etc/nginx/ssl/game.dev.kaufland.game.ecolabel.cc/privkey.pem
-      - /etc/letsencrypt/live/cms.dev.kaufland.game.ecolabel.cc/fullchain.pem:/etc/nginx/ssl/cms.dev.kaufland.game.ecolabel.cc/fullchain.pem
-      - /etc/letsencrypt/live/cms.dev.kaufland.game.ecolabel.cc/privkey.pem:/etc/nginx/ssl/cms.dev.kaufland.game.ecolabel.cc/privkey.pem
+  caddy:
+    image: caddy:2-alpine
     ports:
       - 80:80
       - 443:443
+    volumes:
+      - /home/ubuntu/k-market-caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - webnet
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
   app:
     image: spearx/kaufland-game:main
     env_file:
-      - /home/digital/git/.env
+      - /home/ubuntu/k-market/.env
+    networks:
+      - webnet
     deploy:
       replicas: 4
       restart_policy:
         condition: on-failure
+
+networks:
+  webnet:
+
+volumes:
+  caddy_data:
+  caddy_config:
