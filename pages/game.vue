@@ -2,14 +2,7 @@
   <div class="flex flex-col pt-14">
     <div class="flex grow bg-black justify-center">
       <div class="h-full w-full bg-green-500">
-        <iframe
-          ref="game"
-          height="1024"
-          width="512"
-          :src="gameSrc"
-          frameborder="0"
-          class="w-full h-full"
-        ></iframe>
+        <iframe ref="game" height="1024" width="512" :src="gameSrc" frameborder="0" class="w-full h-full"></iframe>
       </div>
     </div>
   </div>
@@ -24,7 +17,7 @@ const jwt = ref<string | null>(null);
 
 const CustomObject = ref<string>("");
 // https://game.dev.kaufland.game.ecolabel.cc/
-const gameSrc = ref<string>("https://demo.kaufland.game.digitalarena.hr/");
+const gameSrc = ref<string>("https://game-k-market.rootster.xyz/");
 // const gameSrc = ref<string>("http://localhost:8000/");
 const game = ref<null | HTMLIFrameElement>(null);
 definePageMeta({
