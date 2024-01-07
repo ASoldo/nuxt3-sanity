@@ -48,7 +48,7 @@ jobs:
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-host: 38.242.250.189
+          ssh-host: 18.185.113.51
 
       # - name: Remove Docker Compose stack
       #   run: |
