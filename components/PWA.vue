@@ -58,7 +58,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <VitePwaManifest />
+  <!-- <VitePwaManifest /> -->
+  <NuxtPwaManifest />
   <ClientOnly>
     <!-- You can use $pwa directly in templates! -->
     <!-- <div v-show="$pwa.needRefresh" -->
