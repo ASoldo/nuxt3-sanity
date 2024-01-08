@@ -109,7 +109,7 @@ jobs:
       - name: Set up SSH
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
-          ssh-private-key: ${{ secrets.SSH_DEV_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-host: 18.185.113.51
 
       - name: Add SSH key to known hosts
