@@ -64,11 +64,12 @@ export default defineNuxtConfig({
     srcDir: "public",
     // registerType: "prompt",
     workbox: {
+      cleanupOutdatedCaches: true,
       navigateFallback: "/",
       clientsClaim: true,
       skipWaiting: true,
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-      globIgnores: ["**/node_modules/**/*", "sw.js", "workbox-*.js"],
+      globIgnores: ["**/node_modules/**/*", "sw.ts", "workbox-*.js"],
     },
     devOptions: {
       enabled: true,

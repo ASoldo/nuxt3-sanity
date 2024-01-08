@@ -7,7 +7,7 @@
       <div class="flex">
         <div class="py-1">
           <span v-if="$pwa.offlineReady">
-            Aplikacija spremna za izvanmrežni rad.</span>
+            Aplikacija spremna za izvanmrežni rad...</span>
           <span v-else>
             Novi sadržaj dostupan, kliknite na gumb za ponovno učitavanje kako
             biste ažurirali.
