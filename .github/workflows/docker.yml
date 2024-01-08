@@ -110,23 +110,23 @@ jobs:
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-host: 18.185.113.51
+          ssh-host: 18.156.80.97
 
       - name: Add SSH key to known hosts
         run: |
-          ssh-keyscan -H 18.185.113.51 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 18.156.80.97 >> ~/.ssh/known_hosts
 
       - name: SCP .zip to the server
         run: |
-          scp build.zip ubuntu@18.185.113.51:~/.
+          scp build.zip ubuntu@18.156.80.97:~/.
         env:
           SSH_AUTH_SOCK: /tmp/ssh-auth.sock
 
       - name: Unzip and Restart Node
         run: |
-          ssh ubuntu@18.185.113.51 "sudo rm -rf /var/www/html/k-market/web/.output"
-          ssh ubuntu@18.185.113.51 "sudo unzip ~/build.zip -d /var/www/html/k-market/web"
-          ssh ubuntu@18.185.113.51 "sudo systemctl restart k-market.service"
+          ssh ubuntu@18.156.80.97 "sudo rm -rf /var/www/html/k-market/web/.output"
+          ssh ubuntu@18.156.80.97 "sudo unzip ~/build.zip -d /var/www/html/k-market/web"
+          ssh ubuntu@18.156.80.97 "sudo systemctl restart k-market.service"
 
           # ssh ubuntu@18.185.113.51 "sudo rm -rf ~/demos/kaufland-game/.output"
           # ssh ubuntu@18.185.113.51 "sudo unzip ~/demos/kaufland-game/build.zip -d ~/demos/kaufland-game"
