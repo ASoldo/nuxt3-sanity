@@ -114,7 +114,7 @@ jobs:
 
       - name: Add SSH key to known hosts
         run: |
-          echo "$(ssh-keyscan -t rsa 18.185.113.51)" >> ~/.ssh/known_hosts
+          ssh-keyscan -H 18.185.113.51 >> ~/.ssh/known_hosts
 
       - name: SCP .zip to the server
         run: |
