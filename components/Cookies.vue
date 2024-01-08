@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button
-      class="fixed z-50 w-10 h-10 bottom-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded-full"
+    <button class="fixed z-50 w-10 h-10 bottom-4 right-4 bg-white hover:bg-red-900 text-white font-bold p-2 rounded-full"
       @click="openDialog = true">
       🍪
     </button>
