@@ -36,7 +36,7 @@
 import { ref } from "vue";
 import { onMounted } from "vue";
 import moment from "moment";
-import { DialogElement } from "~/internals/interfaces";
+import type { DialogElement } from "~/internals/types";
 import PrizeCode from "~/components/PrizeCode.vue";
 
 const date = ref("");

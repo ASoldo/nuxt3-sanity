@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { DialogElement } from "../internals/interfaces";
+import type { DialogElement } from "../internals/types";
 const props = defineProps({
   content: String,
 });

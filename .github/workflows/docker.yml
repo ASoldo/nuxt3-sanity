@@ -36,48 +36,48 @@ jobs:
             SUPABASE_URL=${{ secrets.SUPABASE_URL }}
             SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
 
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: docker
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up SSH
-        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-host: 18.185.113.51
-
-      - name: Manually add SSH key to known_hosts
-        run: |
-          ssh-keyscan -H 18.185.113.51 >> ~/.ssh/known_hosts
-
-      # - name: Remove Docker Compose stack
-      #   run: |
-      #     echo "Removing previous stack"
-      #     ssh ubuntu@18.185.113.51 "docker stack rm kaufland-stack"
-      #
-      # - name: Wait for old stack to be removed
-      #   run: |
-      #     echo "Waiting for old stack to be removed"
-      #     while ssh ubuntu@18.185.113.51 "docker stack ls | grep -q kaufland-stack"
-      #     do
-      #       echo "Old stack is still present, waiting..."
-      #       sleep 5
-      #     done
-      #     sleep 5
-      #
-      # - name: Docker system prune
-      #   run: |
-      #     echo "Pruning Docker system"
-      #     ssh ubuntu@18.185.113.51 "docker system prune -f"
-
-      - name: Start new stack
-        run: |
-          echo "Starting new stack"
-          ssh ubuntu@18.185.113.51 "docker stack deploy -c /home/ubuntu/k-market/docker-compose.yml kaufland-stack"
+  # deploy:
+  #   if: github.ref == 'refs/heads/main'
+  #   needs: docker
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #
+  #     - name: Set up SSH
+  #       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+  #       with:
+  #         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #         ssh-host: 18.185.113.51
+  #
+  #     - name: Manually add SSH key to known_hosts
+  #       run: |
+  #         ssh-keyscan -H 18.185.113.51 >> ~/.ssh/known_hosts
+  #
+  #     - name: Remove Docker Compose stack
+  #       run: |
+  #         echo "Removing previous stack"
+  #         ssh ubuntu@18.185.113.51 "docker stack rm kaufland-stack"
+  #
+  #     - name: Wait for old stack to be removed
+  #       run: |
+  #         echo "Waiting for old stack to be removed"
+  #         while ssh ubuntu@18.185.113.51 "docker stack ls | grep -q kaufland-stack"
+  #         do
+  #           echo "Old stack is still present, waiting..."
+  #           sleep 5
+  #         done
+  #         sleep 5
+  #
+  #     - name: Docker system prune
+  #       run: |
+  #         echo "Pruning Docker system"
+  #         ssh ubuntu@18.185.113.51 "docker system prune -f"
+  #
+  #     - name: Start new stack
+  #       run: |
+  #         echo "Starting new stack"
+  #         ssh ubuntu@18.185.113.51 "docker stack deploy -c /home/ubuntu/k-market-caddy/docker-compose.yml kaufland-stack"
 
   # build-and-deploy:
   #   if: github.ref == 'refs/heads/main'

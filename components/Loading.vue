@@ -1,16 +1,16 @@
 <template>
   <div></div>
-   <div v-if="loadingStore.loading"
-     class="bg-white bg-opacity-80 fixed bottom-4 left-4 rounded-2xl border-2 shadow-2xl w-[100px] h-[100px] flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
-     <i class="pi pi-spin pi-spinner opacity-100 font-bold" style="font-size: 3rem"></i>
-   </div>
+  <div v-if="loadingStore.loading"
+    class="bg-white bg-opacity-80 fixed bottom-4 left-4 rounded-2xl border-2 shadow-2xl w-[100px] h-[100px] flex flex-col justify-center items-center z-[1000] text-kaufland-dark-red">
+    <i class="pi pi-spin pi-spinner opacity-100 font-bold" style="font-size: 3rem"></i>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useLoadingStore } from "@/stores/loading";
-import { DialogElement } from "@/internals/interfaces";
+import type { DialogElement } from "@/internals/types";
 
-const loadingDialog = ref<DialogElement | null>(null)
+const loadingDialog = ref<DialogElement | null>(null);
 const loadingStore = useLoadingStore();
 loadingStore.$subscribe((mutation, state) => {
   if (state.loading) {
@@ -24,11 +24,11 @@ loadingStore.$subscribe((mutation, state) => {
 
 const showLoading = () => {
   // loadingDialog.value?.showModal();
-}
+};
 
 const hideLoading = () => {
   // loadingDialog.value?.close();
-}
+};
 </script>
 
 <style scoped>

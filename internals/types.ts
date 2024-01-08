@@ -1,3 +1,7 @@
+export interface DialogElement extends HTMLElement {
+  showModal: () => void;
+  close: () => void;
+}
 export interface DemoData {
   _id: string;
   _type: string;

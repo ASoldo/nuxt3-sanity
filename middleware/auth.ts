@@ -1,10 +1,10 @@
-interface GameSessionResponse {
+type GameSessionResponse = {
   error?: string;
   message?: string;
   code?: boolean;
   latestSession?: string;
   currentDate?: string;
-}
+};
 export default defineNuxtRouteMiddleware(async (to) => {
   const user = useSupabaseUser();
 

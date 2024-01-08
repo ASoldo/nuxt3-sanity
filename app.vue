@@ -4,51 +4,26 @@
   </div>
   <div class="flex flex-col h-screen">
     <NuxtLayout>
-      <MenuComponent
-        :pt="{ root: { class: '' } }"
-        :items-user-menu="itemsMenu"
-        :items-navigation-menu="items"
-        class="fixed top-0 z-[11000]"
-      />
+      <MenuComponent :pt="{ root: { class: '' } }" :items-user-menu="itemsMenu" :items-navigation-menu="items"
+        class="fixed top-0 z-[11000]" />
       <NuxtPage ref="page" class="w-full grow" />
     </NuxtLayout>
 
-    <dialog
-      data-modal
-      ref="login_dialog"
-      class="mx-auto my-auto inset-0 container h-4/5 md:h-2/3 w-[95%] md:w-2/3"
-    >
+    <dialog data-modal ref="login_dialog" class="mx-auto my-auto inset-0 container h-4/5 md:h-2/3 w-[95%] md:w-2/3">
       <Loading />
-      <Login
-        class="w-full h-full"
-        @login-finished="closeLogin()"
-        @register-from-login-clicked="registerFromLogin()"
-        @forgot-password-clicked="forgotPassword()"
-      />
+      <Login class="w-full h-full" @login-finished="closeLogin()" @register-from-login-clicked="registerFromLogin()"
+        @forgot-password-clicked="forgotPassword()" />
     </dialog>
-    <dialog
-      ref="registerDialog"
-      class="mx-auto my-auto inset-0 container md:w-2/3 w-full"
-    >
+    <dialog ref="registerDialog" class="mx-auto my-auto inset-0 container md:w-2/3 w-full">
       <Loading />
-      <Register
-        @open-login="loginFromRegister()"
-        @close-dialog="closeRegister()"
-        @register-clicked="handleRegister()"
-      />
+      <Register @open-login="loginFromRegister()" @close-dialog="closeRegister()" @register-clicked="handleRegister()" />
     </dialog>
 
-    <dialog
-      ref="success_msg"
-      class="mx-auto my-auto inset-0 container md:w-1/2 w-full"
-    >
+    <dialog ref="success_msg" class="mx-auto my-auto inset-0 container md:w-1/2 w-full">
       <Loading />
       <RegisterSuccess @close="success_msg?.close()" />
     </dialog>
-    <dialog
-      ref="forgot_password"
-      class="mx-auto my-auto inset-0 container md:w-1/2 w-full"
-    >
+    <dialog ref="forgot_password" class="mx-auto my-auto inset-0 container md:w-1/2 w-full">
       <Loading />
       <ForgotPassword @close-dialog="forgot_password?.close()" />
     </dialog>
@@ -61,7 +36,7 @@ import { onMounted } from "vue";
 
 const user = useSupabaseUser();
 const { auth } = useSupabaseAuthClient();
-import { DialogElement } from "@/internals/interfaces";
+import type { DialogElement } from "@/internals/types";
 import { useToastStore } from "@/stores/toast";
 import { document } from "postcss";
 import { useLoginStore } from "~/stores/login";

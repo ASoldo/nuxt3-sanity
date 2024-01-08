@@ -70,23 +70,28 @@ onMounted(async () => {
   // console.log(user);
   try {
     jwt.value = localStorage.getItem(
-      "sb-kxbzixfkcjexfwfacnzq-auth-token"
+      "sb-kxbzixfkcjexfwfacnzq-auth-token",
     ) as string;
 
     // Fetch user prizes based on profile_id
     const { data: userPrizes, error: userPrizesError } = await client
       .from("user_prizes")
       .select(
-        "id,prize_id, profile_id, created_at, prizes: prize_id(id,prize_code,description, qr_code_url, valid_from, valid_to, prize_image_url)"
+        "id,prize_id, profile_id, created_at, prizes: prize_id(id,prize_code,description, qr_code_url, valid_from, valid_to, prize_image_url)",
       )
-      .eq("profile_id", user.value?.id);
+      .eq("profile_id", user.value?.id as never);
 
     if (userPrizesError) {
       console.error("Error fetching user prizes:", userPrizesError.message);
       return;
     }
 
-    user_prizes_data.value = userPrizes?.filter(prize => isPrizeValid(prize)).sort((a,b) => (new Date(a.created_at)).getTime() - (new Date(b.created_at)).getTime());
+    user_prizes_data.value = userPrizes
+      ?.filter((prize) => isPrizeValid(prize))
+      .sort(
+        (a, b) =>
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
+      );
     // isPrizeValid(user_prizes_data.value);
     // console.log("User prize data: ", user_prizes_data.value);
   } catch (error) {

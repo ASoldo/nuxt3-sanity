@@ -66,14 +66,13 @@ loadingStore.showLoading();
 profile_data.value = await client
   .from("profiles")
   .select("*")
-  .eq("id", user.value?.id);
+  .eq("id", user.value?.id as never);
 
 first_name.value = profile_data.value.data[0].first_name;
 last_name.value = profile_data.value.data[0].last_name;
 email.value = profile_data.value.data[0].email;
 promo.value = profile_data.value.data[0].promo;
 // console.log("profile data: ", profile_data.value.data[0].first_name);
-
 
 // leaderboard.value = await client
 //   .from("leaderboard")
@@ -116,7 +115,7 @@ const updateProfile = async () => {
     const response = await client
       .from("profiles")
       .update(updatedData as never)
-      .eq("id", user.value?.id);
+      .eq("id", user.value?.id as never);
 
     if (response.error) {
       console.error("Error updating profile:", response.error);

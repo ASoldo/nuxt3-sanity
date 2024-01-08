@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { PageData } from "../internals/types";
+import type { PageData } from "../internals/types";
 import Header from "./Header.vue";
 import Banner from "./Banner.vue";
 import BodyComponent from "./BodyComponent.vue";
