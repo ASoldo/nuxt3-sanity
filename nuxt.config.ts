@@ -86,16 +86,16 @@ export default defineNuxtConfig({
 
   supabase: {},
   pwa: {
-    // strategies: "injectManifest",
-    // filename: "sw.ts",
-    // srcDir: "public",
-    registerType: "prompt",
+    strategies: "injectManifest",
+    filename: "sw.ts",
+    srcDir: "public",
+    // registerType: "prompt",
     workbox: {
       navigateFallback: "/",
       clientsClaim: true,
       skipWaiting: true,
-      globPatterns: ["**/*.{js,css,html,png,svg,json,ico}"],
-      globIgnores: ["**/node_modules/**/*", "sw.ts", "workbox-*.js"],
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      globIgnores: ["**/node_modules/**/*", "sw.js", "workbox-*.js"],
     },
     devOptions: {
       enabled: true,
