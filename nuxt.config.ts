@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     "frammer-nuxt",
     "nuxt-purgecss",
     "@vueuse/nuxt",
-    "@dargmuesli/nuxt-cookie-control",
     "nuxt-simple-sitemap",
     "nuxt-simple-robots",
   ],
@@ -42,32 +41,6 @@ export default defineNuxtConfig({
     blockNonSeoBots: true,
   },
   plugins: [],
-
-  cookieControl: {
-    isModalForced: false,
-    isCssEnabled: false,
-    isCookieIdVisible: true,
-    isAcceptNecessaryButtonEnabled: false,
-    cookieNameIsConsentGiven: "ncc_c",
-    cookieNameCookiesEnabledIds: "ncc_e",
-    locales: ["en", "hr"],
-    cookies: {
-      necessary: [
-        {
-          name: {
-            en: "Default cookies",
-            hr: "Osnovni kolačići",
-          },
-
-          description: {
-            en: "Basic cookies are essential for the proper functioning of our website. Without these cookies, we could not provide basic functionalities and services. These cookies allow you access to secure areas of the website, ensure proper navigation, and ensure that your settings are remembered during visits.",
-            hr: "Osnovni kolačići su neophodni za pravilno funkcioniranje naše web stranice. Bez ovih kolačića, ne bismo mogli pružiti osnovne funkcionalnosti i usluge. Ovi kolačići omogućavaju vam pristup sigurnim područjima web stranice, omogućuju pravilnu navigaciju i osiguravaju da se vaše postavke pamte tijekom posjeta.",
-          },
-        },
-      ],
-      optional: [],
-    },
-  },
 
   purgecss: {
     enabled: false, // Always enable purgecss

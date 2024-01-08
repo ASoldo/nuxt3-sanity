@@ -8,22 +8,6 @@
         class="fixed top-0 z-[11000]" />
       <NuxtPage ref="page" class="w-full grow" />
     </NuxtLayout>
-    <CookieControl locale="hr">
-      <template #bar>
-        <div class="flex flex-col">
-          <h3>
-            Naša stranica koristi samo osnovne (tehnički neophodne) kolačiće.
-            Klikom na gumb „Dozvoli" prihvaćate sve tehnički neophodne kolačiće.
-            Klikom na gumb „Upravljaj kolačićima" možete isključiti korištenje
-            tehnički neophodnih kolačića. Dodatne informacije možete pronaći u
-            našoj politici o kolačićima web stranice.
-          </h3>
-        </div>
-      </template>
-      <template #modal>
-        <h3>Kolačići</h3>
-      </template>
-    </CookieControl>
     <dialog data-modal ref="login_dialog" class="mx-auto my-auto inset-0 container h-4/5 md:h-2/3 w-[95%] md:w-2/3">
       <Loading />
       <Login class="w-full h-full" @login-finished="closeLogin()" @register-from-login-clicked="registerFromLogin()"

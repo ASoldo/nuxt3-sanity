@@ -16,7 +16,6 @@
     "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/vite.svg"
   },
   "devDependencies": {
-    "@dargmuesli/nuxt-cookie-control": "^7.2.3",
     "@nuxt/devtools": "^0.7.6",
     "@nuxtjs/supabase": "^0.3.8",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
