@@ -49,8 +49,7 @@
       </div>
       <Products />
       <Impressum />
-      <PWA class="w-full h-full" />
-      <CookieControl locale="hr">
+      <CookieControl locale="hr" class="z-50">
         <template #bar>
           <div class="flex flex-col">
             <h3>
@@ -66,6 +65,7 @@
           <h3>Kolačići</h3>
         </template>
       </CookieControl>
+      <PWA class="w-full h-full" />
     </div>
   </div>
 </template>
