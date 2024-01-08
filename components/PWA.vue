@@ -41,7 +41,7 @@
   <!--   </div> -->
   <!-- </div> -->
   <div v-show="$pwa?.needRefresh">
-    <span> New content available, click on reload button to update. </span>
+    <span> New contentttt available, click on reload button to update. </span>
 
     <button @click="$pwa.updateServiceWorker()">Reload</button>
   </div>
