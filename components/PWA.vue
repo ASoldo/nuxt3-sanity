@@ -18,7 +18,7 @@
           Ponovno učitavanje
         </button>
         <button @click="$pwa.cancelPrompt()" class="font-bold text-blue-500 hover:text-blue-800 ml-4">
-          Zatvori
+          Zatvorii
         </button>
       </div>
     </div>
