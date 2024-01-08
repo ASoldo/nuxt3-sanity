@@ -43,6 +43,7 @@
       <Products />
       <Impressum />
       <PWA class="w-full h-full" />
+      <Cookies />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <VitePwaManifest />
   <ClientOnly>
+    <VitePwaManifest />
     <div v-if="$pwa?.offlineReady || $pwa?.needRefresh"
       class="bg-red-100 border-t-4 border-red-500 rounded-b text-blue-900 px-4 py-3 shadow-md sticky bottom-0 z-50"
       role="alert">
@@ -43,3 +43,7 @@
     </div>
   </ClientOnly>
 </template>
+
+<script lang="ts" setup>
+const { $pwa } = useNuxtApp();
+</script>
