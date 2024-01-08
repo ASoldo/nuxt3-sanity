@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-16 right-2 z-[10000]">
+  <div class="fixed top-16 right-2">
     <ToastWrapper />
   </div>
   <div class="flex flex-col h-screen">
