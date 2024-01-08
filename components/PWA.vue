@@ -65,7 +65,7 @@ onMounted(() => {
       <span> New content available, click on reload button to update. </span>
 
       <button class="font-bold text-blue-500 hover:text-blue-800 ml-4" @click="$pwa.updateServiceWorker()">
-        Reload
+        Reload now
       </button>
     </div>
     <div v-if="$pwa?.offlineReady || $pwa?.needRefresh"
