@@ -86,10 +86,10 @@ export default defineNuxtConfig({
 
   supabase: {},
   pwa: {
-    strategies: "injectManifest",
-    filename: "sw.ts",
-    srcDir: "public",
-    // registerType: "prompt",
+    // strategies: "injectManifest",
+    // filename: "sw.ts",
+    // srcDir: "public",
+    registerType: "prompt",
     workbox: {
       navigateFallback: "/",
       clientsClaim: true,
