@@ -1,13 +1,9 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json",
-  "compilerOptions": {
-    "lib": [
-      "WebWorker",
-      "DOM",
-      "DOM.Iterable",
-      "ScriptHost",
-      "ESNext"
-    ]
-  }
+  "extends": "./.nuxt/tsconfig.json"
+  // "compilerOptions": {
+  //   "lib": [
+  //     "WebWorker"
+  //   ]
+  // }
 }
