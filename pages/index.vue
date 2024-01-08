@@ -50,22 +50,6 @@
       <Products />
       <Impressum />
       <PWA class="w-full h-full" />
-      <CookieControl locale="hr">
-        <template #bar>
-          <div class="flex flex-col">
-            <h3>
-              Naša stranica koristi samo osnovne (tehnički neophodne) kolačiće.
-              Klikom na gumb „Dozvoli" prihvaćate sve tehnički neophodne
-              kolačiće. Klikom na gumb „Upravljaj kolačićima" možete isključiti
-              korištenje tehnički neophodnih kolačića. Dodatne informacije
-              možete pronaći u našoj politici o kolačićima web stranice.
-            </h3>
-          </div>
-        </template>
-        <template #modal>
-          <h3>Kolačići</h3>
-        </template>
-      </CookieControl>
     </div>
   </div>
 </template>
