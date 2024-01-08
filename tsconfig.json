@@ -3,7 +3,11 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "lib": [
-      "WebWorker"
+      "WebWorker",
+      "DOM",
+      "DOM.Iterable",
+      "ScriptHost",
+      "ESNext"
     ]
   }
 }
