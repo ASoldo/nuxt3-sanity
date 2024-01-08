@@ -59,9 +59,9 @@ export default defineNuxtConfig({
 
   supabase: {},
   pwa: {
-    strategies: "injectManifest",
-    filename: "sw.ts",
-    srcDir: "public",
+    // strategies: "injectManifest",
+    // filename: "sw.ts",
+    // srcDir: "public",
     registerType: "prompt",
     workbox: {
       cleanupOutdatedCaches: true,
