@@ -62,7 +62,7 @@ export default defineNuxtConfig({
     strategies: "injectManifest",
     filename: "sw.ts",
     srcDir: "public",
-    // registerType: "prompt",
+    registerType: "prompt",
     workbox: {
       cleanupOutdatedCaches: true,
       navigateFallback: "/",
