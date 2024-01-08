@@ -79,51 +79,55 @@ jobs:
   #         echo "Starting new stack"
   #         ssh ubuntu@18.185.113.51 "docker stack deploy -c /home/ubuntu/k-market-caddy/docker-compose.yml kaufland-stack"
 
-  # build-and-deploy:
-  #   if: github.ref == 'refs/heads/main'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: "18" # adjust if you use another version
-  #
-  #     - name: Install pnpm
-  #       run: npm install -g pnpm
-  #
-  #     - name: Install Dependencies
-  #       run: pnpm install
-  #
-  #     - name: Build Project
-  #       run: pnpm build # adjust if your build command is different
-  #       env:
-  #         SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-  #         SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-  #
-  #     - name: Zip the build
-  #       run: zip -r build.zip .output # adjust the path to your build output
-  #
-  #     - name: Set up SSH
-  #       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
-  #       with:
-  #         ssh-private-key: ${{ secrets.SSH_DEV_PRIVATE_KEY }}
-  #         ssh-host: 62.171.179.164
-  #
-  #     - name: Add SSH key to known hosts
-  #       run: |
-  #         echo "$(ssh-keyscan -t rsa 62.171.179.164)" >> ~/.ssh/known_hosts
-  #
-  #     - name: SCP .zip to the server
-  #       run: |
-  #         scp build.zip digital@62.171.179.164:~/demos/kaufland-game
-  #       env:
-  #         SSH_AUTH_SOCK: /tmp/ssh-auth.sock
-  #
-  #     - name: Unzip and Restart Node
-  #       run: |
-  #         ssh digital@62.171.179.164 "sudo rm -rf ~/demos/kaufland-game/.output"
-  #         ssh digital@62.171.179.164 "sudo unzip ~/demos/kaufland-game/build.zip -d ~/demos/kaufland-game"
-  #         ssh digital@62.171.179.164 "sudo systemctl restart kaufland-demo"
+  build-and-deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18" # adjust if you use another version
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Project
+        run: pnpm build # adjust if your build command is different
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+      - name: Zip the build
+        run: zip -r build.zip .output # adjust the path to your build output
+
+      - name: Set up SSH
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+        with:
+          ssh-private-key: ${{ secrets.SSH_DEV_PRIVATE_KEY }}
+          ssh-host: 18.185.113.51
+
+      - name: Add SSH key to known hosts
+        run: |
+          echo "$(ssh-keyscan -t rsa 18.185.113.51)" >> ~/.ssh/known_hosts
+
+      - name: SCP .zip to the server
+        run: |
+          scp build.zip ubuntu@18.185.113.51:~/.
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh-auth.sock
+
+      - name: Unzip and Restart Node
+        run: |
+          ssh ubuntu@18.185.113.51 "sudo rm -rf /var/www/html/k-market/web/.output"
+          ssh ubuntu@18.185.113.51 "sudo unzip ~/build.zip -d /var/www/html/k-market/web"
+          ssh ubuntu@18.185.113.51 "sudo systemctl restart k-market.service"
+
+          # ssh ubuntu@18.185.113.51 "sudo rm -rf ~/demos/kaufland-game/.output"
+          # ssh ubuntu@18.185.113.51 "sudo unzip ~/demos/kaufland-game/build.zip -d ~/demos/kaufland-game"
+          # ssh ubuntu@18.185.113.51 "sudo systemctl restart kaufland-demo"

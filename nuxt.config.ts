@@ -86,7 +86,9 @@ export default defineNuxtConfig({
 
   supabase: {},
   pwa: {
-    registerType: "autoUpdate",
+    strategies: "injectManifest",
+    filename: "sw.ts",
+    // registerType: "prompt",
     workbox: {
       navigateFallback: "/",
       clientsClaim: true,
